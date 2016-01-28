@@ -30,7 +30,7 @@ public class PowerSet {
 		{
 			String data = Integer.toBinaryString(nr);
 			int length = data.length();
-			Set<Integer> result = new HashSet<Integer>();
+			Set<Integer> result = new HashSet<>();
 			int i = 0;
 			for (Integer elem : set)
 			{

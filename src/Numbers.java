@@ -2,7 +2,33 @@ import java.util.*;
 
 public class Numbers {
 	
-	public List<Integer> getNumbers(int n)
+	class NegativeNumberException extends Exception
+	{
+		public NegativeNumberException(){};
+	}
+	
+	public long factorial(long n) throws NegativeNumberException
+	{
+		if (n < 0)
+		{
+			throw new NegativeNumberException();
+		}
+		if (n == 0)
+		{
+			return 1;
+		}
+		else
+		{
+			long result = 1;
+			for (int i = 1; i <= n; ++i)
+			{
+				result *= i;
+			}
+			return result;
+		}
+	}
+	
+	public List<Integer> getDigits(int n)
     {
         List<Integer> results = new ArrayList<>();
         String s = Integer.toString(n);
