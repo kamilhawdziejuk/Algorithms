@@ -2,7 +2,9 @@
 //
 
 #include "stdafx.h"
+#include "Strings.cpp"
 
+using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
