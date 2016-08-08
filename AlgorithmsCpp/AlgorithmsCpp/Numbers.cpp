@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include <vector>
+#include <algorithm>
+#include <cmath>
 
 class Numbers
 {
@@ -34,7 +36,20 @@ public:
 	int majorityElementNlogN(vector<int>& nums) {
 
 		sort(nums.begin(),nums.end());
-
 		return nums[nums.size() / 2];
+	}
+
+	//https://leetcode.com/problems/excel-sheet-column-number/
+	int titleToNumber(string s) {
+		int size = s.length();
+		int p = size - 1;
+		int res = 0;
+		for (int i = 0; i < size; i++)
+		{
+			int num = s.at(i) - 'A' + 1;
+			int d = pow(26, p--);
+			res += (num * d);
+		}
+		return res;
 	}
 };
