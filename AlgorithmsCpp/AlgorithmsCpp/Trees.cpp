@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <algorithm>
 
  struct TreeNode {
 	int val;
@@ -9,6 +10,10 @@
 
 class Trees
 {
+
+private:
+	int depth = 0;
+
 public:
 	Trees() {};
 	~Trees() {};
@@ -18,6 +23,20 @@ public:
 	{
 		if (!p || !q) { if (!p && !q) return true; return false; }
 		return (p->val == q->val) && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+	}
+
+	//https://leetcode.com/problems/maximum-depth-of-binary-tree/
+	int maxDepth(TreeNode* root) {
+		if (root == NULL)
+		{
+			return 0;
+		}
+		else
+		{
+			int dLeft = 1 + maxDepth(root->left);
+			int dRight = 1 + maxDepth(root->right);
+			return std::max(dLeft, dRight);
+		}
 	}
 };
 
