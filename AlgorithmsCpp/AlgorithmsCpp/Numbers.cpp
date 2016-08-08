@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cmath>
 #include <map>
+#include <unordered_map>
 
 class Numbers
 {
@@ -52,6 +53,22 @@ public:
 			res += (num * d);
 		}
 		return res;
+	}
+
+	//https://leetcode.com/problems/contains-duplicate/
+	bool containsDuplicate(vector<int>& nums) {
+		unordered_map<int, int> dict;
+
+		for (int i = 0; i < nums.size(); i++)
+		{
+			int x = nums.at(i);
+			dict[x]++;
+			if (dict[x] >= 2)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	//https://leetcode.com/problems/roman-to-integer/
