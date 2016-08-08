@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <map>
 
 class Numbers
 {
@@ -49,6 +50,44 @@ public:
 			int num = s.at(i) - 'A' + 1;
 			int d = pow(26, p--);
 			res += (num * d);
+		}
+		return res;
+	}
+
+	//https://leetcode.com/problems/roman-to-integer/
+	int romanToInt(string s) {
+		int n = s.length();
+
+		map<char, int> roman;
+		roman['I'] = 1;
+		roman['V'] = 5;
+		roman['X'] = 10;
+		roman['L'] = 50;
+		roman['C'] = 100;
+		roman['D'] = 500;
+		roman['M'] = 1000;
+
+		int res = 0;
+		for (int i = 0; i < n; i++)
+		{
+			char c = s.at(i);
+			if (i < n - 1)
+			{
+				char d = s.at(i + 1);
+				if (roman[c] < roman[d])
+				{
+					res += (roman[d] - roman[c]);
+					i++;
+				}
+				else
+				{
+					res += roman[c];
+				}
+			}
+			else
+			{
+				res += roman[c];
+			}
 		}
 		return res;
 	}

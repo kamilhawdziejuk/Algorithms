@@ -10,7 +10,9 @@ using namespace std;
 int _tmain(int argc, _TCHAR* argv[])
 {
 	Numbers *n = new Numbers();
-	n->titleToNumber("ABC");
+	//n->titleToNumber("ABC");
+	//n->romanToInt("MDCCCLXXXIV");
+	n->romanToInt("DCXXI");
 	delete n;
 	return 0;
 }
