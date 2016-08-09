@@ -16,10 +16,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	delete n;
 
 	Strings *s = new Strings();
-	vector<string> strs;
+	/*vector<string> strs;
 	strs.push_back("c");
 	strs.push_back("c");
-	s->longestCommonPrefix(strs);
+	s->longestCommonPrefix(strs);*/
+	string str = "the sky is blue";//   a   ";
+	s->reverseWords(str);
 	delete s;
 
 	return 0;

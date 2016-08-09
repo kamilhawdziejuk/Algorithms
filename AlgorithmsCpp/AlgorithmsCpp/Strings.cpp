@@ -2,12 +2,62 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <sstream>
 
 class Strings
 {
 	public:
 		Strings() {}
 		~Strings() {}
+
+		//https://leetcode.com/problems/reverse-words-in-a-string
+		void reverseWords(string &s) {
+			int l = s.size();
+			reverseWord(s, 0, l - 1);
+			string s2;
+			int j = 0;
+
+			int p = s.find_first_not_of(" ");
+			while (p != string::npos)
+			{
+				int q = s.find_first_of(" ", p + 1);
+				if (q == string::npos)
+				{
+					q = l;
+				}
+				reverseWord(s, p, q-1);
+
+				for (int i = p; i < q; i++) s2.push_back(s[i]);
+				p = s.find_first_not_of(" ", q+1);
+				if (p != -1)
+				{
+					s2.push_back(' ');
+				}
+			}
+			s = s2;
+		}
+
+		void reverseWord(string &s, int start, int end) {
+			while (start < end) {
+				swap(s[start], s[end]);
+				++start;
+				--end;
+			}
+		}
+
+
+		//https://leetcode.com/problems/reverse-words-in-a-string
+		void reverseWordsStream(string& s) {
+			reverse(s.begin(), s.end());
+			stringstream ss(s);
+			s.clear();
+			string tmp;
+			while (ss >> tmp) {
+				reverse(tmp.begin(), tmp.end());
+				s += tmp + " ";
+			}
+			if (!s.empty()) s.erase(s.size() - 1);
+		}
 
 		//https://leetcode.com/problems/longest-common-prefix/
 		string longestCommonPrefix(vector<string>& strs) {
