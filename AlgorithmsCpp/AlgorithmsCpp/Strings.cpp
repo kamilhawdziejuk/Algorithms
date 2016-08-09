@@ -9,6 +9,38 @@ class Strings
 		Strings() {}
 		~Strings() {}
 
+		//https://leetcode.com/problems/longest-common-prefix/
+		string longestCommonPrefix(vector<string>& strs) {
+			if (strs.size() == 0 || strs.at(0).size() == 0)
+			{
+				return string("");
+			}
+
+			string f = strs.at(0);
+			bool t = true;
+			int n = 0;
+			while (t)
+			{
+				if (f.size() < n + 1) break;
+				for (int i = 1; i < strs.size(); i++)
+				{
+					string s2 = strs.at(i);
+					if (s2.size() < n + 1 || s2.at(n) != f.at(n))
+					{
+						t = false;
+						break;
+					}
+				}
+				if (t) n++;
+			}
+			if (n == 0)
+			{
+				return string("");
+			}
+			return strs.at(0).substr(0, n);
+		}
+
+
 		string reverseString_std(string str) {
 			reverse(str.begin(), str.end());
 			return str;

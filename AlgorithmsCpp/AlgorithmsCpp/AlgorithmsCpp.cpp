@@ -12,8 +12,16 @@ int _tmain(int argc, _TCHAR* argv[])
 	Numbers *n = new Numbers();
 	//n->titleToNumber("ABC");
 	//n->romanToInt("MDCCCLXXXIV");
-	n->romanToInt("DCXXI");
+	//n->romanToInt("DCXXI");
 	delete n;
+
+	Strings *s = new Strings();
+	vector<string> strs;
+	strs.push_back("c");
+	strs.push_back("c");
+	s->longestCommonPrefix(strs);
+	delete s;
+
 	return 0;
 }
 
