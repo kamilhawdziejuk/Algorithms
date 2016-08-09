@@ -18,6 +18,15 @@ public:
 		else return num % 9;
 	}
 
+	//https://leetcode.com/problems/ugly-number/
+	bool isUgly(int num) {
+		if (num == 0) return false;
+		while (num % 2 == 0) num /= 2;
+		while (num % 3 == 0) num /= 3;
+		while (num % 5 == 0) num /= 5;
+		return num == 1;
+	}
+
 	//https://leetcode.com/problems/majority-element/
 	int majorityElement(vector<int>& nums) {
 		int major = nums.at(0), count = 1;
