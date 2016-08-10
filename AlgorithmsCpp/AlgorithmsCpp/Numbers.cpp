@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cmath>
 #include <map>
+#include <cstdint>
 #include <unordered_map>
 
 class Numbers
@@ -173,5 +174,46 @@ public:
 			}
 		}
 		return res;
+	}
+
+	//https://leetcode.com/problems/number-of-1-bits/
+	int hammingWeight(uint32_t number)
+	{
+		int result;
+		do
+		{
+			if ((number & 1) != 0)
+				result++;
+
+			number >>= 1;
+		} while (number);
+
+		return result;
+	}
+
+	//https://leetcode.com/problems/number-of-1-bits/
+	int hammingWeightRecursive(uint32_t n) {
+		if (n>0)
+			return n % 2 == 1 ? 1 + hammingWeightRecursive(n / 2) : hammingWeightRecursive(n / 2);
+		else
+			return 0;
+	}
+
+	string DecToBin2(int number)
+	{
+		string result = "";
+
+		do
+		{
+			if ((number & 1) == 0)
+				result += "0";
+			else
+				result += "1";
+
+			number >>= 1;
+		} while (number);
+
+		reverse(result.begin(), result.end());
+		return result;
 	}
 };
