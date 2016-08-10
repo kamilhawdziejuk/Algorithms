@@ -85,6 +85,7 @@
   <ItemGroup>
     <ClCompile Include="AlgorithmsCpp.cpp" />
     <ClCompile Include="Arrays.cpp" />
+    <ClCompile Include="Lists.cpp" />
     <ClCompile Include="Numbers.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
