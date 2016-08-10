@@ -21,7 +21,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	strs.push_back("c");
 	s->longestCommonPrefix(strs);*/
 	string str = "the sky is blue";//   a   ";
-	s->reverseWords(str);
+	//s->reverseWords(str);
+
+	s->myAtoi("    10522545459");
 	delete s;
 
 	return 0;
