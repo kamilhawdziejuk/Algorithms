@@ -11,9 +11,36 @@ public:
 	Numbers() {};
 	~Numbers() {};
 
+	//https://leetcode.com/problems/merge-sorted-array/
+	void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+		int i = m - 1;
+		int j = n - 1;
+		int nr = n + m - 1;
+		while (i >= 0 && j >= 0)
+		{
+			if (nums1[i] > nums2[j]) 
+			{
+				nums1[nr--] = nums1[i--];
+			}
+			else
+			{
+				nums1[nr--] = nums2[j--];
+			}
+		}
+		while (i >= 0)
+		{
+			nums1[nr--] = nums1[i--];
+		}
+
+		while (j >= 0)
+		{
+			nums1[nr--] = nums2[j--];
+		}
+	}
+
 	//https://en.wikipedia.org/wiki/Dutch_national_flag_problem
 	////https://leetcode.com/problems/sort-colors/
-	void sortColors(vector<int>& nums) {
+	void sortColors2(vector<int>& nums) {
 		int i = 0, j = i, k = nums.size() - 1;
 
 		while (j <= k){
