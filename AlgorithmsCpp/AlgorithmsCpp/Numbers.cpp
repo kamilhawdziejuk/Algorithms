@@ -10,6 +10,36 @@ class Numbers
 public:
 	Numbers() {};
 	~Numbers() {};
+
+	//https://en.wikipedia.org/wiki/Dutch_national_flag_problem
+	////https://leetcode.com/problems/sort-colors/
+	void sortColors(vector<int>& nums) {
+		int i = 0, j = i, k = nums.size() - 1;
+
+		while (j <= k){
+			if (nums[j] == 0) swap(nums[i++], nums[j++]);
+			else if (nums[j] == 1) j++;
+			else swap(nums[k--], nums[j]);
+		}
+	}
+
+	//https://leetcode.com/problems/sort-colors/
+	void sortColors(vector<int>& nums) {
+		int reds = 0;
+		int whites = 0;
+		int blues = 0;
+		for (int i = 0; i < nums.size(); ++i)
+		{
+			int color = nums.at(i);
+			if (color == 0) reds++;
+			if (color == 1) whites++;
+			if (color == 2) blues++;
+		}
+		nums.clear();
+		for (int i = 0; i < reds; i++) nums.push_back(0);
+		for (int i = 0; i < whites; i++) nums.push_back(1);
+		for (int i = 0; i < blues; i++) nums.push_back(2);
+	}
 		
 	//https://leetcode.com/problems/add-digits/
 	int addDigits(int num)
