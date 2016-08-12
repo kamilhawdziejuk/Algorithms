@@ -6,3 +6,10 @@
 
 // TODO: reference any additional headers you need in STDAFX.H
 // and not in this file
+
+#include <vector>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <unordered_map>
+#include <string>

@@ -10,6 +10,59 @@ class Strings
 		Strings() {}
 		~Strings() {}
 
+		//https://leetcode.com/problems/string-to-integer-atoi/
+		int myAtoiUsingStream(string str)
+		{
+			istringstream sin(str);
+			int ans = 0;
+			sin >> ans;
+			return ans;
+		}
+
+		//https://leetcode.com/problems/string-to-integer-atoi/
+		int myAtoi(string str) {
+			long long res = 0;
+			long long d = 1;
+
+			if (str.size() == 0)
+			{
+				return 0;
+			}
+
+			while (isspace(*str.begin())) str.erase(str.begin());
+			while (isspace(*str.rbegin())) str.erase(str.length() - 1);
+
+			int sign = 1;
+			if (str.at(0) == '+')
+			{
+				str = str.substr(1, str.size() - 1);
+			}
+			else if (str.at(0) == '-')
+			{
+				sign *= -1;
+				str = str.substr(1, str.size() - 1);
+			}
+
+			int last = str.find_first_not_of("0123456789", 0);
+			if (last == -1) last = str.size();
+
+			for (int i = last - 1; i >= 0; i--)
+			{
+				char c = str.at(i);
+				int num = c - '0';
+				res += d*num;
+
+				if (res*sign > INT_MAX)
+					return INT_MAX;
+				if (res*sign < INT_MIN)
+					return INT_MIN;
+
+				d *= 10;
+			}
+
+			return sign * res;
+		}
+
 		//https://leetcode.com/problems/reverse-words-in-a-string
 		void reverseWords(string &s) {
 			int l = s.size();

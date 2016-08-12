@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cmath>
 #include <map>
+#include <cstdint>
 #include <unordered_map>
 #include <string>
 
@@ -11,6 +12,63 @@ class Numbers
 public:
 	Numbers() {};
 	~Numbers() {};
+
+	//https://leetcode.com/problems/merge-sorted-array/
+	void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+		int i = m - 1;
+		int j = n - 1;
+		int nr = n + m - 1;
+		while (i >= 0 && j >= 0)
+		{
+			if (nums1[i] > nums2[j]) 
+			{
+				nums1[nr--] = nums1[i--];
+			}
+			else
+			{
+				nums1[nr--] = nums2[j--];
+			}
+		}
+		while (i >= 0)
+		{
+			nums1[nr--] = nums1[i--];
+		}
+
+		while (j >= 0)
+		{
+			nums1[nr--] = nums2[j--];
+		}
+	}
+
+	//https://en.wikipedia.org/wiki/Dutch_national_flag_problem
+	////https://leetcode.com/problems/sort-colors/
+	void sortColors2(vector<int>& nums) {
+		int i = 0, j = i, k = nums.size() - 1;
+
+		while (j <= k){
+			if (nums[j] == 0) swap(nums[i++], nums[j++]);
+			else if (nums[j] == 1) j++;
+			else swap(nums[k--], nums[j]);
+		}
+	}
+
+	//https://leetcode.com/problems/sort-colors/
+	void sortColors(vector<int>& nums) {
+		int reds = 0;
+		int whites = 0;
+		int blues = 0;
+		for (int i = 0; i < nums.size(); ++i)
+		{
+			int color = nums.at(i);
+			if (color == 0) reds++;
+			if (color == 1) whites++;
+			if (color == 2) blues++;
+		}
+		nums.clear();
+		for (int i = 0; i < reds; i++) nums.push_back(0);
+		for (int i = 0; i < whites; i++) nums.push_back(1);
+		for (int i = 0; i < blues; i++) nums.push_back(2);
+	}
 		
 	//https://leetcode.com/problems/add-digits/
 	int addDigits(int num)
@@ -149,5 +207,46 @@ public:
 			}
 		}
 		return res;
+	}
+
+	//https://leetcode.com/problems/number-of-1-bits/
+	int hammingWeight(uint32_t number)
+	{
+		int result;
+		do
+		{
+			if ((number & 1) != 0)
+				result++;
+
+			number >>= 1;
+		} while (number);
+
+		return result;
+	}
+
+	//https://leetcode.com/problems/number-of-1-bits/
+	int hammingWeightRecursive(uint32_t n) {
+		if (n>0)
+			return n % 2 == 1 ? 1 + hammingWeightRecursive(n / 2) : hammingWeightRecursive(n / 2);
+		else
+			return 0;
+	}
+
+	string DecToBin2(int number)
+	{
+		string result = "";
+
+		do
+		{
+			if ((number & 1) == 0)
+				result += "0";
+			else
+				result += "1";
+
+			number >>= 1;
+		} while (number);
+
+		reverse(result.begin(), result.end());
+		return result;
 	}
 };
