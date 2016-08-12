@@ -19,6 +19,20 @@ public:
 	Trees() {};
 	~Trees() {};
 	
+	//https://leetcode.com/problems/symmetric-tree/
+	bool isSymmetric(TreeNode* root)
+	{
+		if (!root) return true;
+		return sym(root->left, root->right);
+	}
+
+	bool sym(TreeNode* n1, TreeNode* n2)
+	{
+		if (!n1 && !n2) return true;
+		if (!n1 || !n2 || n1->val != n2->val) return false;
+		return sym(n1->left, n2->right) && sym(n1->right, n2->left);
+	}
+
 	//https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 	TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) 
 	{
