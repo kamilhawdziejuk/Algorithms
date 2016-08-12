@@ -4,6 +4,7 @@
 #include <cmath>
 #include <map>
 #include <unordered_map>
+#include <string>
 
 class Numbers
 {
@@ -62,6 +63,38 @@ public:
 			res += (num * d);
 		}
 		return res;
+	}
+
+	//https://leetcode.com/problems/reverse-integer/
+	int reverse(int x) {
+		if (x == 0) return 0;
+		int sign = x > 0 ? 1 : -1;
+		x *= sign;
+		string s = std::to_string(x);
+		std::reverse(s.begin(), s.end());
+		int res = 0;
+		try
+		{
+			res = sign * std::stoi(s);
+		}
+		catch (const std::exception&)
+		{
+			res = 0;
+		}
+		return res;
+	}
+
+	//https://leetcode.com/problems/reverse-integer/
+	int reverseIntAlg(int x) {
+		long returnInt = 0;
+		while (x)
+		{
+			returnInt = returnInt * 10 + x % 10;
+			x /= 10;
+		}
+		if (returnInt>0)
+			return returnInt > INT_MAX ? 0 : returnInt;
+		else return returnInt < INT_MIN ? 0 : returnInt;
 	}
 
 	//https://leetcode.com/problems/contains-duplicate/

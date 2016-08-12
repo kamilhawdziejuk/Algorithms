@@ -10,18 +10,10 @@ using namespace std;
 int _tmain(int argc, _TCHAR* argv[])
 {
 	Numbers *n = new Numbers();
-	//n->titleToNumber("ABC");
-	//n->romanToInt("MDCCCLXXXIV");
-	//n->romanToInt("DCXXI");
+	n->reverse(1534236469);
 	delete n;
 
 	Strings *s = new Strings();
-	/*vector<string> strs;
-	strs.push_back("c");
-	strs.push_back("c");
-	s->longestCommonPrefix(strs);*/
-	string str = "the sky is blue";//   a   ";
-	s->reverseWords(str);
 	delete s;
 
 	return 0;
