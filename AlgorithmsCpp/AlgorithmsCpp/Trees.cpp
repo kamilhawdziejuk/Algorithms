@@ -60,6 +60,28 @@ public:
 		if (!p || !q) { if (!p && !q) return true; return false; }
 		return (p->val == q->val) && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
 	}
+	
+	 //https://leetcode.com/problems/validate-binary-search-tree/
+	 bool isValidBST(TreeNode* root) 
+	 {
+        printBST(root);
+        if (values.size() <= 1) return true;
+        for (int i = 0; i < values.size()-1; i++)
+        {
+            if (values[i] >= values[i+1]) return false;
+        }
+        return true;
+    }
+    
+    void printBST(TreeNode* root)
+    {
+        if (root != NULL)
+        {
+            if (root->left != NULL) printBST(root->left);
+            values.push_back(root->val);
+            if (root->right != NULL) printBST(root->right);
+        }
+    }
 
 	//https://leetcode.com/problems/maximum-depth-of-binary-tree/
 	int maxDepth(TreeNode* root) {
