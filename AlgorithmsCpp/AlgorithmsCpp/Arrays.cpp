@@ -63,4 +63,19 @@ public:
 		}
 		return false;
 	}
+
+	//https://leetcode.com/problems/maximum-subarray/
+	int maxSubArray(vector<int>& nums) {
+		int n = nums.size();
+		if (n == 0) return 0;
+		int prev = nums[0];
+		int m = nums[0];
+		for (int i = 1; i < n; i++)
+		{
+			int curr = max(nums[i], prev + nums[i]);
+			m = max(m, curr);
+			prev = curr;
+		}
+		return m;
+	}
 };
