@@ -60,6 +60,8 @@ public:
 		if (!p || !q) { if (!p && !q) return true; return false; }
 		return (p->val == q->val) && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
 	}
+
+	vector<int> values;
 	
 	 //https://leetcode.com/problems/validate-binary-search-tree/
 	 bool isValidBST(TreeNode* root) 

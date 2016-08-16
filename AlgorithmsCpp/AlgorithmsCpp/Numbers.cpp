@@ -7,6 +7,8 @@
 #include <unordered_map>
 #include <string>
 
+using namespace std;
+
 class Numbers
 {
 public:
@@ -232,7 +234,7 @@ public:
 			return 0;
 	}
 
-	string DecToBin2(int number)
+	/*string DecToBin2(int number)
 	{
 		string result = "";
 
@@ -248,5 +250,5 @@ public:
 
 		reverse(result.begin(), result.end());
 		return result;
-	}
+	}*/
 };
