@@ -85,6 +85,7 @@
   <ItemGroup>
     <ClCompile Include="AlgorithmsCpp.cpp" />
     <ClCompile Include="Arrays.cpp" />
+    <ClCompile Include="Files.cpp" />
     <ClCompile Include="Lists.cpp" />
     <ClCompile Include="LRUCache.cpp" />
     <ClCompile Include="Numbers.cpp" />
