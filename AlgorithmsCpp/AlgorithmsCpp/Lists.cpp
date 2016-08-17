@@ -9,7 +9,12 @@ struct ListNode {
 	int val;
 	ListNode *next;
 	ListNode(int x) : val(x), next(NULL) {}
-	
+};
+
+struct RandomListNode {
+	int label;
+	RandomListNode *next, *random;
+	RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
 };
 
 class Lists
@@ -41,5 +46,17 @@ class Lists
 		node->next = node->next->next;
 
 		delete nextNodeToDelete;// questionable...depends on how a test list has been created. If on the stack then this can cause crash.
+	}
+
+	//https://leetcode.com/problems/copy-list-with-random-pointer/
+	unordered_map<RandomListNode*, RandomListNode*>mp;
+	RandomListNode *copyRandomList(RandomListNode *head)
+	{
+		if (!head) return NULL;
+		if (mp[head]) return mp[head];
+		mp[head] = new RandomListNode(head->label);
+		mp[head]->next = copyRandomList(head->next);
+		mp[head]->random = copyRandomList(head->random);
+		return mp[head];
 	}
 };
