@@ -9,6 +9,73 @@ class Arrays
 public:
 	Arrays() {};
 	~Arrays() {};
+	
+	//https://leetcode.com/problems/find-the-duplicate-number/
+	//O(n)
+	int findDuplicate(vector<int>& nums) 
+	{
+		int slow = 0;
+		int fast = 0;
+		int finder = 0;
+
+		while (true)
+		{
+			slow = nums[slow];
+			fast = nums[nums[fast]];
+
+			if (slow == fast)
+				break;
+		}
+		while (true)
+		{
+			slow = nums[slow];
+			finder = nums[finder];
+			if (slow == finder)
+				return slow;
+		}
+	}
+	
+	//https://leetcode.com/problems/find-the-duplicate-number/
+	//O(nlogn)
+	int findDuplicateBinarySearch(vector<int>& nums) {
+        int n = nums.size(), i = 0, counter = 0;
+        int left = 1, right = n - 1, mid = 0;
+        
+        while (left < right)
+        {
+            mid = left + (right - left) / 2;
+            
+            counter = 0;
+            for (i = 0; i < n; ++i)
+            {
+                if (nums[i] <= mid)
+                    ++counter;
+            }
+            
+            if (counter > mid)
+                right = mid;
+            else 
+                left = mid + 1;
+        }
+        
+        return left;
+    }
+	
+	//https://leetcode.com/problems/find-the-duplicate-number/
+	//O(32n)
+	int findDuplicateUsingBits(vector<int>& nums)
+	{
+		int n = nums.size()-1, res = 0;
+		for (int p = 0; p < 32; ++ p) {
+			int bit = (1 << p), a = 0, b = 0;
+			for (int i = 0; i <= n; ++ i) {
+				if (i > 0 && (i & bit) > 0) ++a;
+				if ((nums[i] & bit) > 0) ++b;
+			}
+			if (b > a) res += bit;
+		}
+		return res;
+	}
 
 	//https://leetcode.com/problems/intersection-of-two-arrays/
 	vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
