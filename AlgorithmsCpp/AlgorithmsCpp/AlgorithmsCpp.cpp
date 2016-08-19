@@ -4,11 +4,18 @@
 #include "stdafx.h"
 #include "Strings.cpp"
 #include "Numbers.cpp"
+#include "Arrays.cpp"
 
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	Arrays *a = new Arrays();
+	vector<int> nums;
+	nums.push_back(1);
+	nums.push_back(2);
+	a->rotate(nums,1);
+	delete a;
 	Numbers *n = new Numbers();
 	//n->titleToNumber("ABC");
 	//n->romanToInt("MDCCCLXXXIV");

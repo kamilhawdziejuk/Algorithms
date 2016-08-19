@@ -145,4 +145,39 @@ public:
 		}
 		return m;
 	}
+
+	//fixme
+	//https://leetcode.com/problems/rotate-array/
+	void rotate(vector<int>& nums, int k) {
+
+		int n = nums.size();
+		if (n <= 1 || k == 0) return;
+		int ind = (k - 1) % n;
+		int tmp = nums[ind];
+		int last = nums[0];
+		int i = 0;
+		while (i < n)
+		{
+			nums[ind] = last;
+			last = tmp;
+			ind = (ind + k - 1) % n;
+			tmp = nums[ind];
+			++i;
+		}
+		nums[ind] = last;
+	}
+
+	//https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+	int maxProfit(vector<int>& prices) {
+		int n = prices.size();
+		if (n <= 1) return 0;
+		int minim = prices[0];
+		int maxim = 0;
+		for (int i = 1; i < n; ++i)
+		{
+			if (prices[i] < minim) minim = prices[i];
+			if (prices[i] - minim > maxim) maxim = prices[i] - minim;
+		}
+		return maxim;
+	}
 };
