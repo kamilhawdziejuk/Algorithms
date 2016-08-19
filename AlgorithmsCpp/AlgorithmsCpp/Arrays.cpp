@@ -186,6 +186,26 @@ public:
 		reverse(nums + k%n, nums + n);
 	}
 
+	void generatePermutation(vector<vector<int>>& res, vector<int>& cur, int start) {
+		if (start == cur.size()) {
+			res.push_back(cur);
+		}
+		else {
+			for (int i = start; i < cur.size(); i++) {
+				swap(cur[start], cur[i]);
+				generatePermutation(res, cur, start + 1);
+				swap(cur[start], cur[i]);
+			}
+		}
+	}
+
+	//https://leetcode.com/problems/permutations/
+	vector<vector<int>> permute(vector<int>& nums) {
+		vector<vector<int>> res;
+		generatePermutation(res, nums, 0);
+		return res;
+	}
+
 	//https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 	int maxProfit(vector<int>& prices) {
 		int n = prices.size();
