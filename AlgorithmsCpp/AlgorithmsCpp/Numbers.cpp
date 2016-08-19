@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <unordered_map>
 #include <string>
+#include <bitset>
 
 using namespace std;
 
@@ -250,5 +251,20 @@ public:
 
 		reverse(result.begin(), result.end());
 		return result;
-	}*/
+	}
+	*/
+	
+	string Dec2ToBin2(int number)
+	{
+		string binary = std::bitset<8>(number).to_string();
+		return binary;
+		
+	}
+
+	unsigned long Bin2Dec(string binary)
+	{
+		unsigned long decimal = std::bitset<8>(binary).to_ulong();
+		return decimal;
+	}
+
 };

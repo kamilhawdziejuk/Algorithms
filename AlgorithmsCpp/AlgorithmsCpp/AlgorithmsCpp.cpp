@@ -12,9 +12,10 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	Arrays *a = new Arrays();
 	vector<int> nums;
-	nums.push_back(1);
-	nums.push_back(2);
-	a->rotate(nums,1);
+	for (int i = 1; i <= 6; i++)
+	nums.push_back(i);
+	//nums.push_back(2);
+	a->rotate(nums,2);
 	delete a;
 	Numbers *n = new Numbers();
 	//n->titleToNumber("ABC");

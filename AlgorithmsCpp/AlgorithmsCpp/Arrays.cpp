@@ -38,28 +38,28 @@ public:
 	//https://leetcode.com/problems/find-the-duplicate-number/
 	//O(nlogn)
 	int findDuplicateBinarySearch(vector<int>& nums) {
-        int n = nums.size(), i = 0, counter = 0;
-        int left = 1, right = n - 1, mid = 0;
-        
-        while (left < right)
-        {
-            mid = left + (right - left) / 2;
-            
-            counter = 0;
-            for (i = 0; i < n; ++i)
-            {
-                if (nums[i] <= mid)
-                    ++counter;
-            }
-            
-            if (counter > mid)
-                right = mid;
-            else 
-                left = mid + 1;
-        }
-        
-        return left;
-    }
+		int n = nums.size(), i = 0, counter = 0;
+		int left = 1, right = n - 1, mid = 0;
+		
+		while (left < right)
+		{
+			mid = left + (right - left) / 2;
+			
+			counter = 0;
+			for (i = 0; i < n; ++i)
+			{
+				if (nums[i] <= mid)
+					++counter;
+			}
+			
+			if (counter > mid)
+				right = mid;
+			else 
+				left = mid + 1;
+		}
+		
+		return left;
+	}
 	
 	//https://leetcode.com/problems/find-the-duplicate-number/
 	//O(32n)
@@ -146,25 +146,44 @@ public:
 		return m;
 	}
 
-	//fixme
 	//https://leetcode.com/problems/rotate-array/
-	void rotate(vector<int>& nums, int k) {
-
+	void rotate(vector<int>& nums, int k) 
+	{
 		int n = nums.size();
 		if (n <= 1 || k == 0) return;
-		int ind = (k - 1) % n;
+
+		vector<bool> moved(n);
+		for (int i = 0; i < n; ++i) moved[i] = false;
+
+		int ind = k % n;
 		int tmp = nums[ind];
 		int last = nums[0];
-		int i = 0;
-		while (i < n)
+		for (int i = 0; i < n; ++i)
 		{
-			nums[ind] = last;
-			last = tmp;
-			ind = (ind + k - 1) % n;
-			tmp = nums[ind];
-			++i;
+			if (!moved[i])
+			{
+				ind = (i + k) % n;
+				tmp = nums[ind];
+				last = nums[i];
+
+				while (!moved[ind])
+				{
+					nums[ind] = last;
+					moved[ind] = true;
+					last = tmp;
+					ind = (ind + k) % n;
+					tmp = nums[ind];
+				}
+				nums[ind] = last;
+			}
 		}
-		nums[ind] = last;
+	}
+
+	//https://leetcode.com/problems/rotate-array/
+	void rotateOptimal(int nums[], int n, int k) {
+		reverse(nums, nums + n);
+		reverse(nums, nums + k%n);
+		reverse(nums + k%n, nums + n);
 	}
 
 	//https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
