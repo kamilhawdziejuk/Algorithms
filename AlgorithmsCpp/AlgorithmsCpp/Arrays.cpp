@@ -187,7 +187,7 @@ public:
 	}
 
 	void generatePermutation(vector<vector<int>>& res, vector<int>& cur, int start) {
-		if (start == cur.size()) {
+		if (start == cur.size() - 1) {
 			res.push_back(cur);
 		}
 		else {
@@ -203,6 +203,27 @@ public:
 	vector<vector<int>> permute(vector<int>& nums) {
 		vector<vector<int>> res;
 		generatePermutation(res, nums, 0);
+		return res;
+	}
+
+	void generatePermutationUnique(vector<vector<int> > &res, vector<int>& cur, int start) {
+		if (start == cur.size() - 1) {
+			res.push_back(cur);
+		}
+		else {
+			for (int i = start; i < cur.size(); i++) {
+				if (start != i && cur[start] == cur[i]) continue;
+				swap(cur[start], cur[i]);
+				generatePermutationUnique(res, cur, start + 1);
+			}
+		}
+	}
+
+	//https://leetcode.com/problems/permutations-ii/
+	vector<vector<int> > permuteUnique(vector<int> &num) {
+		sort(num.begin(), num.end());
+		vector<vector<int> >res;
+		generatePermutationUnique(res, num, 0);
 		return res;
 	}
 
