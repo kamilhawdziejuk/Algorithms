@@ -161,5 +161,27 @@ public:
 			res.push_back(vec);
 		}
 	}
+
+	//https://leetcode.com/problems/path-sum/
+	bool hasPathSum(TreeNode* root, int sum) {
+		if (root == NULL) return false;
+		if (root->left == NULL && root->right == NULL)
+		{
+			if (root->val == sum)
+			{
+				return true;
+			}
+		}
+
+		if (hasPathSum(root->left, sum - (root->val)))
+		{
+			return true;
+		}
+		if (hasPathSum(root->right, sum - (root->val)))
+		{
+			return true;
+		}
+		return false;
+	}
 };
 
