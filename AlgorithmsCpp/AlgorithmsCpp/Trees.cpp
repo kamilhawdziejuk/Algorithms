@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <algorithm>
 #include <queue>
+#include <stack>
 
  struct TreeNode {
 	int val;
@@ -31,27 +32,6 @@ public:
 		if (!n1 && !n2) return true;
 		if (!n1 || !n2 || n1->val != n2->val) return false;
 		return sym(n1->left, n2->right) && sym(n1->right, n2->left);
-	}
-
-	//https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
-	TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) 
-	{
-		if (!root)
-		{
-			return NULL;
-		}
-		if (p->val < root->val && q->val < root->val)
-		{
-			lowestCommonAncestor(root->left, p, q);
-		}
-		else if (p->val > root->val && q->val > root->val)
-		{
-			lowestCommonAncestor(root->right, p, q);
-		}
-		else
-		{
-			return root;
-		}
 	}
 
 	//https://leetcode.com/problems/same-tree/
@@ -182,6 +162,73 @@ public:
 			return true;
 		}
 		return false;
+	}
+
+	//https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+	TreeNode* lowestCommonAncestorBST(TreeNode* root, TreeNode* p, TreeNode* q)
+	{
+		if (!root)
+		{
+			return NULL;
+		}
+		if (p->val < root->val && q->val < root->val)
+		{
+			lowestCommonAncestorBST(root->left, p, q);
+		}
+		else if (p->val > root->val && q->val > root->val)
+		{
+			lowestCommonAncestorBST(root->right, p, q);
+		}
+		else
+		{
+			return root;
+		}
+	}
+
+	//https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+	TreeNode* lowestCommonAncestorOptimal(TreeNode* root, TreeNode* p, TreeNode* q) {
+		if (!root || root == p || root == q) return root;
+		TreeNode* l = lowestCommonAncestorOptimal(root->left, p, q);
+		TreeNode* r = lowestCommonAncestorOptimal(root->right, p, q);
+		return l && r ? root : l ? l : r;
+	}
+
+	//https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+	TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+		stack<TreeNode*> stack1;
+		stack<TreeNode*> stack2;
+		order(root, p, stack1);
+		order(root, q, stack2);
+
+		TreeNode* r = stack1.top();
+		while (!stack1.empty() && !stack2.empty() && stack1.top() == stack2.top())
+		{
+			r = stack1.top();
+			stack1.pop();
+			stack2.pop();
+		}
+		return r;
+	}
+
+	void order(TreeNode* root, TreeNode* p, stack<TreeNode*> &stack)
+	{
+		if (root != NULL)
+		{
+			if (root == p)
+			{
+				stack.push(root);
+			}
+			else
+			{
+				int size = stack.size();
+				order(root->left, p, stack);
+				order(root->right, p, stack);
+				if (stack.size() > size)
+				{
+					stack.push(root);
+				}
+			}
+		}
 	}
 };
 
