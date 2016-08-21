@@ -295,4 +295,43 @@ public:
 		return decimal;
 	}
 
+	//https://leetcode.com/problems/decode-ways/
+	//fixme
+	int numDecodings(string s) {
+		int n = s.size();
+		if (n == 0) return 0;
+
+		vector<int> v(n);
+		int i = n - 1;
+
+		while (i >= 0)
+		{
+			int sum1 = 0;
+			int sum2 = 0;
+			int d1 = -10;
+			int d2 = -10;
+			if (i + 1 < s.size())
+			{
+				d1 = s[i + 1] - '0';
+			}
+			if (d1 > 0)
+			{
+				sum1 = v[i + 1];
+			}
+			if (i + 2 < s.size())
+			{
+				d2 = s[i + 2] - '0';
+			}
+			int l = d1 * 10 + d2;
+			if (l > 0 && l < 27)
+			{
+				sum2 = v[i + 2];
+			}
+			v[i] = max(sum1 + sum2, 1);
+			i--;
+		}
+
+		return v[0];
+	}
+
 };
