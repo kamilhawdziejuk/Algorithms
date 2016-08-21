@@ -98,6 +98,18 @@ class Strings
 			}
 		}
 
+		//https://leetcode.com/problems/implement-strstr/
+		int strStr(string haystack, string needle) {
+			int h = haystack.size(), n = needle.size();
+			if (n == 0) return 0;
+			for (int i = 0; i <= h - n; i++) {
+				for (int j = 0; j < needle.size(); j++) {
+					if (haystack[i + j] != needle[j]) break;
+					if (j == needle.size() - 1) return i;
+				}
+			}
+			return -1;
+		}
 
 		//https://leetcode.com/problems/reverse-words-in-a-string
 		void reverseWordsStream(string& s) {
