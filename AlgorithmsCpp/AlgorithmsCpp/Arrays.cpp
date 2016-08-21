@@ -255,18 +255,15 @@ public:
 		return q.top();
 	}
 
+	
 	//https://leetcode.com/problems/first-bad-version/
+	bool isBadVersion(int version);
 	int firstBadVersion(int n) {
 		int a = 1;
 		int b = n;
 
 		while (a < b)
 		{
-			if (b - a == 1)
-			{
-				if (isBadVersion(b)) return a;
-				else return b;
-			}
 			int m = a + (b - a) / 2;
 			if (isBadVersion(m))
 			{
@@ -274,7 +271,7 @@ public:
 			}
 			else
 			{
-				a = m;
+				a = m + 1;
 			}
 		}
 		return a;
