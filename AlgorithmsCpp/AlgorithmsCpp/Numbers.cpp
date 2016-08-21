@@ -16,6 +16,34 @@ public:
 	Numbers() {};
 	~Numbers() {};
 
+
+	//https://leetcode.com/problems/count-primes/
+	int countPrimes(int n) {
+		vector<bool> sieve(n + 2);
+		sieve[0] = true;
+		sieve[1] = true;
+		int i = 2;
+		while (i*i <= n)
+		{
+			if (!sieve[i])
+			{
+				int k = i*i;
+				while (k <= n)
+				{
+					sieve[k] = true;
+					k += i;
+				}
+			}
+			i += 1;
+		}
+		int cnt = 0;
+		for (int j = 1; j < n; ++j)
+		{
+			if (!sieve[j]) cnt++;
+		}
+		return cnt;
+	}
+
 	//https://leetcode.com/problems/merge-sorted-array/
 	void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
 		int i = m - 1;

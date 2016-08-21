@@ -2,7 +2,9 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_map>
-
+#include <queue>
+#include <map>
+#include <functional>
 
 class Arrays
 {
@@ -239,5 +241,17 @@ public:
 			if (prices[i] - minim > maxim) maxim = prices[i] - minim;
 		}
 		return maxim;
+	}
+
+	//https://leetcode.com/problems/kth-largest-element-in-an-array/
+	int findKthLargest(vector<int>& nums, int k) {
+		priority_queue<int, vector<int>, std::greater<int>> q;
+		for (auto &v : nums) {
+			q.push(v);
+			if (q.size() > k) {
+				q.pop();
+			}
+		}
+		return q.top();
 	}
 };
