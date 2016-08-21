@@ -59,4 +59,23 @@ class Lists
 		mp[head]->random = copyRandomList(head->random);
 		return mp[head];
 	}
+
+	ListNode* prev = NULL;
+	//https://leetcode.com/problems/swap-nodes-in-pairs/
+	ListNode* swapPairs(ListNode* head) {
+		if (head == NULL) return head;
+		if (head->next == NULL) return head;
+		ListNode* a = head;
+		ListNode* b = head->next;
+		ListNode* c = head->next->next;
+		if (prev != NULL)
+		{
+			prev->next = b;
+		}
+		b->next = a;
+		prev = a;
+		a->next = swapPairs(c);
+
+		return b;
+	}
 };
