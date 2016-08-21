@@ -37,7 +37,7 @@ class Lists
 		return (p1 != NULL && p2 != NULL && p1 == p2);
 	}
 
-    //https://leetcode.com/problems/delete-node-in-a-linked-list/
+	//https://leetcode.com/problems/delete-node-in-a-linked-list/
 	void deleteNode(ListNode* node) {
 
 		ListNode * nextNodeToDelete = node->next;
