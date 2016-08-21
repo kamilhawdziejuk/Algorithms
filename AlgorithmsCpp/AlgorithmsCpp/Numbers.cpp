@@ -235,7 +235,7 @@ public:
 			return 0;
 	}
 
-	/*string DecToBin2(int number)
+	string DecToBin2(int number)
 	{
 		string result = "";
 
@@ -249,21 +249,21 @@ public:
 			number >>= 1;
 		} while (number);
 
-		reverse(result.begin(), result.end());
+		std::reverse(result.begin(), result.end());
 		return result;
 	}
-	*/
 	
-	string Dec2ToBin2(int number)
+	
+	string Dec2ToBin2BitSet(int number)
 	{
-		string binary = std::bitset<8>(number).to_string();
-		return binary;
-		
+		string binary = std::bitset<32>(number).to_string();
+		int posNot0 = binary.find_first_not_of('0');
+		return binary.substr(posNot0, binary.size() - posNot0);
 	}
 
-	unsigned long Bin2Dec(string binary)
+	unsigned long Bin2DecBitset(string binary)
 	{
-		unsigned long decimal = std::bitset<8>(binary).to_ulong();
+		unsigned long decimal = std::bitset<32>(binary).to_ulong();
 		return decimal;
 	}
 

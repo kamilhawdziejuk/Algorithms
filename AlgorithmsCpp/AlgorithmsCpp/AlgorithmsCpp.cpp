@@ -5,11 +5,20 @@
 #include "Strings.cpp"
 #include "Numbers.cpp"
 #include "Arrays.cpp"
+#include "PowerSet.cpp"
 
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	PowerSet *ps = new PowerSet();
+
+	set<int> set;
+		for (int i = 1; i <= 4; i++) set.insert(i);
+
+	ps->powerSet(set);
+	delete ps;
+
 	Arrays *a = new Arrays();
 	vector<int> nums;
 	//for (int i = 1; i <= 4; i++)
@@ -23,6 +32,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	//a->rotate(nums,2);
 	delete a;
 	Numbers *n = new Numbers();
+	string s1 = n->Dec2ToBin2BitSet(7);
+	//string s2 = n->DecToBin2(18);
 	//n->titleToNumber("ABC");
 	//n->romanToInt("MDCCCLXXXIV");
 	//n->romanToInt("DCXXI");
