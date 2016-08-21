@@ -7,75 +7,28 @@
 #include "Arrays.cpp"
 #include "PowerSet.cpp"
 #include "Matrix.cpp"
+#include "Lists.cpp"
 
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	Matrix *matrix = new Matrix();
-	vector<vector<int>> v;
-	vector<int> v1;
-	v1.push_back(1);
-	v1.push_back(2);
-	v1.push_back(3);
+	
+	ListNode * node1 = new ListNode(1);
+	ListNode *prev = node1;
+	for (int i = 3; i < 22; i += 2)
+	{
+		ListNode *n = new ListNode(i);
+		prev->next = n;
+		prev = n;
+	}
 
-	vector<int> v2;
-	v2.push_back(4);
-	v2.push_back(5);
-	v2.push_back(6);
+	ListNode * node2 = new ListNode(2);
 
-	vector<int> v3;
-	v3.push_back(7);
-	v3.push_back(8);
-	v3.push_back(9);
-
-	v.push_back(v1);
-	v.push_back(v2);
-	v.push_back(v3);
-
-	matrix->spiralOrder(v);
-	delete matrix;
-
-
-	PowerSet *ps = new PowerSet();
-
-	set<int> set;
-		for (int i = 1; i <= 4; i++) set.insert(i);
-
-	ps->powerSet(set);
-	delete ps;
-
-	Arrays *a = new Arrays();
-	vector<int> nums;
-	//for (int i = 1; i <= 4; i++)
-	nums.push_back(1);
-	nums.push_back(1);
-	nums.push_back(2);
-	nums.push_back(2);
-
-	a->permuteUnique(nums);
-	//nums.push_back(2);
-	//a->rotate(nums,2);
-	delete a;
-	Numbers *n = new Numbers();
-	string s1 = n->Dec2ToBin2BitSet(7);
-	//string s2 = n->DecToBin2(18);
-	//n->titleToNumber("ABC");
-	//n->romanToInt("MDCCCLXXXIV");
-	//n->romanToInt("DCXXI");
-	delete n;
-
-	Strings *s = new Strings();
-	/*vector<string> strs;
-	strs.push_back("c");
-	strs.push_back("c");
-	s->longestCommonPrefix(strs);*/
-	string str = "the sky is blue";//   a   ";
-	//s->reverseWords(str);
-
-	s->myAtoi("    10522545459");
-	delete s;
-
+	Lists *lists = new Lists();
+	lists->getIntersectionNode(node1, node2);
+	
+	delete lists;
 	return 0;
 }
 

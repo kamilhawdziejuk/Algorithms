@@ -78,4 +78,56 @@ class Lists
 
 		return b;
 	}
+
+	int size(ListNode *head)
+	{
+		if (head == NULL) return 0;
+		return 1 + size(head->next);
+	}
+
+	ListNode* countDiff(ListNode *headA, ListNode* headB)
+	{
+		if (headA == NULL && headB == NULL) return NULL;
+		if (headA->val == headB->val)
+		{
+			return headA;
+		}
+		else
+		{
+			return countDiff(headA->next, headB->next);
+		}
+	}
+
+	//https://leetcode.com/problems/intersection-of-two-linked-lists/
+	ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+		int a = size(headA);
+		int b = size(headB);
+		if (a == 0 || b == 0) return NULL;
+
+		ListNode * tmp;
+		if (a > b)
+		{
+			tmp = headA;
+			while (a > b)
+			{
+				tmp = tmp->next;
+				a--;
+			}
+			return countDiff(tmp, headB);
+		}
+		else if (a < b)
+		{
+			tmp = headB;
+			while (b > a)
+			{
+				tmp = tmp->next;
+				b--;
+			}
+			return countDiff(headA, tmp);
+		}
+		else
+		{
+			return countDiff(headA, headB);
+		}
+	}
 };
