@@ -66,24 +66,24 @@ public:
 	 //https://leetcode.com/problems/validate-binary-search-tree/
 	 bool isValidBST(TreeNode* root) 
 	 {
-        printBST(root);
-        if (values.size() <= 1) return true;
-        for (int i = 0; i < values.size()-1; i++)
-        {
-            if (values[i] >= values[i+1]) return false;
-        }
-        return true;
-    }
-    
-    void printBST(TreeNode* root)
-    {
-        if (root != NULL)
-        {
-            if (root->left != NULL) printBST(root->left);
-            values.push_back(root->val);
-            if (root->right != NULL) printBST(root->right);
-        }
-    }
+		printBST(root);
+		if (values.size() <= 1) return true;
+		for (int i = 0; i < values.size()-1; i++)
+		{
+			if (values[i] >= values[i+1]) return false;
+		}
+		return true;
+	}
+	
+	void printBST(TreeNode* root)
+	{
+		if (root != NULL)
+		{
+			if (root->left != NULL) printBST(root->left);
+			values.push_back(root->val);
+			if (root->right != NULL) printBST(root->right);
+		}
+	}
 
 	//https://leetcode.com/problems/maximum-depth-of-binary-tree/
 	int maxDepth(TreeNode* root) {
@@ -124,6 +124,42 @@ public:
 		}
 
 		return res;
+	}
+
+	//https://leetcode.com/problems/binary-tree-level-order-traversal/
+	vector<vector<int>> levelOrder(TreeNode* root) {
+		vector<vector<int>> res;
+		queue<TreeNode*> q;
+
+		if (root == NULL) return res;
+		q.push(root);
+
+		order(res, q);
+		return res;
+	}
+
+	void order(vector<vector<int>> &res, queue<TreeNode*>& q)
+	{
+		while (!q.empty())
+		{
+			int size = q.size();
+			vector<int> vec;
+			for (int i = 0; i < size; ++i)
+			{
+				TreeNode* node = q.front();
+				vec.push_back(node->val);
+				q.pop();
+				if (node->left != NULL)
+				{
+					q.push(node->left);
+				}
+				if (node->right != NULL)
+				{
+					q.push(node->right);
+				}
+			}
+			res.push_back(vec);
+		}
 	}
 };
 
