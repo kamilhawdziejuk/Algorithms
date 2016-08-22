@@ -327,4 +327,53 @@ public:
 		return v[0];
 	}
 
+	vector<vector<int>> res2;
+	void twoSum(vector<int>& nums, int begin, int end, int sum)
+	{
+		if (begin >= end) return;
+
+		int tmp = nums[begin] + nums[end];
+		int e = end - 1;
+		int b = begin + 1;
+		if (tmp > sum)
+		{
+			while (e > begin && nums[e] == nums[e + 1]) e--;
+			twoSum(nums, begin, e, sum);
+		}
+		else if (tmp < sum)
+		{
+			while (b < end && nums[b] == nums[b - 1]) b++;
+			twoSum(nums, b, end, sum);
+		}
+		else
+		{
+			vector<int> r2 = { nums[begin], nums[end] };
+			res2.push_back(r2);
+
+			while (e > begin && nums[e] == nums[e + 1]) e--;
+			while (b < end && nums[b] == nums[b - 1]) b++;
+
+			twoSum(nums, b, e, sum);
+		}
+	}
+
+	//https://leetcode.com/problems/3sum/
+	vector<vector<int>> threeSum(vector<int>& nums) 
+	{
+		sort(nums.begin(), nums.end());
+		vector<vector<int>> res;
+		if (nums.size() < 3) return res;
+		for (int i = 0; i < nums.size() - 1; ++i)
+		{
+			res2.clear();
+			if (i > 0 && nums[i] == nums[i - 1]) continue;
+			twoSum(nums, i+1, nums.size() - 1, -nums[i]);
+			for (int j = 0; j < res2.size(); ++j)
+			{
+				vector<int> r1 = { nums[i], res2[j][0], res2[j][1] };
+				res.push_back(r1);
+			}
+		}
+		return res;
+	}
 };

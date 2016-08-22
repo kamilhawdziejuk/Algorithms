@@ -15,7 +15,9 @@ using namespace std;
 int _tmain(int argc, _TCHAR* argv[])
 {
 	Numbers * n = new Numbers();
-	n->numDecodings("01");
+	//n->numDecodings("01");
+	vector<int> v = { 1,2,-2,-1 };// = { -1,0,1,2,-1,-4 };
+	n->threeSum(v);
 	delete n;
 	return 0;
 }
