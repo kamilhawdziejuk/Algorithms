@@ -296,41 +296,34 @@ public:
 	}
 
 	//https://leetcode.com/problems/decode-ways/
-	//fixme
 	int numDecodings(string s) {
 		int n = s.size();
 		if (n == 0) return 0;
-
 		vector<int> v(n);
 		int i = n - 1;
-
 		while (i >= 0)
 		{
 			int sum1 = 0;
+			int d0 = s[i] - '0';
+			int d1 = (i + 1 < s.size()) ? s[i + 1] - '0' : -10;
+			if (d0 > 0 && d1 > 0) sum1 = v[i + 1];
+			
 			int sum2 = 0;
-			int d1 = -10;
-			int d2 = -10;
+			int l = d0 * 10 + d1;
+			if (l > 9 && l < 27)
+			{
+				if (i + 2 < s.size()) sum2 = v[i + 2];
+				else sum2 = 1;
+			}
+			int m = d0 > 0 ? 1 : 0;
+			v[i] = max(sum1 + sum2, m);
+
 			if (i + 1 < s.size())
 			{
-				d1 = s[i + 1] - '0';
+				if (s[i + 1] == '0' && (s[i] != '1' && s[i] != '2')) return 0;
 			}
-			if (d1 > 0)
-			{
-				sum1 = v[i + 1];
-			}
-			if (i + 2 < s.size())
-			{
-				d2 = s[i + 2] - '0';
-			}
-			int l = d1 * 10 + d2;
-			if (l > 0 && l < 27)
-			{
-				sum2 = v[i + 2];
-			}
-			v[i] = max(sum1 + sum2, 1);
 			i--;
 		}
-
 		return v[0];
 	}
 

@@ -14,6 +14,9 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	Numbers * n = new Numbers();
+	n->numDecodings("01");
+	delete n;
 	return 0;
 }
 
