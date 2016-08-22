@@ -130,4 +130,33 @@ class Lists
 			return countDiff(headA, headB);
 		}
 	}
+
+	//https://leetcode.com/problems/add-two-numbers/
+	ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+		ListNode* a = l1;
+		ListNode* b = l2;
+		if (l1 == NULL) return l2;
+		if (l2 == NULL) return l1;
+
+		int sum = 0;
+		int toAdd = 0;
+		ListNode* head = new ListNode(-1);
+		ListNode *p = head;
+
+		while (a != NULL || b != NULL || toAdd > 0)
+		{
+			sum = (a != NULL ? a->val : 0) + (b != NULL ? b->val : 0) + toAdd;
+			p->val = sum % 10;
+			toAdd = sum > 9 ? 1 : 0;
+			a = a != NULL ? a->next : a;
+			b = b != NULL ? b->next : b;
+			if (a != NULL || b != NULL || toAdd > 0)
+			{
+				p->next = new ListNode(0);
+				p = p->next;
+			}
+		}
+
+		return head;
+	}
 };
