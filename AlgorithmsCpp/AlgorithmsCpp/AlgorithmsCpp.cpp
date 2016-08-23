@@ -14,6 +14,9 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	Strings *s = new Strings();
+	int res = s->lengthOfLongestSubstring("abcabcbb");
+
 	Lists *l = new Lists();
 	ListNode*a = new ListNode(9);
 	ListNode*b = new ListNode(9);
