@@ -62,5 +62,8 @@
     <ClCompile Include="Stacks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ArraysSort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
