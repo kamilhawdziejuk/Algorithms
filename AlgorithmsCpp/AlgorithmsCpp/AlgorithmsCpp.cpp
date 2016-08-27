@@ -9,13 +9,18 @@
 #include "Matrix.cpp"
 #include "Lists.cpp"
 #include "Trees.cpp"
-#include "ArraysSort.cpp";
+
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	ArraysSort *arr = new ArraysSort();
-	arr->test();
+	Strings *s = new Strings();
+	int res = s->lengthOfLongestSubstring("abcabcbb");
+
+	Lists *l = new Lists();
+	ListNode*a = new ListNode(9);
+	ListNode*b = new ListNode(9);
+	l->addTwoNumbers(a, b);
 
 	Numbers * n = new Numbers();
 	//n->numDecodings("01");

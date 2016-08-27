@@ -376,4 +376,26 @@ public:
 		}
 		return res;
 	}
+
+	//https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+	int findMin(vector<int>& nums) {
+		minim = nums[0];
+		return findMin(nums, 0, nums.size() - 1);
+	}
+
+	int minim;
+	int findMin(vector<int>& nums, int b, int e)
+	{
+		if (b == e) return nums[b];
+		if (e - b == 1) return min(nums[b], nums[e]);
+		int m = b + (e - b) / 2;
+		if (nums[b] <= nums[m])
+		{
+			return min(minim, findMin(nums, m, e));
+		}
+		else
+		{
+			return min(minim, findMin(nums, b, m));
+		}
+	}
 };
