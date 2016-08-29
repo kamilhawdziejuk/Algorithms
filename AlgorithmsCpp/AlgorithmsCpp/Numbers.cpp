@@ -398,4 +398,30 @@ public:
 			return min(minim, findMin(nums, b, m));
 		}
 	}
+
+	//https://leetcode.com/problems/single-number/	
+	int singleNumber(vector<int>& nums) 
+	{
+		int res = 0;
+		for (auto i : nums) res ^= i;
+		return res;
+	}
+	
+	//https://leetcode.com/problems/find-the-difference/
+	char findTheDifference(string s, string t) 
+	{
+        char diff = 0;
+        int cnt[256] = {0};
+        for (char c : s) cnt[c]++;
+        for (char c : t) if (--cnt[c] < 0) return c;
+        return diff;
+    }
+	
+	//https://leetcode.com/problems/find-the-difference/
+	char findTheDifference2(string s, string t) {
+        char r=0;
+        for(char c:s) r ^=c;
+        for(char c:t) r ^=c;
+        return r;
+    }
 };

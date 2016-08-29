@@ -24,7 +24,7 @@ public:
 		if (left >= right) return;
 
 		int part = partition(data, left, right);
-		quickSort(data, left, part);
+		quickSort(data, left, part - 1);
 		quickSort(data, part + 1, right);
 	}
 
@@ -49,28 +49,48 @@ public:
 		}
 		return j;
 	}
-
-	/*
-	int partition(vector<int> input, int i, int j)
+	
+	vector<int> merge_sort(const vector<int>& input)
 	{
-		int pivot = input[j];
-		while (i < j)
-		{
-			while (input[i] < pivot) i++;
-			while (input[j] > pivot) j--;
+		if(input.size()<=1) return input;
+		vector<int> output(input.size());
+	 
+		//Split Vector//
+		int midpoint=0.5*input.size();
+		vector<int> input_left(input.begin(),input.begin()+midpoint);
+		vector<int> input_right(input.begin()+midpoint,input.end());
+	 
+		input_left=merge_sort(input_left);
+		input_right=merge_sort(input_right);
+		merge(input_left.begin(),input_left.end(),input_right.begin(),input_right.end(),output.begin());
+	 
+		return output;
+	}
+	
+	// void merge(int pocz, int sr, int kon)
+	// {
+		// int i,j,q;
+		// for (i=pocz; i<=kon; i++) t[i]=tab[i];  // Skopiowanie danych do tablicy pomocniczej
+		// i=pocz; j=sr+1; q=pocz;                 // Ustawienie wskaźników tablic
+		// while (i<=sr && j<=kon) {         // Przenoszenie danych z sortowaniem ze zbiorów pomocniczych do tablicy głównej
+		// if (t[i]<t[j])
+		// tab[q++]=t[i++];
+		// else
+		// tab[q++]=t[j++];
+		// }
+		// while (i<=sr) tab[q++]=t[i++]; // Przeniesienie nie skopiowanych danych ze zbioru pierwszego w przypadku, gdy drugi zbiór się skończył
+	// }
 
-			if (input[i] == input[j])
-			{
-				i++;
-			}
-			else if (i < j)
-			{
-				swap(input[i], input[j]);
-			}
-		}
-
-		return j;
-	}*/
-
-
+	// /* Procedura sortowania tab[pocz...kon] */
+	// void mergesort(vector<int> &data, int pocz, int kon)
+	// {
+		// if (pocz<kon) 
+		// {
+			// int sr=(pocz+kon)/2;
+			// mergesort(pocz, sr);    // Dzielenie lewej części
+			// mergesort(sr+1, kon);   // Dzielenie prawej części
+			// merge(pocz, sr, kon);   // Łączenie części lewej i prawej
+		// }
+	// }
+ 
 };
