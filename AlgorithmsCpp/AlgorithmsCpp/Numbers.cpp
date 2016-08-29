@@ -424,4 +424,44 @@ public:
         for(char c:t) r ^=c;
         return r;
     }
+
+
+	//https://leetcode.com/problems/search-in-rotated-sorted-array/
+	int search(vector<int>& nums, int target) {
+		if (nums.size() == 0) return -1;
+		return search(nums, 0, nums.size() - 1, target);
+	}
+
+	int search(vector<int>& nums, int b, int e, int target) {
+
+		if (nums[b] == target) return b;
+		if (nums[e] == target) return e;
+
+		if (e - b <= 1) return -1;
+		if (nums[b] < nums[e])
+		{
+			if (nums[b] <= target && target <= nums[e])
+			{
+				int s = b + (e - b) / 2;
+				int res = search(nums, b, s, target);
+				if (res == -1)
+				{
+					res = search(nums, s + 1, e, target);
+				}
+				return res;
+			}
+			return -1;
+		}
+		else
+		{
+			int s = b + (e - b) / 2;
+			int res = search(nums, b, s, target);
+			if (res == -1)
+			{
+				res = search(nums, s + 1, e, target);
+			}
+			return res;
+		}
+		return -1;
+	}
 };
