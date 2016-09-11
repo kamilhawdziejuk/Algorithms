@@ -10,6 +10,15 @@
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}	
 };
 
+
+ 
+ struct TreeLinkNode {
+	int val;
+	TreeLinkNode *left, *right, *next;
+	TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
+ };
+ 
+
 class Trees
 {
 
@@ -19,6 +28,19 @@ private:
 public:
 	Trees() {};
 	~Trees() {};
+
+	//https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
+	void connect(TreeLinkNode *root) {
+		if (!root) return;
+		if (root->left)
+		{
+			root->left->next = root->right;
+			if (root->next) root->right->next = root->next->left;
+		}
+		connect(root->left);
+		connect(root->right);
+	}
+
 	
 	//https://leetcode.com/problems/symmetric-tree/
 	bool isSymmetric(TreeNode* root)

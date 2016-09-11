@@ -478,4 +478,28 @@ public:
 		}
 		return m;
 	}
+
+	//https://leetcode.com/problems/nested-list-weight-sum/
+	/*works
+	int depthSum(vector<NestedInteger>& nestedList) {
+		int sum = 0;
+		for (int i = 0; i < nestedList.size(); i++)
+		{
+			sum += depthSum(nestedList[i], 1);
+		}
+		return sum;
+	}
+
+	int depthSum(NestedInteger& d, int rank) {
+		int sum = 0;
+		if (d.isInteger()) return rank * d.getInteger();
+		else
+		{
+			for (int i = 0; i < d.getList().size(); i++)
+			{
+				sum += depthSum(d.getList()[i], rank + 1);
+			}
+		}
+		return sum;
+	}*/
 };

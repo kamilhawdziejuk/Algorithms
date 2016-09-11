@@ -14,19 +14,14 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	Strings *s = new Strings();
-	int res = s->lengthOfLongestSubstring("abcabcbb");
+	Trees *t = new Trees();
+	TreeLinkNode *t1 = new TreeLinkNode(1);
+	TreeLinkNode *t2 = new TreeLinkNode(2);
+	TreeLinkNode *t3 = new TreeLinkNode(3);
+	t1->left = t2;
+	t1->right = t3;
 
-	Lists *l = new Lists();
-	ListNode*a = new ListNode(9);
-	ListNode*b = new ListNode(9);
-	l->addTwoNumbers(a, b);
-
-	Numbers * n = new Numbers();
-	//n->numDecodings("01");
-	vector<int> v = { 1,2,-2,-1 };// = { -1,0,1,2,-1,-4 };
-	n->threeSum(v);
-	delete n;
+	t->connect(t1);
 	return 0;
 }
 
