@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AlgorithmsCpp.cpp" />
+    <ClCompile Include="ApiContainers.cpp" />
     <ClCompile Include="Arrays.cpp" />
     <ClCompile Include="ArraysSort.cpp" />
     <ClCompile Include="Files.cpp" />
