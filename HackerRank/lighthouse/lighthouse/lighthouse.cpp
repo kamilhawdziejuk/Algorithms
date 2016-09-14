@@ -18,13 +18,14 @@ bool isFree(int r, int c)
 	return (matrix[r][c] == '.');
 }
 
-double dist(int a, int b, int x, int y)
+double dist(double a, double b, double x, double y)
 {
 	return sqrt(pow(a - x, 2) + pow(b - y, 2));
 }
 
-bool test(int r, int c, int k)
+bool test(int r, int c, int K)
 {
+	double k = K;
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < n; j++)
@@ -84,7 +85,7 @@ bool test2(int r, int c, int k)
 int calcR(int r, int c)
 {
 	int R = -1;
-	for (int k = 0; k <= n / 2; k++)
+	for (int k = 0; k <= n / 2 + 1; k++)
 	{
 		if (test(r, c, k))
 		{
@@ -122,7 +123,6 @@ int calc(vector<string>& matrix)
 
 
 int main() {
-	/* Enter your code here. Read input from STDIN. Print output to STDOUT */
 	read();
 	cout << calc(matrix);
 	return 0;
