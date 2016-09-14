@@ -1,3 +1,5 @@
+//https://www.hackerrank.com/contests/w23/challenges/lighthouse
+
 #include "stdafx.h"
 
 
