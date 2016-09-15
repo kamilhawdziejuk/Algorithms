@@ -22,7 +22,7 @@ double dist(double a, double b, double x, double y)
 	return sqrt((a - x)*(a - x) +(b - y)*(b - y));
 }
 
-//12.39
+//WORKS
 bool test(int r, int c, int K)
 {
 
@@ -50,7 +50,7 @@ bool test(int r, int c, int K)
 	return true;
 }
 
-//5.72
+//has a bug
 bool test2(int r, int c, int k)
 {
 	int r0 = r - k;
