@@ -22,9 +22,20 @@ double dist(double a, double b, double x, double y)
 	return sqrt((a - x)*(a - x) +(b - y)*(b - y));
 }
 
-//4.76
+//12.39
 bool test(int r, int c, int K)
 {
+
+	int r0 = r - K;
+	int rn = r + K;
+	int c0 = c - K;
+	int cn = c + K;
+
+	if (!(r0 >= 0 && rn < n && c0 >= 0 && cn < n))
+	{
+		return false;
+	}
+
 	double k = K;
 	for (int i = 0; i < n; i++)
 	{
