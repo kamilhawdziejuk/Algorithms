@@ -1,8 +1,6 @@
 //https://www.hackerrank.com/contests/w23/challenges/lighthouse
 
 #include "stdafx.h"
-
-
 #include <cmath>
 #include <cstdio>
 #include <vector>
@@ -14,7 +12,6 @@ using namespace std;
 vector<string> matrix;
 int n;
 
-
 bool isFree(int r, int c)
 {
 	return (matrix[r][c] == '.');
@@ -22,11 +19,23 @@ bool isFree(int r, int c)
 
 double dist(double a, double b, double x, double y)
 {
-	return sqrt(pow(a - x, 2) + pow(b - y, 2));
+	return sqrt((a - x)*(a - x) +(b - y)*(b - y));
 }
 
+//WORKS
 bool test(int r, int c, int K)
 {
+
+	int r0 = r - K;
+	int rn = r + K;
+	int c0 = c - K;
+	int cn = c + K;
+
+	if (!(r0 >= 0 && rn < n && c0 >= 0 && cn < n))
+	{
+		return false;
+	}
+
 	double k = K;
 	for (int i = 0; i < n; i++)
 	{
@@ -41,6 +50,7 @@ bool test(int r, int c, int K)
 	return true;
 }
 
+//has a bug
 bool test2(int r, int c, int k)
 {
 	int r0 = r - k;
