@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 
 #include <cmath>
 #include <cstdio>
@@ -13,12 +13,13 @@ long sum;
 unordered_map<int, int> parents;
 unordered_map<int, vector<int>> graph;
 unordered_map<int, int> heigh;
+unordered_map<int, bool> visited;
 
 void readGraph()
 {
 	int d;
 	parents.emplace(1, 0);
-	cin >> n;	
+	cin >> n;
 	vector<int> data;
 	for (int i = 2; i <= n; i++)
 	{
@@ -26,9 +27,9 @@ void readGraph()
 		data.push_back(d);
 	}
 
-	for (int i = 2; i <= data.size()+1; i++)
-	{		
-		d = data[i-2];
+	for (int i = 2; i <= data.size() + 1; i++)
+	{
+		d = data[i - 2];
 		parents.emplace(i, d);
 		if (graph.find(d) != graph.end())
 		{
@@ -51,6 +52,16 @@ void calcHeigh(int p, int h)
 	{
 		calcHeigh(next, h + 1);
 	}
+}
+
+void visit(int v)
+{
+	visited.emplace(v, true);
+	for (auto next : graph[v])
+	{
+		visit(next);
+	}
+
 }
 
 int calcDist(int u, int v)
@@ -86,6 +97,16 @@ void bfs(int u, int v)
 	}
 }
 
+void bfsCalculated(int u, int v, int d)
+{
+	sum += (d * d);
+	for (auto next : graph[v])
+	{
+		bfsCalculated(u, next, d+1);
+	}
+}
+
+
 void calcQueries()
 {
 	cin >> q;
@@ -96,12 +117,19 @@ void calcQueries()
 		cin >> v;
 		int dist = calcDist(u, v);
 		sum = 0;
-		bfs(u, v);
+		if (visited.find(u) == visited.end())
+		{
+			bfs(u, v);
+		}
+		else
+		{
+			bfsCalculated(u, v, dist);
+		}
 		cout << sum << endl;
 	}
 }
 
-int main() 
+int main()
 {
 	readGraph();
 	calcHeigh(1, 0);
