@@ -26,7 +26,7 @@ void readGraph()
 		data.push_back(d);
 	}
 
-	for (int i = 2; i <= data.size(); i++)
+	for (int i = 2; i <= data.size()+1; i++)
 	{		
 		d = data[i-2];
 		parents.emplace(i, d);
