@@ -19,9 +19,16 @@ void readGraph()
 	int d;
 	parents.emplace(1, 0);
 	cin >> n;	
+	vector<int> data;
 	for (int i = 2; i <= n; i++)
 	{
 		cin >> d;//i has parent d
+		data.push_back(d);
+	}
+
+	for (int i = 2; i <= data.size(); i++)
+	{		
+		d = data[i-2];
 		parents.emplace(i, d);
 		if (graph.find(d) != graph.end())
 		{
@@ -30,7 +37,7 @@ void readGraph()
 		else
 		{
 			vector<int> v;
-			v.push_back(d);
+			v.push_back(i);
 			graph.emplace(d, v);
 		}
 	}
