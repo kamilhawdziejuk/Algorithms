@@ -74,8 +74,15 @@ bool checkUinV(int u, int v)
 	return u == v;
 }
 
+unordered_map<int, int> distances;
+
 int calcDist(int u, int v)
 {
+	//if (distances.find(v) != distances.end())
+	{
+		//	return distances[v];
+	}
+
 	int res = 0;
 	if (u == v) return res;
 	while (heigh[u] < heigh[v])
@@ -94,12 +101,13 @@ int calcDist(int u, int v)
 		v = parents[v];
 		u = parents[u];
 	}
+	//distances.emplace(v, res);
 	return res;
 }
 
 void bfs(int u, int v)
 {
-	int d = calcDist(v, u);
+	int d = calcDist(u, v);
 	sum += (d * d);
 	for (auto next : graph[v])
 	{
@@ -116,7 +124,7 @@ void bfsCalculated(int u, int v)
 	}
 	else*/
 	{
-		d = calcDist(v, u);
+		d = calcDist(u, v);
 	}
 	sum += (d * d);
 	for (auto next : graph[v])
@@ -141,7 +149,7 @@ void calcQueries()
 		}
 		else
 		{
-			bfsCalculated(u, v);
+			bfs(u, v);//bfsCalculated(u, v);
 		}
 		cout << sum << endl;
 	}
