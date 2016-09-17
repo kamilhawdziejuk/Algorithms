@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 
 #include <cmath>
 #include <cstdio>
@@ -14,6 +14,7 @@ unordered_map<int, int> parents;
 unordered_map<int, vector<int>> graph;
 unordered_map<int, int> heigh;
 unordered_map<int, bool> visited;
+bool uvisited = false;
 
 void readGraph()
 {
@@ -64,6 +65,15 @@ void visit(int v)
 
 }
 
+bool checkUinV(int u, int v)
+{
+	while (heigh[v] < heigh[u])
+	{
+		u = parents[u];
+	}
+	return u == v;
+}
+
 int calcDist(int u, int v)
 {
 	int res = 0;
@@ -97,12 +107,14 @@ void bfs(int u, int v)
 	}
 }
 
-void bfsCalculated(int u, int v, int d)
+void bfsCalculated(int u, int v)
 {
+	int d = heigh[u] - heigh[v];
+	if (d < 0) d *= -1;
 	sum += (d * d);
 	for (auto next : graph[v])
 	{
-		bfsCalculated(u, next, d+1);
+		bfsCalculated(u, next);
 	}
 }
 
@@ -115,15 +127,17 @@ void calcQueries()
 	{
 		cin >> u;
 		cin >> v;
-		int dist = calcDist(u, v);
+		//int dist = calcDist(u, v);
 		sum = 0;
-		if (visited.find(u) == visited.end())
+
+		uvisited = checkUinV(u, v);
+		if (!uvisited)
 		{
 			bfs(u, v);
 		}
 		else
 		{
-			bfsCalculated(u, v, dist);
+			bfsCalculated(u, v);
 		}
 		cout << sum << endl;
 	}
