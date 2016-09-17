@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 
 #include <cmath>
 #include <cstdio>
@@ -109,8 +109,15 @@ void bfs(int u, int v)
 
 void bfsCalculated(int u, int v)
 {
-	int d = heigh[u] - heigh[v];
-	if (d < 0) d *= -1;
+	int d;
+	/*if (heigh[u] < heigh[v])
+	{
+	d = heigh[u] - heigh[v];
+	}
+	else*/
+	{
+		d = calcDist(v, u);
+	}
 	sum += (d * d);
 	for (auto next : graph[v])
 	{
@@ -127,11 +134,8 @@ void calcQueries()
 	{
 		cin >> u;
 		cin >> v;
-		//int dist = calcDist(u, v);
 		sum = 0;
-
-		uvisited = checkUinV(u, v);
-		if (!uvisited)
+		if (!checkUinV(u, v))
 		{
 			bfs(u, v);
 		}
