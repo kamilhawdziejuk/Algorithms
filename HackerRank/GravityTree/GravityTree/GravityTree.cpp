@@ -76,11 +76,16 @@ bool checkUinV(int u, int v)
 
 unordered_map<int, int> distances;
 
-int calcDist(int u, int v)
+int calcDist(int u, int v, bool inside = false)
 {
 	//if (distances.find(v) != distances.end())
 	{
 		//	return distances[v];
+	}
+
+	if (inside)
+	{
+		return heigh[u] - heigh[v];
 	}
 
 	int res = 0;
@@ -105,31 +110,14 @@ int calcDist(int u, int v)
 	return res;
 }
 
-void bfs(int u, int v)
+void bfs(int u, int v, bool inside)
 {
 	int d = calcDist(u, v);
+	if (d == 0) inside = true;
 	sum += (d * d);
 	for (auto next : graph[v])
 	{
-		bfs(u, next);
-	}
-}
-
-void bfsCalculated(int u, int v)
-{
-	int d;
-	/*if (heigh[u] < heigh[v])
-	{
-	d = heigh[u] - heigh[v];
-	}
-	else*/
-	{
-		d = calcDist(u, v);
-	}
-	sum += (d * d);
-	for (auto next : graph[v])
-	{
-		bfsCalculated(u, next);
+		bfs(u, next, inside);
 	}
 }
 
@@ -143,14 +131,7 @@ void calcQueries()
 		cin >> u;
 		cin >> v;
 		sum = 0;
-		if (!checkUinV(u, v))
-		{
-			bfs(u, v);
-		}
-		else
-		{
-			bfs(u, v);//bfsCalculated(u, v);
-		}
+		bfs(u, v, false);
 		cout << sum << endl;
 	}
 }
