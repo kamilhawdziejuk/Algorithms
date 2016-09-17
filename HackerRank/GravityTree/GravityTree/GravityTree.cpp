@@ -78,14 +78,16 @@ unordered_map<int, int> distances;
 
 int calcDist(int u, int v, bool inside = false)
 {
-	//if (distances.find(v) != distances.end())
+	if (distances.find(v) != distances.end())
 	{
-		//	return distances[v];
+		return distances[v];
 	}
 
 	if (inside)
 	{
-		return heigh[u] - heigh[v];
+		int result = heigh[u] - heigh[v];
+		distances.emplace(v, result);
+		return result;
 	}
 
 	int res = 0;
@@ -106,7 +108,7 @@ int calcDist(int u, int v, bool inside = false)
 		v = parents[v];
 		u = parents[u];
 	}
-	//distances.emplace(v, res);
+	distances.emplace(v, res);
 	return res;
 }
 
@@ -131,6 +133,7 @@ void calcQueries()
 		cin >> u;
 		cin >> v;
 		sum = 0;
+		distances.clear();
 		bfs(u, v, false);
 		cout << sum << endl;
 	}
