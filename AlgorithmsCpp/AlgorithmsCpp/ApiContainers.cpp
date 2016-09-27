@@ -8,9 +8,9 @@
 #include <set>
 
  struct UndirectedGraphNode {
-     int label;
-     vector<UndirectedGraphNode *> neighbors;
-     UndirectedGraphNode(int x) : label(x) {};
+	 int label;
+	 vector<UndirectedGraphNode *> neighbors;
+	 UndirectedGraphNode(int x) : label(x) {};
  };
 
 
@@ -43,7 +43,7 @@ public:
 	void maps()
 	{
 		unordered_map<int, int> map;
-		map.insert(1, 2);
+		map.insert(pair<int, int> (1, 2));
 		map.find(2);
 	}
 
