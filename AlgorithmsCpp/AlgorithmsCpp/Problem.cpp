@@ -1,5 +1,3 @@
-//#include "stdafx.h"
-
 #include <cassert>
 #include <iostream>
 #include <istream>
@@ -101,25 +99,15 @@ public:
 
 	void virtual Read()
 	{
-		cin >> n;
-		REP(i, n)
-		{
-			cin >> d;
-			vec.push_back(d);
-		}
+
 	}
 
 	void virtual Solve()
 	{
-		REP(i, n)
-		{
-			res += vec[i];
-		}
 	}
 
 	void virtual Print()
 	{
-		cout << res;
 	}
 };
 
