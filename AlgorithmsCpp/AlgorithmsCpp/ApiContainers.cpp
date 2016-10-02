@@ -45,6 +45,13 @@ public:
 		unordered_map<int, int> map;
 		map.insert(pair<int, int> (1, 2));
 		map.find(2);
+	
+	}
+
+	void strings()
+	{
+		string str;
+		str.substr(1, str.size());
 	}
 
 };

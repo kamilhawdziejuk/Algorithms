@@ -111,7 +111,7 @@ public:
 	}
 };
 
-int main()
+int main2()
 {
 	Problem *p = new Problem();
 	p->Read();

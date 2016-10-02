@@ -85,6 +85,7 @@
   <ItemGroup>
     <ClCompile Include="AlgorithmsCpp.cpp" />
     <ClCompile Include="ApiContainers.cpp" />
+    <ClCompile Include="ArrayLeftRotation.cpp" />
     <ClCompile Include="Arrays.cpp" />
     <ClCompile Include="ArraysSort.cpp" />
     <ClCompile Include="Files.cpp" />
@@ -101,6 +102,7 @@
     </ClCompile>
     <ClCompile Include="Strings.cpp" />
     <ClCompile Include="Trees.cpp" />
+    <ClCompile Include="Trie.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
