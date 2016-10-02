@@ -40,6 +40,8 @@ using namespace std;
 #define MS0(X) memset((X), 0, sizeof((X)))
 #define MS1(X) memset((X), -1, sizeof((X)))
 #define LEN(X) strlen(X)
+#define LL long long
+#define ULL unsigned long long
 #define PII pair<int,int>
 #define VI vector<int>
 #define VLL vector<long long>
@@ -81,6 +83,18 @@ const double PI = acos(-1);
 class Problem
 {
 public:
+
+	//multiplication of two large numbers modulo MOD
+	ULL mulmod(ULL a, ULL b) {
+		ULL rv = 0;
+		while (b) {
+			if (b & 1)
+				if ((rv += a) >= MOD) rv -= MOD;
+			if ((a += a) >= MOD) a -= MOD;
+			b >>= 1;
+		}
+		return rv;
+	}
 
 	LL n;
 	int d;
