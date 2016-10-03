@@ -55,6 +55,8 @@ using namespace std;
 #define repd(i, a, b) for(int i = (a); i > (b); i--)
 #define forIt(it, a) for(__typeof((a).begin()) it = (a).begin(); it != (a).end(); it++)
 #define forRev(it, a) for(__typeof((a).rbegin()) it = (a).rbegin(); it != (a).rend(); it++)
+#define tr(container, it) for (typeof(container.begin()) it = container.begin(); it != container.end(); it++)
+#define present(container, element) (container.find(element) != container.end())
 #define ft(a) __typeof((a).begin())
 #define LL long long
 #define ld long double
@@ -62,7 +64,6 @@ using namespace std;
 #define se second
 #define mk make_pair
 #define pb push_back
-#define sz(a) (int)(a).size()
 #define all(a) (a).begin(), (a).end()
 #define Rep(i,n) for(int i = 0; i < (n); ++i)
 #define bitcount(n) __builtin_popcountll(n)
@@ -74,6 +75,9 @@ typedef pair<int, int> ii;
 typedef pair<ii, int> iii;
 typedef vector<ii> vii;
 typedef vector<iii> viii;
+
+#define SORT(v)			sort((v).begin(),(v).end())
+#define UN(v)			SORT(v),(v).erase(unique((v).begin(),(v).end()),(v).end()) 
 
 const int MOD = 1e9 + 7;
 const int SIZE = 1e6 + 10;
