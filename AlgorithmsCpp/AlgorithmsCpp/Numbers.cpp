@@ -425,6 +425,23 @@ public:
         return r;
     }
 
+	//https://leetcode.com/problems/product-of-array-except-self/
+	vector<int> productExceptSelf(vector<int>& nums) {
+		// use two rounds to get the result: the 1st round for multiplying every element on the left side of current position, the 2nd round for multiplying every element on the right side of current position
+		int length = nums.size();
+		vector<int> ans(length, 1);
+		int leftSideProduct = 1;
+		for (int i = 0; i<length; i++) {
+			ans[i] = leftSideProduct; // leftSideProduct is the product of all the elements on the left side of position i
+			leftSideProduct = leftSideProduct * nums[i]; // update leftSideProduct and keep going right
+		}
+		int rightSideProduct = 1;
+		for (int j = length - 1; j >= 0; j--) {
+			ans[j] = ans[j] * rightSideProduct; // rightSideProduct is the product of all the elements on the right side of position j
+			rightSideProduct = rightSideProduct * nums[j]; // update rightSideProduct and keep going left
+		}
+		return ans;
+	}
 
 	//https://leetcode.com/problems/search-in-rotated-sorted-array/
 	int search(vector<int>& nums, int target) {
