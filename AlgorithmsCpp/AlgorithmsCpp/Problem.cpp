@@ -12,7 +12,7 @@
 #include <queue>
 #include <string>
 #include <cstdlib>
-#include <memory.h>
+#include <memory>
 #include <ctime>
 #include <bitset>
 #include <queue>
@@ -27,6 +27,7 @@ using namespace std;
 #define ALL(X) (X).begin(), (X).end()
 #define REPP(I, A, B) for (int I = (A); I < (B); ++I)
 #define REP(i,n) for(int i = 0; i < (n); ++i)
+#define REPD(i, a, b) for(int i = (a); i > (b); i--)
 #define RI(X) scanf("%d", &(X))
 #define RII(X, Y) scanf("%d%d", &(X), &(Y))
 #define RIII(X, Y, Z) scanf("%d%d%d", &(X), &(Y), &(Z))
@@ -51,21 +52,17 @@ using namespace std;
 #define VPLL vector<pair<long long,long long> >
 #define F first
 #define S second
-#define rep(i, a, b) for(int i = (a); i < (b); i++)
-#define repd(i, a, b) for(int i = (a); i > (b); i--)
 #define forIt(it, a) for(__typeof((a).begin()) it = (a).begin(); it != (a).end(); it++)
 #define forRev(it, a) for(__typeof((a).rbegin()) it = (a).rbegin(); it != (a).rend(); it++)
 #define tr(container, it) for (typeof(container.begin()) it = container.begin(); it != container.end(); it++)
 #define present(container, element) (container.find(element) != container.end())
 #define ft(a) __typeof((a).begin())
-#define LL long long
 #define ld long double
 #define fi first
 #define se second
 #define mk make_pair
 #define pb push_back
 #define all(a) (a).begin(), (a).end()
-#define Rep(i,n) for(int i = 0; i < (n); ++i)
 #define bitcount(n) __builtin_popcountll(n)
 #define pii pair<int, int>
 
@@ -73,8 +70,6 @@ typedef complex<ld> cplex;
 typedef vector<int> vi;
 typedef pair<int, int> ii;
 typedef pair<ii, int> iii;
-typedef vector<ii> vii;
-typedef vector<iii> viii;
 
 #define SORT(v)			sort((v).begin(),(v).end())
 #define UN(v)			SORT(v),(v).erase(unique((v).begin(),(v).end()),(v).end()) 
@@ -100,21 +95,7 @@ public:
 		return rv;
 	}
 
-	LL n;
-	int d;
-	VLL vec;
-	LL res = 0;
-	ifstream fcin;
-
-	Problem(string name="")
-	{
-	}
-
-	~Problem()
-	{
-
-	}
-
+	//ifstream fcin;
 	void virtual Read()
 	{
 
@@ -123,18 +104,12 @@ public:
 	void virtual Solve()
 	{
 	}
-
-	void virtual Print()
-	{
-	}
 };
 
-int main2()
+int main()
 {
-	Problem *p = new Problem();
+	shared_ptr<Problem> p;
 	p->Read();
 	p->Solve();
-	p->Print();
-	delete p;
 	return 0;
 }
