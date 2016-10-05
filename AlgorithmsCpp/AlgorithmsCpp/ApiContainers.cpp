@@ -6,6 +6,7 @@
 #include <map>
 #include <functional>
 #include <set>
+#include <stack>
 
  struct UndirectedGraphNode {
 	 int label;
@@ -52,6 +53,19 @@ public:
 	{
 		string str;
 		str.substr(1, str.size());
+		str.clear();
+		str.find_first_not_of("ab");
+		str.find_first_of("ab");
+		str.insert(0, 1, 'a');
+	}
+
+	void stacks()
+	{
+		stack<int> st;
+		st.push(2);
+		int res = st.top();
+		st.pop();
+		
 	}
 
 };
