@@ -255,6 +255,27 @@ public:
 		return q.top();
 	}
 
+	//http://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/
+	//https://leetcode.com/problems/longest-increasing-subsequence/
+	int lengthOfLIS(vector<int>& nums) {
+		if (!nums.size()) return 0;
+		vector<int> sub{ nums[0] };
+		for (auto a : nums) {
+			if (a < sub.front()) sub.front() = a;
+			else if (a > sub.back()) sub.push_back(a);
+			else {
+				int l = 0, r = sub.size();
+				while (l < r) {
+					int mid = l + (r - l) / 2;
+					if (sub[mid] < a) l = mid + 1;
+					else r = mid;
+				}
+				sub[r] = a;
+			}
+		}
+		return sub.size();
+	}
+
 	
 	//https://leetcode.com/problems/first-bad-version/
 	bool isBadVersion(int version);
