@@ -79,10 +79,10 @@ const int SIZE = 1e6 + 10;
 const double EPS = 1e-12;
 const double PI = acos(-1);
 
-enum FigType { Q, N, B, R, NoneType };
-enum FigSide { White, Black, NoneSide };
+enum FigType { Q = 1, N = 2, B = 3, R = 4, NoneType = -1 };
+enum FigSide { White = 1, Black = 2, NoneSide = -1 };
 
-class Position	
+class Position
 {
 public:
 	int x, y;
@@ -90,7 +90,7 @@ public:
 	Position() {}
 
 	Position(int _x, int _y) { x = _x, y = _y; };
-	
+
 	bool operator==(const Position& other) const
 	{
 		return x == other.x && y == other.y;
@@ -98,6 +98,15 @@ public:
 	bool operator!=(const Position& other) const
 	{
 		return !(*this == other);
+	}
+	Position& operator=(const Position& other)
+	{
+		// check for self-assignment
+		if (&other == this)
+			return *this;
+		x = other.x;
+		y = other.y;
+		return *this;
 	}
 };
 
@@ -117,18 +126,37 @@ public:
 	{
 		return !(*this == other);
 	}
+
+	FigureRep& operator=(const FigureRep& other)
+	{
+		// check for self-assignment
+		if (&other == this)
+			return *this;
+		Type = other.Type;
+		Pos = other.Pos;
+		Side = other.Side;
+		return *this;
+	}
+
+	static FigureRep Empty;
+
+	static FigureRep GetEmpty()
+	{
+		FigureRep fig;
+		fig.Type = NoneType;
+		fig.Side = NoneSide;
+		return fig;
+	}
 };
 
 class Board
 {
 public:
-	FigureRep Fields[4][4];
+	FigureRep Fields[4][4];// = { FigureRep::GetEmpty() };
 
 	Board()
 	{
-		FigureRep figNoneRep;
-		figNoneRep.Side = NoneSide;
-		figNoneRep.Type = NoneType;
+		FigureRep figNoneRep = FigureRep::GetEmpty();
 		for (int row = 0; row < 4; row++)
 		{
 			for (int col = 0; col < 4; col++)
@@ -137,6 +165,47 @@ public:
 			}
 		}
 	}
+
+	Board copy()
+	{
+		Board newBoard;
+		for (int row = 0; row < 4; row++)
+		{
+			for (int col = 0; col < 4; col++)
+			{
+				newBoard.Fields[row][col] = Fields[row][col];
+			}
+		}
+		return newBoard;
+	}
+
+	vector<FigureRep> getFigures(FigSide side)
+	{
+		vector<FigureRep> figures;
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				FigureRep fig = Fields[i][j];
+				if (fig.Side == side)
+				{
+					figures.push_back(fig);
+				}
+			}
+		}
+		return figures;
+	}
+
+	vector<FigureRep> getWhiteFigures()
+	{
+		return getFigures(White);
+	}
+
+	vector<FigureRep> getBlackFigures()
+	{
+		return getFigures(Black);
+	}
+
 
 	bool operator==(const Board& other) const
 	{
@@ -166,7 +235,7 @@ public:
 	{
 		return pos.x >= 0 && pos.y >= 0 && pos.x < 4 && pos.y < 4;
 	}
-	
+
 	vector<Position> getNextPossible(FigureRep& fig)
 	{
 		vector<Position> positions;
@@ -200,7 +269,7 @@ public:
 				if (isOnBoard(p1) && p1 != fig.Pos) positions.push_back(p1);
 				if (isOnBoard(p2) && p2 != fig.Pos) positions.push_back(p2);
 				if (isOnBoard(p3) && p3 != fig.Pos) positions.push_back(p3);
-				if (isOnBoard(p4) && p4 != fig.Pos) positions.push_back(p4);				
+				if (isOnBoard(p4) && p4 != fig.Pos) positions.push_back(p4);
 			}
 		}
 		else if (fig.Type == R)
@@ -247,11 +316,11 @@ public:
 			Position p1(fig.Pos.x + 1, fig.Pos.y - 2);
 			Position p2(fig.Pos.x + 2, fig.Pos.y - 1);
 			Position p3(fig.Pos.x + 2, fig.Pos.y + 1);
-			Position p4(fig.Pos.x + 1, fig.Pos.y - 2);
+			Position p4(fig.Pos.x + 1, fig.Pos.y + 2);
 			Position p5(fig.Pos.x - 1, fig.Pos.y - 2);
 			Position p6(fig.Pos.x - 2, fig.Pos.y - 1);
-			Position p7(fig.Pos.x - 2, fig.Pos.y - 1);
-			Position p8(fig.Pos.x - 1, fig.Pos.y - 2);
+			Position p7(fig.Pos.x - 2, fig.Pos.y + 1);
+			Position p8(fig.Pos.x - 1, fig.Pos.y + 2);
 
 			vector<Position> posNext = { p1, p2, p3, p4, p5, p6, p7, p8 };
 
@@ -264,6 +333,7 @@ public:
 				}
 			}
 		}
+		return positions;
 	}
 
 
@@ -271,8 +341,11 @@ public:
 	vector<FigureRep> whites;
 	vector<FigureRep> blacks;
 
-	Board nextBoard(Board board, int x, int y)
+	vector<Board> getNextBoards(Board& board, int x, int y)
 	{
+		vector<Board> nextBoards;
+
+		FigureRep empty = FigureRep::GetEmpty();
 		//take figure at (x,y)
 		FigureRep fig = board.Fields[x][y];
 		if (fig.Type != NoneType)
@@ -280,29 +353,113 @@ public:
 			vector<Position> positions = getNextPossible(fig);
 			for (int i = 0; i < positions.size(); i++)
 			{
+				//here is the place to copy all the board
 				Position pi = positions[i];
 				FigureRep figureThere = board.Fields[pi.x][pi.y];
 				if (figureThere.Type == NoneType)
 				{
+					Board copy = board.copy();
 					//we can move here
+					copy.Fields[pi.x][pi.y] = fig;
+					copy.Fields[x][y] = empty;
+
+					nextBoards.push_back(copy);
+				}
+				else
+				{
+					//we can take the oponnent figure
+					if (figureThere.Side != fig.Side)
+					{
+						Board copy = board.copy();
+						copy.Fields[pi.x][pi.y] = fig;
+						copy.Fields[x][y] = empty;
+						nextBoards.push_back(copy);
+					}
 				}
 			}
 		}
+		return nextBoards;
+	}
+
+	vector<Board> getNextBoards(Board& board, bool whiteMove)
+	{
+		//we can optimize here scanning only places with figures
+		vector<Board> results;
+		vector<FigureRep> figures;
+		if (whiteMove)
+		{
+			figures = board.getWhiteFigures();
+		}
 		else
 		{
-			return board;
+			figures = board.getBlackFigures();
+		}
+		for (int i = 0; i < figures.size(); i++)
+		{
+			FigureRep fig = figures[i];
+			vector<Board> nextsBoards = getNextBoards(board, fig.Pos.x, fig.Pos.y);
+			results.insert(results.end(), nextsBoards.begin(), nextsBoards.end());
+		}
+		return results;
+	}
+
+	bool isDone(Board &board)
+	{
+		vector<FigureRep> blackFigures = board.getBlackFigures();
+		for (int i = 0; i < blackFigures.size(); i++)
+		{
+			if (blackFigures[i].Type == Q)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	bool isMat(Board& board, bool whiteMove, int moveNr)
+	{
+		if (moveNr > m)
+		{
+			return false;
+		}
+		else
+		{
+			vector<Board> boardsAfterWhiteMove = getNextBoards(board, whiteMove);
+			for (int i = 0; i < boardsAfterWhiteMove.size(); i++)
+			{
+				if (isDone(boardsAfterWhiteMove[i]))
+				{
+					return true;
+				}
+			}
+			for (int i = 0; i < boardsAfterWhiteMove.size(); i++)
+			{
+				Board b = boardsAfterWhiteMove[i];
+				vector<Board> boardsAfterBlackMove = getNextBoards(b, !whiteMove);
+				//after each black move, the white have response that leads to mat
+				bool canMate = false;
+				for (int j = 0; j < boardsAfterBlackMove.size(); j++)
+				{
+					canMate = isMat(boardsAfterBlackMove[j], whiteMove, moveNr + 2);
+					if (canMate)
+					{
+						break;
+					}
+				}
+				if (!canMate)
+				{
+					return false;
+				}
+			}
+			return true;
 		}
 	}
 
-	bool isMat(Board tmpBoard, int deep)
-	{
-		return false;
-	}
 
-
-	//ifstream fcin;
+	ifstream fcin;
 	void virtual Solve()
 	{
+		//fcin.open("D:\\chess.in", ios::in);
 		cin >> q;
 		char figureChar, figurePosHorizontal;
 		int figurePosVertical;
@@ -312,7 +469,7 @@ public:
 
 			Board initBoard; //empty board
 
-			for (int  k = 0; k < w+b; k++)
+			for (int k = 0; k < w + b; k++)
 			{
 				cin >> figureChar >> figurePosHorizontal >> figurePosVertical;
 				FigureRep figRep;
@@ -333,21 +490,33 @@ public:
 					figRep.Type = B;
 				}
 
-				int x = figurePosVertical - 'A';
+				int x = figurePosHorizontal - 'A';
 				int y = figurePosVertical - 1;
 				figRep.Pos.x = x;
 				figRep.Pos.y = y;
 
 				if (k < w)
 				{
+					figRep.Side = White;
 					whites.push_back(figRep);
 				}
 				else
 				{
+					figRep.Side = Black;
 					blacks.push_back(figRep);
 				}
 
 				initBoard.Fields[x][y] = figRep;
+			}
+
+			bool matCombinationExists = isMat(initBoard, true, 1);
+			if (matCombinationExists)
+			{
+				cout << "YES" << endl;
+			}
+			else
+			{
+				cout << "NO" << endl;
 			}
 		}
 	}
@@ -355,7 +524,9 @@ public:
 
 int main()
 {
-	shared_ptr<ChessProblem> p;
+	//shared_ptr<ChessProblem> p;
+	ChessProblem *p = new ChessProblem();
 	p->Solve();
+	delete p;
 	return 0;
 }
