@@ -372,8 +372,8 @@ public:
 					figCopy.Pos.x = pi.x;
 					figCopy.Pos.y = pi.y;
 					//we can move here
-					copy.Fields[pi.x][pi.y] = fig;
-					copy.Fields[x][y] = empty;
+					copy.Fields[pi.x][pi.y] = figCopy;
+					copy.Fields[x][y] = empty.copy();
 
 					nextBoards.push_back(copy);
 				}
@@ -383,8 +383,13 @@ public:
 					if (figureThere.Side != fig.Side)
 					{
 						Board copy = board.copy();
-						copy.Fields[pi.x][pi.y] = fig;
-						copy.Fields[x][y] = empty;
+
+						FigureRep figCopy = fig.copy();
+						figCopy.Pos.x = pi.x;
+						figCopy.Pos.y = pi.y;
+
+						copy.Fields[pi.x][pi.y] = figCopy;
+						copy.Fields[x][y] = empty.copy();
 						nextBoards.push_back(copy);
 					}
 				}
@@ -473,7 +478,7 @@ public:
 	ifstream fcin;
 	void virtual Solve()
 	{
-		fcin.open("D:\\chess2.in", ios::in);
+		fcin.open("D:\\chess.in", ios::in);
 		fcin >> q;
 		char figureChar, figurePosHorizontal;
 		int figurePosVertical;
