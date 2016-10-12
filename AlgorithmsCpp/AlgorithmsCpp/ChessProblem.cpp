@@ -138,6 +138,15 @@ public:
 		return *this;
 	}
 
+	FigureRep copy()
+	{
+		FigureRep clone;
+		clone.Pos = Pos;
+		clone.Side = Side;
+		clone.Type = Type;
+		return clone;
+	}
+
 	static FigureRep Empty;
 
 	static FigureRep GetEmpty()
@@ -359,6 +368,9 @@ public:
 				if (figureThere.Type == NoneType)
 				{
 					Board copy = board.copy();
+					FigureRep figCopy = fig.copy();
+					figCopy.Pos.x = pi.x;
+					figCopy.Pos.y = pi.y;
 					//we can move here
 					copy.Fields[pi.x][pi.y] = fig;
 					copy.Fields[x][y] = empty;
@@ -416,7 +428,7 @@ public:
 		return true;
 	}
 
-	bool isMat(Board& board, bool whiteMove, int moveNr)
+	bool canWhiteMate(Board& board, bool whiteMove, int moveNr)
 	{
 		if (moveNr > m)
 		{
@@ -434,13 +446,15 @@ public:
 			}
 			for (int i = 0; i < boardsAfterWhiteMove.size(); i++)
 			{
-				Board b = boardsAfterWhiteMove[i];
+				Board b = boardsAfterWhiteMove[i]; //board after white move
+				vector<FigureRep> whites = b.getWhiteFigures();
+				vector<FigureRep> black = b.getBlackFigures();
 				vector<Board> boardsAfterBlackMove = getNextBoards(b, !whiteMove);
-				//after each black move, the white have response that leads to mat
+				//after each black move, the check if white have response that leads to mat
 				bool canMate = false;
 				for (int j = 0; j < boardsAfterBlackMove.size(); j++)
 				{
-					canMate = isMat(boardsAfterBlackMove[j], whiteMove, moveNr + 2);
+					canMate = canWhiteMate(boardsAfterBlackMove[j], whiteMove, moveNr + 2);
 					if (canMate)
 					{
 						break;
@@ -459,19 +473,19 @@ public:
 	ifstream fcin;
 	void virtual Solve()
 	{
-		//fcin.open("D:\\chess.in", ios::in);
-		cin >> q;
+		fcin.open("D:\\chess2.in", ios::in);
+		fcin >> q;
 		char figureChar, figurePosHorizontal;
 		int figurePosVertical;
 		for (int i = 0; i < q; i++)
 		{
-			cin >> w >> b >> m;
+			fcin >> w >> b >> m;
 
 			Board initBoard; //empty board
 
 			for (int k = 0; k < w + b; k++)
 			{
-				cin >> figureChar >> figurePosHorizontal >> figurePosVertical;
+				fcin >> figureChar >> figurePosHorizontal >> figurePosVertical;
 				FigureRep figRep;
 				if (figureChar == 'Q')
 				{
@@ -509,7 +523,7 @@ public:
 				initBoard.Fields[x][y] = figRep;
 			}
 
-			bool matCombinationExists = isMat(initBoard, true, 1);
+			bool matCombinationExists = canWhiteMate(initBoard, true, 1);
 			if (matCombinationExists)
 			{
 				cout << "YES" << endl;
