@@ -162,6 +162,7 @@ class Board
 {
 public:
 	FigureRep Fields[4][4];// = { FigureRep::GetEmpty() };
+	vector<FigureRep> moves;
 
 	Board()
 	{
@@ -185,7 +186,18 @@ public:
 				newBoard.Fields[row][col] = Fields[row][col];
 			}
 		}
+
+		for (int i = 0; i < moves.size(); i++)
+		{
+			FigureRep f = moves[i].copy();
+			newBoard.moves.push_back(f);
+		}
 		return newBoard;
+	}
+
+	void addMove(FigureRep newFig)
+	{
+		moves.push_back(newFig);
 	}
 
 	vector<FigureRep> getFigures(FigSide side)
@@ -375,6 +387,7 @@ public:
 					copy.Fields[pi.x][pi.y] = figCopy;
 					copy.Fields[x][y] = empty.copy();
 
+					copy.addMove(figCopy);
 					nextBoards.push_back(copy);
 				}
 				else
@@ -390,6 +403,9 @@ public:
 
 						copy.Fields[pi.x][pi.y] = figCopy;
 						copy.Fields[x][y] = empty.copy();
+
+						
+						copy.addMove(figCopy);
 						nextBoards.push_back(copy);
 					}
 				}
@@ -430,7 +446,16 @@ public:
 				return false;
 			}
 		}
-		return true;
+		//but does the white still have?
+		vector<FigureRep> whiteFigures = board.getWhiteFigures();
+		for (int i = 0; i < whiteFigures.size(); i++)
+		{
+			if (whiteFigures[i].Type == Q)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	bool canWhiteMate(Board& board, bool whiteMove, int moveNr)
@@ -449,28 +474,31 @@ public:
 					return true;
 				}
 			}
+			//if there exists at least one white move ...
 			for (int i = 0; i < boardsAfterWhiteMove.size(); i++)
 			{
 				Board b = boardsAfterWhiteMove[i]; //board after white move
 				vector<FigureRep> whites = b.getWhiteFigures();
 				vector<FigureRep> black = b.getBlackFigures();
 				vector<Board> boardsAfterBlackMove = getNextBoards(b, !whiteMove);
-				//after each black move, the check if white have response that leads to mat
-				bool canMate = false;
+				//after each black move, we check if white have response that leads to mat
+				bool whiteHasReponseForAllBlack = true;
 				for (int j = 0; j < boardsAfterBlackMove.size(); j++)
 				{
-					canMate = canWhiteMate(boardsAfterBlackMove[j], whiteMove, moveNr + 2);
-					if (canMate)
+					Board boardNow = boardsAfterBlackMove[j];
+					bool canMate = canWhiteMate(boardNow, whiteMove, moveNr + 2);
+					if (!canMate)
 					{
+						whiteHasReponseForAllBlack = false;
 						break;
 					}
 				}
-				if (!canMate)
+				if (whiteHasReponseForAllBlack)
 				{
-					return false;
+					return true;
 				}
 			}
-			return true;
+			return false;
 		}
 	}
 
@@ -478,7 +506,7 @@ public:
 	ifstream fcin;
 	void virtual Solve()
 	{
-		fcin.open("D:\\chess.in", ios::in);
+		fcin.open("D:\\chess2.in", ios::in);
 		fcin >> q;
 		char figureChar, figurePosHorizontal;
 		int figurePosVertical;
@@ -528,6 +556,13 @@ public:
 				initBoard.Fields[x][y] = figRep;
 			}
 
+			//m = 1;
+			//bool matCombinationExists;
+			//while (m <= 5)
+			//{
+			//	matCombinationExists = canWhiteMate(initBoard, true, 1);
+			//	m++;
+			//}
 			bool matCombinationExists = canWhiteMate(initBoard, true, 1);
 			if (matCombinationExists)
 			{
