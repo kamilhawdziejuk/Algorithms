@@ -50,7 +50,7 @@ int number_needed(string a, string b) {
 	return cnt;
 }
 
-int main2() {
+int main3() {
 	string a;
 	cin >> a;
 	string b;

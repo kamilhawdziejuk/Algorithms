@@ -88,6 +88,7 @@
     <ClCompile Include="ArrayLeftRotation.cpp" />
     <ClCompile Include="Arrays.cpp" />
     <ClCompile Include="ArraysSort.cpp" />
+    <ClCompile Include="ChessProblem.cpp" />
     <ClCompile Include="Files.cpp" />
     <ClCompile Include="Lists.cpp" />
     <ClCompile Include="LRUCache.cpp" />

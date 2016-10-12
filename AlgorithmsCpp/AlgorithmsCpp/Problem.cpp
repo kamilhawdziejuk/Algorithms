@@ -102,7 +102,7 @@ public:
 	}
 };
 
-int main()
+int main2()
 {
 	shared_ptr<Problem> p;
 	p->Solve();
