@@ -162,7 +162,7 @@ class Board
 {
 public:
 	FigureRep Fields[4][4];// = { FigureRep::GetEmpty() };
-	vector<FigureRep> moves;
+	vector<FigureRep> moves; //extra information (only for debugging, can be removed)
 
 	Board()
 	{
@@ -187,6 +187,7 @@ public:
 			}
 		}
 
+		//extra information (only for debugging, can be removed)
 		for (int i = 0; i < moves.size(); i++)
 		{
 			FigureRep f = moves[i].copy();
@@ -359,8 +360,6 @@ public:
 
 
 	int q, w, b, m;
-	vector<FigureRep> whites;
-	vector<FigureRep> blacks;
 
 	vector<Board> getNextBoards(Board& board, int x, int y)
 	{
@@ -458,7 +457,7 @@ public:
 		return false;
 	}
 
-	bool canWhiteMate(Board& board, bool whiteMove, int moveNr)
+	bool canWhiteMate(Board& board, int moveNr)
 	{
 		if (moveNr > m)
 		{
@@ -466,7 +465,7 @@ public:
 		}
 		else
 		{
-			vector<Board> boardsAfterWhiteMove = getNextBoards(board, whiteMove);
+			vector<Board> boardsAfterWhiteMove = getNextBoards(board, true);
 			for (int i = 0; i < boardsAfterWhiteMove.size(); i++)
 			{
 				if (isDone(boardsAfterWhiteMove[i]))
@@ -474,19 +473,17 @@ public:
 					return true;
 				}
 			}
-			//if there exists at least one white move ...
+			//if there exists at least one white move that leads for sure to mate..:
 			for (int i = 0; i < boardsAfterWhiteMove.size(); i++)
 			{
 				Board b = boardsAfterWhiteMove[i]; //board after white move
-				vector<FigureRep> whites = b.getWhiteFigures();
-				vector<FigureRep> black = b.getBlackFigures();
-				vector<Board> boardsAfterBlackMove = getNextBoards(b, !whiteMove);
+				vector<Board> boardsAfterBlackMove = getNextBoards(b, false);
 				//after each black move, we check if white have response that leads to mat
 				bool whiteHasReponseForAllBlack = true;
 				for (int j = 0; j < boardsAfterBlackMove.size(); j++)
 				{
 					Board boardNow = boardsAfterBlackMove[j];
-					bool canMate = canWhiteMate(boardNow, whiteMove, moveNr + 2);
+					bool canMate = canWhiteMate(boardNow, moveNr + 2);
 					if (!canMate)
 					{
 						whiteHasReponseForAllBlack = false;
@@ -506,7 +503,7 @@ public:
 	ifstream fcin;
 	void virtual Solve()
 	{
-		fcin.open("D:\\chess2.in", ios::in);
+		fcin.open("D:\\chess3.in", ios::in);
 		fcin >> q;
 		char figureChar, figurePosHorizontal;
 		int figurePosVertical;
@@ -545,26 +542,16 @@ public:
 				if (k < w)
 				{
 					figRep.Side = White;
-					whites.push_back(figRep);
 				}
 				else
 				{
 					figRep.Side = Black;
-					blacks.push_back(figRep);
 				}
 
 				initBoard.Fields[x][y] = figRep;
 			}
 
-			//m = 1;
-			//bool matCombinationExists;
-			//while (m <= 5)
-			//{
-			//	matCombinationExists = canWhiteMate(initBoard, true, 1);
-			//	m++;
-			//}
-			bool matCombinationExists = canWhiteMate(initBoard, true, 1);
-			if (matCombinationExists)
+			if (canWhiteMate(initBoard, 1))
 			{
 				cout << "YES" << endl;
 			}
