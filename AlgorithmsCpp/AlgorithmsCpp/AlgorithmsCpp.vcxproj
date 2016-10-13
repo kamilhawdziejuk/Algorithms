@@ -90,6 +90,7 @@
     <ClCompile Include="ArraysSort.cpp" />
     <ClCompile Include="ChessProblem.cpp" />
     <ClCompile Include="Files.cpp" />
+    <ClCompile Include="HackerRank\XorMatrix.cpp" />
     <ClCompile Include="Lists.cpp" />
     <ClCompile Include="LRUCache.cpp" />
     <ClCompile Include="Matrix.cpp" />

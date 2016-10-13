@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\HackerRank">
+      <UniqueIdentifier>{8ecb1530-0384-47ae-9314-0671aa874614}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -77,8 +80,11 @@
     <ClCompile Include="Trie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HackerRank\XorMatrix.cpp">
+      <Filter>Source Files\HackerRank</Filter>
+    </ClCompile>
     <ClCompile Include="ChessProblem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\HackerRank</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
