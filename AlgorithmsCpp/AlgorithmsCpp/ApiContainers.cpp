@@ -57,6 +57,8 @@ public:
 		str.find_first_not_of("ab");
 		str.find_first_of("ab");
 		str.insert(0, 1, 'a');
+		str.append("a");
+		str += 'b';
 	}
 
 	void stacks()

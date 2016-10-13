@@ -91,6 +91,7 @@
     <ClCompile Include="ChessProblem.cpp" />
     <ClCompile Include="Files.cpp" />
     <ClCompile Include="HackerRank\XorMatrix.cpp" />
+    <ClCompile Include="LeetCode\WordSearch2.cpp" />
     <ClCompile Include="Lists.cpp" />
     <ClCompile Include="LRUCache.cpp" />
     <ClCompile Include="Matrix.cpp" />

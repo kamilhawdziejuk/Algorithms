@@ -95,53 +95,58 @@ public:
 		return rv;
 	}
 
-	ULL n;
+	ULL N;
 	ULL m;//rows
 	vector<ULL> vec;
 	//ifstream fcin;
 	ULL num;
 
-	ULL calc(ULL start, ULL amount)
-	{
-		ULL res = 0;
-		for (ULL i = 0; i < amount; i++)
-		{
-			ULL index = ((start % n) + (i % n)) % n;
-			res ^= vec[index];
-		}
-		return res;
-	}
-
-	std::vector<int> pascal_row(int n){
-		std::vector<int> row(n + 1);
+	std::vector<ULL> pascal_row(ULL n){
+		std::vector<ULL> row(n + 1);
 		row[0] = 1; //First element is always 1
-		for (int i = 1; i<n / 2 + 1; i++){ //Progress up, until reaching the middle value
+		for (ULL i = 1; i<n / 2 + 1; i++){ //Progress up, until reaching the middle value
 			row[i] = row[i - 1] * (n - i + 1) / i;
 		}
-		for (int i = n / 2 + 1; i <= n; i++){ //Copy the inverse of the first part
+		for (ULL i = n / 2 + 1; i <= n; i++){ //Copy the inverse of the first part
 			row[i] = row[n - i];
 		}
 		return row;
 	}
 
+	ULL calc(ULL start, vector<ULL> &mult)
+	{
+		ULL res = 0;
+		for (ULL i = 0; i < m; i++)
+		{
+			ULL index = (start + i) % N;
+			if (mult[i] % 2 == 1)
+			{
+				res ^= vec[index];
+			}
+		}
+		return res;
+	}
+
 	void virtual Solve()
 	{
-		cin >> n >> m;
-		for (int i = 0; i < n; i++)
+		cin >> N >> m;
+		for (int i = 0; i < N; i++)
 		{
 			cin >> num;
 			vec.push_back(num);
 		}
+
+		vector<ULL> pas = pascal_row(m-1);		
 		
-		for (int i = 0; i < n; i++)
+		for (int i = 0; i < N; i++)
 		{
-			ULL res = calc(i, m);
+			ULL res = calc(i, pas);
 			cout << res << " ";
 		}
 	}
 };
 
-int main()
+int mainXor()
 {
 	//shared_ptr<Problem> p;
 	Problem *p = new Problem();

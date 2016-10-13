@@ -16,6 +16,9 @@
     <Filter Include="Source Files\HackerRank">
       <UniqueIdentifier>{8ecb1530-0384-47ae-9314-0671aa874614}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\LeetCode">
+      <UniqueIdentifier>{682ec3c2-46db-45cc-9a59-28518d9955a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -85,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="ChessProblem.cpp">
       <Filter>Source Files\HackerRank</Filter>
+    </ClCompile>
+    <ClCompile Include="LeetCode\WordSearch2.cpp">
+      <Filter>Source Files\LeetCode</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
