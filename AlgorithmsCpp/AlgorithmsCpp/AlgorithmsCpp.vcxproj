@@ -96,6 +96,7 @@
     <ClCompile Include="LRUCache.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Numbers.cpp" />
+    <ClCompile Include="PalindromicStrings.cpp" />
     <ClCompile Include="PowerSet.cpp" />
     <ClCompile Include="Problem.cpp" />
     <ClCompile Include="Stacks.cpp" />

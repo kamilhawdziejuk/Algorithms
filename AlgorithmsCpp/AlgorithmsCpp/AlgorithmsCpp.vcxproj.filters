@@ -92,5 +92,8 @@
     <ClCompile Include="LeetCode\WordSearch2.cpp">
       <Filter>Source Files\LeetCode</Filter>
     </ClCompile>
+    <ClCompile Include="PalindromicStrings.cpp">
+      <Filter>Source Files\HackerRank</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

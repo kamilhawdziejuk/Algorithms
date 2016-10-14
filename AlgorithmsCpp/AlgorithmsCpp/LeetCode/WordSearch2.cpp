@@ -305,7 +305,7 @@ public:
 
 };
 
-int main()
+int main55()
 {
 	//shared_ptr<Problem> p;
 

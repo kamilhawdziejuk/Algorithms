@@ -563,7 +563,7 @@ public:
 	}
 };
 
-int main()
+int mainChessProblem()
 {
 	//shared_ptr<ChessProblem> p;
 	ChessProblem *p = new ChessProblem();
