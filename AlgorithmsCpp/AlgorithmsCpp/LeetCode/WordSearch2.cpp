@@ -80,10 +80,11 @@ const double EPS = 1e-12;
 const double PI = acos(-1);
 
 //https://leetcode.com/problems/word-search-ii/
-//TO BE DONE (correction needed)
+//works but TLE
 class Solution {
 public:
-
+#define SORT(v)			sort((v).begin(),(v).end())
+#define UN(v)			SORT(v),(v).erase(unique((v).begin(),(v).end()),(v).end()) 
 	class Position
 	{
 	public:
@@ -201,16 +202,11 @@ public:
 
 	vector<Position> getNexts(Position& pos)
 	{
-		Position p1(pos.x - 1, pos.y - 1);
 		Position p2(pos.x - 1, pos.y);
-		Position p3(pos.x - 1, pos.y + 1);
 		Position p4(pos.x, pos.y - 1);
-		Position p5(pos.x, pos.y);
 		Position p6(pos.x, pos.y + 1);
-		Position p7(pos.x + 1, pos.y - 1);
 		Position p8(pos.x + 1, pos.y);
-		Position p9(pos.x + 1, pos.y + 1);
-		vector<Position> posNext = { p1, p2, p3, p4, p5, p6, p7, p8, p9 };
+		vector<Position> posNext = { p2, p4, p6, p8 };
 
 		vector<Position> positions;
 		for (int j = 0; j < posNext.size(); j++)

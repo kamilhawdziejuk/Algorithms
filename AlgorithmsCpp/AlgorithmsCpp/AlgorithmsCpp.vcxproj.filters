@@ -95,5 +95,8 @@
     <ClCompile Include="PalindromicStrings.cpp">
       <Filter>Source Files\HackerRank</Filter>
     </ClCompile>
+    <ClCompile Include="Surveillance.cpp">
+      <Filter>Source Files\HackerRank</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

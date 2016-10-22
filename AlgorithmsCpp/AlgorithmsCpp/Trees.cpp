@@ -27,6 +27,54 @@ public:
 	Trees() {};
 	~Trees() {};
 
+	//https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
+	void flatten(TreeNode* root) {
+		flattenInternal(root);
+	}
+
+	TreeNode* flattenInternal(TreeNode* root) {
+		TreeNode *flat = NULL;
+		TreeNode *last = NULL;
+		if (root == NULL)
+		{
+			return NULL;
+		}
+		else if (root->left == NULL && root->right == NULL)
+		{
+			return root;
+		}
+		else if (root->left == NULL)
+		{
+			last = flattenInternal(root->right);
+			return last;
+		}
+		else if (root->right == NULL)
+		{
+			last = flattenInternal(root->left);
+			root->right = root->left;
+			root->left = NULL;
+			return last;
+		}
+		else
+		{
+			TreeNode *flatLeft = flattenInternal(root->left);
+
+			TreeNode *rightBegin = root->right;
+			TreeNode *flatRight = flattenInternal(root->right);
+
+			last = flatLeft;
+			root->right = root->left;
+			root->left = NULL;
+			
+			last->right = rightBegin;
+			last->left = NULL;
+
+			last = flatRight;
+			return last;
+		}
+	}
+
+
 	//https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
 	void connect(TreeLinkNode *root) {
 		if (!root) return;

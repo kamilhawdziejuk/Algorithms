@@ -85,6 +85,7 @@ public:
 	vector<string> strings;
 	vector<string> results;
 	vector< vector<string> > subsets;
+	vector< set<char> > chars;
 
 	int q;
 	int n;
@@ -197,6 +198,51 @@ public:
 		return cnt;
 	}
 
+	bool haveSthCommon(set<char> &s1, set<char> &s2)
+	{
+		vector<char> common_data;
+		set_intersection(s1.begin(), s1.end(), s2.begin(), s2.end(), back_inserter(common_data));
+		return (common_data.size() > 0);
+	}
+
+	bool setChars()
+	{
+		for (int i = 0; i < n; i++)
+		{
+			set<char> empty;
+			chars.push_back(empty);
+			string str = strings[i];
+			for (int j = 0; j < str.size(); j++)
+			{
+				chars[i].insert(str[j]);
+			}
+		}
+
+		for (int i = 0; i < n; i++)
+		{
+			set<char> si = chars[i];
+
+			bool atLeastOneCommon = false;
+			for (int j = 0; j < n; j++)
+			{
+				if (i != j)
+				{
+					set<char> sj = chars[j];
+					if (haveSthCommon(si, sj))
+					{
+						atLeastOneCommon = true;
+						break;
+					}
+				}
+			}
+			if (!atLeastOneCommon)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
 	//ifstream fcin;
 	void virtual Solve()
 	{
@@ -207,6 +253,7 @@ public:
 			strings.clear();
 			subsets.clear();
 			results.clear();
+			chars.clear();
 
 			string str;
 			for (int j = 0; j < n; j++)
@@ -214,17 +261,27 @@ public:
 				cin >> str;
 				strings.push_back(str);
 			}
-			generateSubsets();
-			vector<int> inds;
-			generetePossibleStrings(inds);
 
-			int palins = createAndCalcPalindroms();
-			cout << palins << endl;
+			bool res = setChars();
+			if (!res)
+			{
+				cout << "0" << endl;
+			}
+			else
+			{
+				generateSubsets();
+				vector<int> inds;
+
+				generetePossibleStrings(inds);
+
+				int palins = createAndCalcPalindroms();
+				cout << palins << endl;
+			}
 		}
 	}
 };
 
-int main()
+int mainPalindorm()
 {
 	PalindromicStrings *p = new PalindromicStrings();
 	p->Solve();

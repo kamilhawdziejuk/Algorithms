@@ -501,9 +501,11 @@ public:
 
 
 	ifstream fcin;
+	ofstream fcout;
 	void virtual Solve()
 	{
-		fcin.open("D:\\chess3.in", ios::in);
+		fcin.open("D:\\chess.in", ios::in);
+		fcout.open("D:\\chess.out", ios::out | ios::app);
 		fcin >> q;
 		char figureChar, figurePosHorizontal;
 		int figurePosVertical;
@@ -553,17 +555,17 @@ public:
 
 			if (canWhiteMate(initBoard, 1))
 			{
-				cout << "YES" << endl;
+				fcout << "YES" << endl;
 			}
 			else
 			{
-				cout << "NO" << endl;
+				fcout << "NO" << endl;
 			}
 		}
 	}
 };
 
-int mainChessProblem()
+int mainChess()
 {
 	//shared_ptr<ChessProblem> p;
 	ChessProblem *p = new ChessProblem();
