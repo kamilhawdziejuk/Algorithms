@@ -5,6 +5,7 @@
 #include <sstream>
 #include <set>
 #include <unordered_map>
+#include <climits>
 
 class Strings
 {
@@ -110,6 +111,7 @@ public:
 				if (j == needle.size() - 1) return i;
 			}
 		}
+		
 		return -1;
 	}
 

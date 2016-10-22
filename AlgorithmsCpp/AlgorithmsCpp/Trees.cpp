@@ -33,7 +33,6 @@ public:
 	}
 
 	TreeNode* flattenInternal(TreeNode* root) {
-		TreeNode *flat = NULL;
 		TreeNode *last = NULL;
 		if (root == NULL)
 		{
@@ -45,8 +44,7 @@ public:
 		}
 		else if (root->left == NULL)
 		{
-			last = flattenInternal(root->right);
-			return last;
+			return flattenInternal(root->right);
 		}
 		else if (root->right == NULL)
 		{
@@ -58,7 +56,6 @@ public:
 		else
 		{
 			TreeNode *flatLeft = flattenInternal(root->left);
-
 			TreeNode *rightBegin = root->right;
 			TreeNode *flatRight = flattenInternal(root->right);
 
@@ -69,10 +66,10 @@ public:
 			last->right = rightBegin;
 			last->left = NULL;
 
-			last = flatRight;
-			return last;
+			return flatRight;
 		}
 	}
+
 
 
 	//https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
@@ -108,6 +105,37 @@ public:
 		if (!p || !q) { if (!p && !q) return true; return false; }
 		return (p->val == q->val) && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
 	}
+
+	bool checkBST(TreeNode* root, int minValue, int maxValue) {
+		if (root == NULL) {
+			return true;
+		}
+
+		if (root->val < minValue || root->val > maxValue) {
+			return false;
+		}
+
+		bool leftOK = true;
+		if (root->left == NULL) leftOK = true;
+		else
+		{
+			leftOK = (root->val != INT_MIN) && checkBST(root->left, minValue, root->val - 1);
+		}
+		if (!leftOK) return false;
+		bool rightOK = true;
+		if (root->right == NULL) rightOK = true;
+		else
+		{
+			rightOK = (root->val != INT_MAX) && checkBST(root->right, root->val + 1, maxValue);
+		}
+		return leftOK && rightOK;
+	}
+
+	//https://leetcode.com/problems/validate-binary-search-tree/
+	bool isValidBST2(TreeNode* root) {
+		return checkBST(root, INT_MIN, INT_MAX);
+	}
+
 
 	vector<int> values;
 	
