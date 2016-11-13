@@ -98,5 +98,11 @@
     <ClCompile Include="Surveillance.cpp">
       <Filter>Source Files\HackerRank</Filter>
     </ClCompile>
+    <ClCompile Include="Stones.cpp">
+      <Filter>Source Files\HackerRank</Filter>
+    </ClCompile>
+    <ClCompile Include="GoodPoint.cpp">
+      <Filter>Source Files\HackerRank</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
