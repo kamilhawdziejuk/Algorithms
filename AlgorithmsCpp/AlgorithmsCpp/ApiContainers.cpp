@@ -46,7 +46,10 @@ public:
 		unordered_map<int, int> map;
 		map.insert(pair<int, int> (1, 2));
 		map.find(2);
-	
+		if (map.find(3) == map.end())
+		{
+			
+		}
 	}
 
 	void strings()
@@ -67,7 +70,13 @@ public:
 		st.push(2);
 		int res = st.top();
 		st.pop();
-		
+	}
+
+	void vectors()
+	{
+		vector<int> vec;
+		vec.push_back(2);
+		vec.push_back(3);
 	}
 
 };
