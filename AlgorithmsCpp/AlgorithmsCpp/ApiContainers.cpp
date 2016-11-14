@@ -7,6 +7,7 @@
 #include <functional>
 #include <set>
 #include <stack>
+#include <cstddef>
 
  struct UndirectedGraphNode {
 	 int label;
@@ -22,17 +23,17 @@ public:
 	ApiContainers() {}
 	~ApiContainers() {}
 
-	//https://leetcode.com/problems/clone-graph/
-	unordered_map<UndirectedGraphNode*, UndirectedGraphNode*> map;
-	UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
-		if (!node) return NULL;
-		if (map.find(node) == map.end()) {
-			map[node] = new UndirectedGraphNode(node->label);
-			for (UndirectedGraphNode* neigh : node->neighbors)
-				map[node]->neighbors.push_back(cloneGraph(neigh));
-		}
-		return map[node];
-	}
+	////https://leetcode.com/problems/clone-graph/
+	//unordered_map<UndirectedGraphNode*, UndirectedGraphNode*> map;
+	//UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
+	//	if (!node) return NULL;
+	//	if (map.find(node) == map.end()) {
+	//		map[node] = new UndirectedGraphNode(node->label);
+	//		for (UndirectedGraphNode* neigh : node->neighbors)
+	//			map[node]->neighbors.push_back(cloneGraph(neigh));
+	//	}
+	//	return map[node];
+	//}
 
 	void sets()
 	{
@@ -77,6 +78,12 @@ public:
 		vector<int> vec;
 		vec.push_back(2);
 		vec.push_back(3);
+		
+		//count values == 2
+		count(vec.begin(), vec.end(), 2);
+
+		//count divisable by 3
+		int num_items3 = count_if(vec.begin(), vec.end(), [](int i) {return i % 3 == 0; });
 	}
 
 };
