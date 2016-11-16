@@ -159,7 +159,7 @@ public:
 	}
 };
 
-int main()
+int mainGoodPointProblem()
 {
 	GoodPointProblem *p = new GoodPointProblem();
 	p->Solve();

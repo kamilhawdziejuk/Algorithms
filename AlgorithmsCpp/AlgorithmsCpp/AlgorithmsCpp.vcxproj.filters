@@ -19,6 +19,9 @@
     <Filter Include="Source Files\LeetCode">
       <UniqueIdentifier>{682ec3c2-46db-45cc-9a59-28518d9955a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Potyczki">
+      <UniqueIdentifier>{c244b1a0-a767-45ed-93a0-675000677b81}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -103,6 +106,9 @@
     </ClCompile>
     <ClCompile Include="GoodPoint.cpp">
       <Filter>Source Files\HackerRank</Filter>
+    </ClCompile>
+    <ClCompile Include="Slo.cpp">
+      <Filter>Source Files\Potyczki</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
