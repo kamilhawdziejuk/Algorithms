@@ -118,7 +118,7 @@ public:
 	{
 		int j = n;
 		LL left = k;
-		while (j > 0 && left > 0)
+		while (left > 0)
 		{			
 			LL sum = left + 1;
 			if (j < 64)
@@ -129,22 +129,25 @@ public:
 			{
 				curr = nexts[curr][0];
 				result += curr;
+				left--;
 			}
 			else if (j != n)
 			{
 				curr = nexts[curr][1];
-				left = left - sum;
+				left = left - sum - 1;
 				result += curr;
 			}
 			else
 			{
 				if (2 * sum < left && 3 * sum <= left)
 				{
+					left = left - 2 * sum - 1;
 					curr = 'c';
 					result += curr;
 				}
 				else if (sum < left && 2 * sum <= left)
 				{
+					left = left - sum - 1;
 					curr = 'b';
 					result += curr;
 				}
