@@ -86,7 +86,7 @@ private:
 	LL k;
 
 	string result;
-	char curr;
+	char curr = '0';
 public:
 
 	unordered_map<int, ULL> powers;
@@ -121,7 +121,7 @@ public:
 		while (left > 0)
 		{			
 			LL sum = left + 1;
-			if (j < 64)
+			if (j < 64) 
 			{
 				sum = powers[j] - 1;
 			}
@@ -139,13 +139,17 @@ public:
 			}
 			else
 			{
-				if (2 * sum < left && 3 * sum <= left)
+				if (3 * sum < left)
+				{
+					break;
+				}
+				else if (2 * sum < left)
 				{
 					left = left - 2 * sum - 1;
 					curr = 'c';
 					result += curr;
 				}
-				else if (sum < left && 2 * sum <= left)
+				else if (sum < left)
 				{
 					left = left - sum - 1;
 					curr = 'b';
@@ -171,7 +175,6 @@ public:
 		cin >> k;
 		setupPowers();
 		setupNexts();
-		curr = '0';
 		calc();
 		cout << result;
 	}
