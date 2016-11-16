@@ -83,7 +83,7 @@ class SloProblem
 {
 private:
 	int n;
-	LL k;
+	ULL k;
 
 	string result;
 	char curr = '0';
@@ -117,10 +117,10 @@ public:
 	void calc()
 	{
 		int j = n;
-		LL left = k;
+		ULL left = k;
 		while (left > 0)
 		{			
-			LL sum = left + 1;
+			ULL sum = left + 1;
 			if (j < 64) 
 			{
 				sum = powers[j] - 1;
