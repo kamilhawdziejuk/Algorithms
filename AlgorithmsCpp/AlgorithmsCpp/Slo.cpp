@@ -102,6 +102,7 @@ public:
 
 	void setupNexts()
 	{
+		vector<char> a = { 'a'};
 		vector<char> ab = { 'a', 'b' };
 		vector<char> bc = { 'b', 'c' };
 		vector<char> ac = { 'a', 'c' };
@@ -109,38 +110,54 @@ public:
 		nexts.insert(pair<char, vector<char>>('a', bc));
 		nexts.insert(pair<char, vector<char>>('b', ac));
 		nexts.insert(pair<char, vector<char>>('c', ab));
+
+		nexts.insert(pair<char, vector<char>>('0', a));
 	}
 
 	void calc()
 	{
 		int j = n;
 		LL left = k;
-		while (true)
-		{
-			LL sum = powers[j] - 1;
-			if (sum > left)
+		while (j > 0 && left > 0)
+		{			
+			LL sum = left + 1;
+			if (j < 64)
 			{
+				sum = powers[j] - 1;
+			}
+			if (sum >= left)
+			{
+				curr = nexts[curr][0];
 				result += curr;
-				j--;
-
-				LL sum2 = powers[j];
-				if (sum2 < left)
-				{
-					curr = nexts[curr][1];
-					left = left - sum2;
-				}
-				else
-				{
-					curr = nexts[curr][0];
-					left = left - 1;
-				}
+			}
+			else if (j != n)
+			{
+				curr = nexts[curr][1];
+				left = left - sum;
+				result += curr;
 			}
 			else
 			{
-				result += curr;
-
+				if (2 * sum < left && 3 * sum <= left)
+				{
+					curr = 'c';
+					result += curr;
+				}
+				else if (sum < left && 2 * sum <= left)
+				{
+					curr = 'b';
+					result += curr;
+				}
+				else
+				{
+					break;
+				}
 			}
 			j--;
+		}
+		if (j == n)
+		{
+			result = "NIE";
 		}
 	}
 
@@ -151,14 +168,16 @@ public:
 		cin >> k;
 		setupPowers();
 		setupNexts();
-		curr = 'a';
+		curr = '0';
 		calc();
+		cout << result;
 	}
 };
 
 int main()
 {
-	shared_ptr<SloProblem> p;
+	SloProblem *p = new SloProblem();
 	p->Solve();
+	delete p;
 	return 0;
 }
