@@ -1,3 +1,5 @@
+//Solution for a problem: https://sio2.mimuw.edu.pl/c/pa-2016-1/p/slo/
+
 #include <cassert>
 #include <iostream>
 #include <istream>
@@ -168,7 +170,6 @@ public:
 		}
 	}
 
-	//ifstream fcin;
 	void virtual Solve()
 	{
 		cin >> n;
