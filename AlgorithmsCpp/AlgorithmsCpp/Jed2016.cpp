@@ -79,7 +79,6 @@ const int SIZE = 1e6 + 10;
 const double EPS = 1e-12;
 const double PI = acos(-1);
 
-
 class Jed2016
 {
 public:
@@ -88,7 +87,7 @@ public:
 	int t;
 	vector<int> inputs;
 
-	void calcPrimes(int n) 
+	void calcPrimes(int n)
 	{
 		primes.push_back(2);
 		for (int i = 3; i <= n; i++)
@@ -123,22 +122,18 @@ public:
 		return n;
 	}
 
-	void virtual Solve()
-	{
-	}
-
-	int ile(string& str)
-	{
-		int cnt = 0;
-		for (int i = 0; i < str.size(); i++)
-		{
-			if (str[i] == '1')
-			{
-				cnt++;
-			}
-		}
-		return cnt;
-	}
+	//int ile(string& str)
+	//{
+	//	int cnt = 0;
+	//	for (int i = 0; i < str.size(); i++)
+	//	{
+	//		if (str[i] == '1')
+	//		{
+	//			cnt++;
+	//		}
+	//	}
+	//	return cnt;
+	//}
 
 	string calc(int n)
 	{
@@ -150,7 +145,7 @@ public:
 			return "1";
 		}
 		while (n >= 2)
-		{			
+		{
 			int f1 = firstFactor(n);
 
 			if (f1 == n)
@@ -176,7 +171,7 @@ public:
 				}
 				else
 				{
-					fstr = calc(f1);// to_string(f1);
+					fstr = calc(f1);
 				}
 				res = res + fstr + "*(";
 				n /= f1;
@@ -200,15 +195,6 @@ public:
 int main()
 {
 	Jed2016 *p = new Jed2016();
-
-	//int sN = sqrt(1000);
-	//p->calcPrimes(sN);
-
-	//for (int i = 1; i < 1000; i++)
-	//{
-	//	string res_i = p->calc(i);
-	//	cout << i << " " << p->ile(res_i) << endl;
-	//}
 
 	cin >> p->t;
 	int m = 1;
