@@ -266,6 +266,11 @@ public:
 			return 0;
 	}
 
+	bool is_power_of_2(int x)
+	{
+		return !(x == 0) && !(x & (x - 1));
+	}
+
 	string DecToBin2(int number)
 	{
 		string result = "";
@@ -413,20 +418,20 @@ public:
 	//https://leetcode.com/problems/find-the-difference/
 	char findTheDifference(string s, string t) 
 	{
-        char diff = 0;
-        int cnt[256] = {0};
-        for (char c : s) cnt[c]++;
-        for (char c : t) if (--cnt[c] < 0) return c;
-        return diff;
-    }
+		char diff = 0;
+		int cnt[256] = {0};
+		for (char c : s) cnt[c]++;
+		for (char c : t) if (--cnt[c] < 0) return c;
+		return diff;
+	}
 	
 	//https://leetcode.com/problems/find-the-difference/
 	char findTheDifference2(string s, string t) {
-        char r=0;
-        for(char c:s) r ^=c;
-        for(char c:t) r ^=c;
-        return r;
-    }
+		char r=0;
+		for(char c:s) r ^=c;
+		for(char c:t) r ^=c;
+		return r;
+	}
 
 	//https://leetcode.com/problems/product-of-array-except-self/
 	vector<int> productExceptSelf(vector<int>& nums) {

@@ -110,5 +110,14 @@
     <ClCompile Include="Slo.cpp">
       <Filter>Source Files\Potyczki</Filter>
     </ClCompile>
+    <ClCompile Include="Tas.cpp">
+      <Filter>Source Files\Potyczki</Filter>
+    </ClCompile>
+    <ClCompile Include="Jed2016.cpp">
+      <Filter>Source Files\Potyczki</Filter>
+    </ClCompile>
+    <ClCompile Include="JedCopy.cpp">
+      <Filter>Source Files\Potyczki</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

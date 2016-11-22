@@ -92,6 +92,8 @@
     <ClCompile Include="Files.cpp" />
     <ClCompile Include="GoodPoint.cpp" />
     <ClCompile Include="HackerRank\XorMatrix.cpp" />
+    <ClCompile Include="Jed2016.cpp" />
+    <ClCompile Include="JedCopy.cpp" />
     <ClCompile Include="LeetCode\WordSearch2.cpp" />
     <ClCompile Include="Lists.cpp" />
     <ClCompile Include="LRUCache.cpp" />
@@ -109,6 +111,7 @@
     <ClCompile Include="Stones.cpp" />
     <ClCompile Include="Strings.cpp" />
     <ClCompile Include="Surveillance.cpp" />
+    <ClCompile Include="Tas.cpp" />
     <ClCompile Include="Trees.cpp" />
     <ClCompile Include="Trie.cpp" />
   </ItemGroup>
