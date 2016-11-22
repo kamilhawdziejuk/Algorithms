@@ -93,7 +93,6 @@
     <ClCompile Include="GoodPoint.cpp" />
     <ClCompile Include="HackerRank\XorMatrix.cpp" />
     <ClCompile Include="Jed2016.cpp" />
-    <ClCompile Include="JedCopy.cpp" />
     <ClCompile Include="LeetCode\WordSearch2.cpp" />
     <ClCompile Include="Lists.cpp" />
     <ClCompile Include="LRUCache.cpp" />
