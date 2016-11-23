@@ -1,3 +1,4 @@
+//#include "cielib.h"
 #include <cassert>
 #include <iostream>
 #include <istream>
@@ -79,142 +80,160 @@ const int SIZE = 1e6 + 10;
 const double EPS = 1e-12;
 const double PI = acos(-1);
 
-class Jed2016
+
+int d, k, r;
+int *t;
+
+int podajD()
+{
+	return rand() % 1000 + 1;
+}
+
+int podajK()
+{
+	return 100 * d;
+}
+
+int podajR()
+{
+	return 2;
+}
+
+int czyCieplo(int pozycja[])
+{
+	return rand() % 2;
+}
+
+void znalazlem(int pozycja[])
+{
+}
+
+class Cie2016Problem
 {
 public:
 
-	vector<int> primes;
-	int t;
-	vector<int> inputs;
-
-	void calcPrimes(int n)
+	int czyCieplo(int pos)
 	{
-		primes.push_back(2);
-		for (int i = 3; i <= n; i++)
-		{
-			bool prime = true;
-			for (int j = 0; j<primes.size() && primes[j] * primes[j] <= i; j++)
-			{
-				if (i % primes[j] == 0)
-				{
-					prime = false;
-					break;
-				}
-			}
-			if (prime)
-			{
-				primes.push_back(i);
-			}
-		}
-	}
-
-	int firstFactor(int n)
-	{
-		int sn = sqrt(n);
-		for (int i = 0; i < primes.size(); i++)
-		{
-			if (i > 0 && primes[i] >= sn) break;
-			if (n % primes[i] == 0)
-			{
-				return primes[i];
-			}
-		}
-		return n;
-	}
-
-	int ile(string& str)
-	{
-		int cnt = 0;
-		for (int i = 0; i < str.size(); i++)
-		{
-			if (str[i] == '1')
-			{
-				cnt++;
-			}
-		}
-		return cnt;
-	}
-
-	string calc(int n)
-	{
-		string res;
-		int cnt = 0;
-
-		if (n == 1)
-		{
-			return "1";
-		}
-		while (n >= 2)
-		{
-			int f1 = firstFactor(n);
-
-			if (f1 == n)
-			{
-				if (n == 2)
-				{
-					res = res + "1+1";
-					n -= 2;
-				}
-				else
-				{
-					res = res + "1+(";
-					n--;
-					cnt++;
-				}
-			}
-			else
-			{
-				string fstr;
-				if (f1 == 2)
-				{
-					fstr = "(1+1)";
-				}
-				else
-				{
-					fstr = calc(f1);
-				}
-				res = res + fstr + "*(";
-				n /= f1;
-				cnt++;
-			}
-		}
-		for (int i = 0; i < cnt; i++)
-		{
-			res += ")";
-		}
+		int res = rand() % 2;
 		return res;
 	}
 
-	int virtual Solve(int k)
+	int get13(int lowest, int highest)
 	{
-		return 0;
+		int diff = highest - lowest;
+		int next = lowest + diff / 3;
+		if (next == lowest)
+		{
+			next++;
+		}
+		if (next > highest)
+		{
+			next = highest;
+		}
+		return next;
 	}
 
+	int get23(int lowest, int highest)
+	{
+		int diff = highest - lowest;
+		int next = lowest + 2 * diff / 3;
+		if (next == lowest)
+		{
+			next++;
+		}
+		if (next > highest)
+		{
+			next = highest;
+		}
+		return next;
+	}
+
+	int get12(int lowest, int highest)
+	{
+		int diff = highest + lowest;
+		int next = diff / 2;
+		if (next == lowest)
+		{
+			next++;
+		}
+		if (next > highest)
+		{
+			next = highest;
+		}
+		return next;
+	}
+
+	int find(int lowest, int highest, int closest)
+	{
+		if (lowest == highest)
+		{
+			return lowest;
+		}
+
+		int next;
+		int res;
+		if (closest == lowest)
+		{
+			next = get23(lowest, highest);
+			if (czyCieplo(next))
+			{
+				lowest = get12(lowest, next);
+				res = find(lowest, highest, next);
+				return res;
+			}
+			else
+			{
+				highest = get13(lowest, highest);
+				res = find(lowest, highest, lowest);
+				return res;
+			}
+		}
+		else
+		{
+			next = get23(closest, highest);
+			if (czyCieplo(next))
+			{
+				lowest = get12(closest, next);
+				res = find(lowest, highest, next);
+				return res;
+			}
+			else
+			{
+				highest = get12(closest, next);
+				res = find(lowest, highest, next);
+				return res;
+			}
+		}
+	}
+
+	int find(int dim, int size)
+	{
+		int res = find(0, size, 0);
+		return res;
+	}
+
+	int find(int tab[])
+	{
+
+	}
+
+	void virtual Solve()
+	{
+	}
 };
 
-int mainJed2016()
+int main()
 {
-	Jed2016 *p = new Jed2016();
+	Cie2016Problem *p = new Cie2016Problem();
 
-	cin >> p->t;
-	int m = 1;
-	for (int i = 0; i < p->t; i++)
-	{
-		int d;
-		cin >> d;
-		p->inputs.push_back(d);
-		m = max(d, m);
-	}
+	d = podajD();
+	k = podajK();
+	r = podajR();
 
-	int sN = sqrt(m);
-	p->calcPrimes(sN);
+	t = new int[d];
+	p->find(t);
 
-	for (int i = 0; i < p->t; i++)
-	{
-		string res_i = p->calc(p->inputs[i]);
-		cout << res_i << endl;
-	}
-
+	p->Solve();
 	delete p;
 	return 0;
 }

@@ -116,5 +116,8 @@
     <ClCompile Include="Jed2016.cpp">
       <Filter>Source Files\Potyczki</Filter>
     </ClCompile>
+    <ClCompile Include="Cie2016.cpp">
+      <Filter>Source Files\Potyczki</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

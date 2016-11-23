@@ -89,6 +89,7 @@
     <ClCompile Include="Arrays.cpp" />
     <ClCompile Include="ArraysSort.cpp" />
     <ClCompile Include="ChessProblem.cpp" />
+    <ClCompile Include="Cie2016.cpp" />
     <ClCompile Include="Files.cpp" />
     <ClCompile Include="GoodPoint.cpp" />
     <ClCompile Include="HackerRank\XorMatrix.cpp" />
