@@ -82,16 +82,19 @@ const double PI = acos(-1);
 
 
 int d, k, r;
+int cnt = 0;
+int currDim;
 int *t;
+int last = -1;
 
 int podajD()
 {
-	return rand() % 1000 + 1;
+	return 2;// rand() % 1000 + 1;
 }
 
 int podajK()
 {
-	return 100 * d;
+	return 200;
 }
 
 int podajR()
@@ -99,24 +102,58 @@ int podajR()
 	return 2;
 }
 
+
+int calc(int pozycja[])
+{
+	int sum = 0;
+	for (int i = 0; i < d; i++)
+	{
+		sum += abs(pozycja[i] - 2);
+	}
+	return sum;
+}
+
+
 int czyCieplo(int pozycja[])
 {
-	return rand() % 2;
+	if (++cnt > k)
+	{
+		throw new exception;
+	}
+	if (last == -1)
+	{
+		last = calc(pozycja);
+		return 0;
+	}
+
+	int wartosc = calc(pozycja);
+	if (wartosc < last)
+	{
+		last = wartosc;
+		return 1;
+	}
+	else
+	{
+		last = wartosc;
+		return 0;
+	}
 }
 
 void znalazlem(int pozycja[])
 {
+	if (pozycja[0] == 2 && pozycja[1] == 2)
+	{
+	}
+	else
+	{
+		throw new exception;
+	}
 }
+
 
 class Cie2016Problem
 {
 public:
-
-	int czyCieplo(int pos)
-	{
-		int res = rand() % 2;
-		return res;
-	}
 
 	int get13(int lowest, int highest)
 	{
@@ -165,6 +202,7 @@ public:
 
 	int find(int lowest, int highest, int closest)
 	{
+		t[currDim] = closest;
 		if (lowest == highest)
 		{
 			return lowest;
@@ -175,7 +213,8 @@ public:
 		if (closest == lowest)
 		{
 			next = get23(lowest, highest);
-			if (czyCieplo(next))
+			t[currDim] = next;
+			if (czyCieplo(t))
 			{
 				lowest = get12(lowest, next);
 				res = find(lowest, highest, next);
@@ -191,7 +230,8 @@ public:
 		else
 		{
 			next = get23(closest, highest);
-			if (czyCieplo(next))
+			t[currDim] = next;
+			if (czyCieplo(t))
 			{
 				lowest = get12(closest, next);
 				res = find(lowest, highest, next);
@@ -206,19 +246,15 @@ public:
 		}
 	}
 
-	int find(int dim, int size)
+	void calc()
 	{
-		int res = find(0, size, 0);
-		return res;
-	}
-
-	int find(int tab[])
-	{
-
-	}
-
-	void virtual Solve()
-	{
+		czyCieplo(t);
+		for (int i = 0; i < d; i++)
+		{
+			currDim = i;
+			int val_i = find(0, r, 0);
+			t[i] = val_i;
+		}
 	}
 };
 
@@ -231,9 +267,15 @@ int main()
 	r = podajR();
 
 	t = new int[d];
-	p->find(t);
+	for (int i = 0; i < d; i++) 
+	{
+		t[i] = 0;
+	}
 
-	p->Solve();
+	p->calc();
+	znalazlem(t);
+
+	delete t;
 	delete p;
 	return 0;
 }
