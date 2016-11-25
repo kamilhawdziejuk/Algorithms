@@ -23,7 +23,6 @@
 #include <climits>
 
 using namespace std;
-int N, M;
 
 class Elipse
 {
@@ -71,7 +70,7 @@ public:
 class GoodPointProblem
 {
 public:
-
+	int N, M;
 	ifstream fcin;
 	ofstream fcout;
 	vector<Polygon> pols;

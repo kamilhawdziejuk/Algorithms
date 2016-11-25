@@ -13,7 +13,8 @@
 #include "Trees.cpp"
 using namespace std;
 
-int _tmain(int argc, _TCHAR* argv[])
+//int _tmain(int argc, _TCHAR* argv[])
+int main()
 {
 	Trees * trees = new Trees();
 	TreeNode *t1 = new TreeNode(1);

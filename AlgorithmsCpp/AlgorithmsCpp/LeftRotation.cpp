@@ -139,7 +139,7 @@ public:
 	}
 };
 
-int main()
+int mainLeftRotation()
 {
 	LeftRotation *p = new LeftRotation();
 	p->Read();

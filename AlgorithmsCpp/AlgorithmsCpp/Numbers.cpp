@@ -4,9 +4,12 @@
 #include <cmath>
 #include <map>
 #include <cstdint>
-#include <unordered_map>
+#include <cstdlib>
+#include <tr1/unordered_map>
 #include <string>
 #include <bitset>
+#include <climits>
+#include <string>
 
 using namespace std;
 
@@ -188,7 +191,7 @@ public:
 
 	//https://leetcode.com/problems/contains-duplicate/
 	bool containsDuplicate(vector<int>& nums) {
-		unordered_map<int, int> dict;
+		tr1::unordered_map<int, int> dict;
 
 		for (int i = 0; i < nums.size(); i++)
 		{
@@ -241,7 +244,7 @@ public:
 	}
 
 	//https://leetcode.com/problems/number-of-1-bits/
-	int hammingWeight(uint32_t number)
+	int hammingWeight(int number)
 	{
 		int result;
 		do
@@ -256,7 +259,7 @@ public:
 	}
 
 	//https://leetcode.com/problems/number-of-1-bits/
-	int hammingWeightRecursive(uint32_t n) {
+	int hammingWeightRecursive(int n) {
 		if (n>0)
 			return n % 2 == 1 ? 1 + hammingWeightRecursive(n / 2) : hammingWeightRecursive(n / 2);
 		else

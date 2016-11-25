@@ -181,7 +181,7 @@ public:
 	}
 };
 
-int main()
+int mainSloProblem()
 {
 	SloProblem *p = new SloProblem();
 	p->Solve();
