@@ -5,7 +5,7 @@
 #include <map>
 #include <cstdint>
 #include <cstdlib>
-#include <tr1/unordered_map>
+#include <unordered_map>
 #include <string>
 #include <bitset>
 #include <climits>
@@ -191,7 +191,7 @@ public:
 
 	//https://leetcode.com/problems/contains-duplicate/
 	bool containsDuplicate(vector<int>& nums) {
-		tr1::unordered_map<int, int> dict;
+		unordered_map<int, int> dict;
 
 		for (int i = 0; i < nums.size(); i++)
 		{

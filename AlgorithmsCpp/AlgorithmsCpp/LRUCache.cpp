@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <cmath>
 #include <map>
-#include <tr1/unordered_map>
+#include <unordered_map>
 #include <list>
 
 using namespace std;
@@ -16,8 +16,8 @@ class LRUCache
 private:
 	int capacity;
 	list<int> recent;
-	tr1::unordered_map<int, int> cache;
-	tr1::unordered_map<int, list<int>::iterator> pos;
+	unordered_map<int, int> cache;
+	unordered_map<int, list<int>::iterator> pos;
 
 	void use(int key)
 	{

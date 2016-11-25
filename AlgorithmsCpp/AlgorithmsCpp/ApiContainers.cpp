@@ -9,6 +9,8 @@
 #include <stack>
 #include <cstddef>
 
+using namespace std;
+
  struct UndirectedGraphNode {
 	 int label;
 	 vector<UndirectedGraphNode *> neighbors;

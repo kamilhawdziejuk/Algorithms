@@ -6,6 +6,8 @@
 #include <map>
 #include <functional>
 
+using namespace std;
+
 class Arrays
 {
 public:
