@@ -258,7 +258,7 @@ public:
 	}
 };
 
-int main()
+int mainCie2016Problem()
 {
 	Cie2016Problem *p = new Cie2016Problem();
 
