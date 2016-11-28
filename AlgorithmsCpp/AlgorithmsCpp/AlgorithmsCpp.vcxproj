@@ -102,6 +102,7 @@
     <ClCompile Include="PalindromicStrings.cpp" />
     <ClCompile Include="PowerSet.cpp" />
     <ClCompile Include="Problem.cpp" />
+    <ClCompile Include="Sets.cpp" />
     <ClCompile Include="Slo.cpp" />
     <ClCompile Include="Stacks.cpp" />
     <ClCompile Include="stdafx.cpp">
