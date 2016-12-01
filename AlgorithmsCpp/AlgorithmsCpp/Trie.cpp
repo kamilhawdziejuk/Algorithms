@@ -4,6 +4,8 @@
 #include <stack>
 #include <unordered_map>
 
+using namespace std;
+
 class TrieNode {
 public:
 	char value;

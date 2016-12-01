@@ -25,18 +25,6 @@ public:
 	ApiContainers() {}
 	~ApiContainers() {}
 
-	////https://leetcode.com/problems/clone-graph/
-	//unordered_map<UndirectedGraphNode*, UndirectedGraphNode*> map;
-	//UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
-	//	if (!node) return NULL;
-	//	if (map.find(node) == map.end()) {
-	//		map[node] = new UndirectedGraphNode(node->label);
-	//		for (UndirectedGraphNode* neigh : node->neighbors)
-	//			map[node]->neighbors.push_back(cloneGraph(neigh));
-	//	}
-	//	return map[node];
-	//}
-
 	void sets()
 	{
 		set<int> set1;

@@ -6,6 +6,8 @@
 #include <map>
 #include <functional>
 
+using namespace std;
+
 class ArraysSort
 {
 public:
@@ -66,31 +68,5 @@ public:
 	 
 		return output;
 	}
-	
-	// void merge(int pocz, int sr, int kon)
-	// {
-		// int i,j,q;
-		// for (i=pocz; i<=kon; i++) t[i]=tab[i];  // Skopiowanie danych do tablicy pomocniczej
-		// i=pocz; j=sr+1; q=pocz;                 // Ustawienie wskaźników tablic
-		// while (i<=sr && j<=kon) {         // Przenoszenie danych z sortowaniem ze zbiorów pomocniczych do tablicy głównej
-		// if (t[i]<t[j])
-		// tab[q++]=t[i++];
-		// else
-		// tab[q++]=t[j++];
-		// }
-		// while (i<=sr) tab[q++]=t[i++]; // Przeniesienie nie skopiowanych danych ze zbioru pierwszego w przypadku, gdy drugi zbiór się skończył
-	// }
 
-	// /* Procedura sortowania tab[pocz...kon] */
-	// void mergesort(vector<int> &data, int pocz, int kon)
-	// {
-		// if (pocz<kon) 
-		// {
-			// int sr=(pocz+kon)/2;
-			// mergesort(pocz, sr);    // Dzielenie lewej części
-			// mergesort(sr+1, kon);   // Dzielenie prawej części
-			// merge(pocz, sr, kon);   // Łączenie części lewej i prawej
-		// }
-	// }
- 
 };

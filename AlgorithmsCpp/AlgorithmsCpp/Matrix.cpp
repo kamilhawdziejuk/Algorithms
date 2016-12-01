@@ -8,6 +8,8 @@
 #include <string>
 #include <bitset>
 
+using namespace std;
+
 class Matrix
 {
 public:
