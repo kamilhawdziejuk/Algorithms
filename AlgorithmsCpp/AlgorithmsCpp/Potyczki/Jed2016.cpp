@@ -192,16 +192,18 @@ public:
 
 };
 
-int mainJed2016()
+int main()
 {
-	Jed2016 *p = new Jed2016();
+	//Jed2016 *p = new Jed2016();
+	shared_ptr<Jed2016> p(new Jed2016);
 
-	cin >> p->t;
+	//cin >> p->t;
+	p->t = 100;
 	int m = 1;
 	for (int i = 0; i < p->t; i++)
 	{
-		int d;
-		cin >> d;
+		int d = i + 1;
+		//cin >> d;
 		p->inputs.push_back(d);
 		m = max(d, m);
 	}
@@ -215,6 +217,6 @@ int mainJed2016()
 		cout << res_i << endl;
 	}
 
-	delete p;
+	//delete p;
 	return 0;
 }

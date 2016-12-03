@@ -15,7 +15,7 @@
 using namespace std;
 
 //int _tmain(int argc, _TCHAR* argv[])
-int main()
+int mainT()
 {
 	shared_ptr<PointersCheck> pointer(new PointersCheck);
 	pointer->Method();
