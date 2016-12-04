@@ -10,15 +10,13 @@
 #include "Lists.cpp"
 #include "Trees.cpp"
 */
-#include "Pointers/PointersCheck.cpp"
-#include "Trees.cpp"
+//#include "Pointers/PointersCheck.cpp"
+//#include "Trees.cpp"
 using namespace std;
 
 //int _tmain(int argc, _TCHAR* argv[])
-int mainT()
+int main()
 {
-	shared_ptr<PointersCheck> pointer(new PointersCheck);
-	pointer->Method();
 	return 0;
 }
 

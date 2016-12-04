@@ -85,15 +85,14 @@
   <ItemGroup>
     <ClCompile Include="AlgorithmsCpp.cpp" />
     <ClCompile Include="ApiContainers.cpp" />
-    <ClCompile Include="ArrayLeftRotation.cpp" />
     <ClCompile Include="Arrays.cpp" />
     <ClCompile Include="ArraysSort.cpp" />
-    <ClCompile Include="ChessProblem.cpp" />
-    <ClCompile Include="Cie2016.cpp" />
+    <ClCompile Include="HackerRank\ChessProblem.cpp" />
     <ClCompile Include="Files.cpp" />
-    <ClCompile Include="GoodPoint.cpp" />
+    <ClCompile Include="HackerRank\GoodPoint.cpp" />
     <ClCompile Include="HackerRank\XorMatrix.cpp" />
-    <ClCompile Include="Jed2016.cpp" />
+    <ClCompile Include="Heaps.cpp" />
+    <ClCompile Include="Potyczki\Jed2016.cpp" />
     <ClCompile Include="LeetCode\WordSearch2.cpp" />
     <ClCompile Include="Lists.cpp" />
     <ClCompile Include="LRUCache.cpp" />
@@ -103,16 +102,16 @@
     <ClCompile Include="PowerSet.cpp" />
     <ClCompile Include="Problem.cpp" />
     <ClCompile Include="Sets.cpp" />
-    <ClCompile Include="Slo.cpp" />
+    <ClCompile Include="Potyczki\Slo2016.cpp" />
     <ClCompile Include="Stacks.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Stones.cpp" />
+    <ClCompile Include="HackerRank\Stones.cpp" />
     <ClCompile Include="Strings.cpp" />
-    <ClCompile Include="Surveillance.cpp" />
-    <ClCompile Include="Tas.cpp" />
+    <ClCompile Include="HackerRank\Surveillance.cpp" />
+    <ClCompile Include="Potyczki\Tas2016.cpp" />
     <ClCompile Include="Trees.cpp" />
     <ClCompile Include="Trie.cpp" />
   </ItemGroup>

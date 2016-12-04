@@ -80,16 +80,10 @@
     <ClCompile Include="Problem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ArrayLeftRotation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Trie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HackerRank\XorMatrix.cpp">
-      <Filter>Source Files\HackerRank</Filter>
-    </ClCompile>
-    <ClCompile Include="ChessProblem.cpp">
       <Filter>Source Files\HackerRank</Filter>
     </ClCompile>
     <ClCompile Include="LeetCode\WordSearch2.cpp">
@@ -98,29 +92,32 @@
     <ClCompile Include="PalindromicStrings.cpp">
       <Filter>Source Files\HackerRank</Filter>
     </ClCompile>
-    <ClCompile Include="Surveillance.cpp">
-      <Filter>Source Files\HackerRank</Filter>
-    </ClCompile>
-    <ClCompile Include="Stones.cpp">
-      <Filter>Source Files\HackerRank</Filter>
-    </ClCompile>
-    <ClCompile Include="GoodPoint.cpp">
-      <Filter>Source Files\HackerRank</Filter>
-    </ClCompile>
-    <ClCompile Include="Slo.cpp">
-      <Filter>Source Files\Potyczki</Filter>
-    </ClCompile>
-    <ClCompile Include="Tas.cpp">
-      <Filter>Source Files\Potyczki</Filter>
-    </ClCompile>
-    <ClCompile Include="Jed2016.cpp">
-      <Filter>Source Files\Potyczki</Filter>
-    </ClCompile>
-    <ClCompile Include="Cie2016.cpp">
-      <Filter>Source Files\Potyczki</Filter>
-    </ClCompile>
     <ClCompile Include="Sets.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Heaps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Potyczki\Slo2016.cpp">
+      <Filter>Source Files\Potyczki</Filter>
+    </ClCompile>
+    <ClCompile Include="Potyczki\Jed2016.cpp">
+      <Filter>Source Files\Potyczki</Filter>
+    </ClCompile>
+    <ClCompile Include="Potyczki\Tas2016.cpp">
+      <Filter>Source Files\Potyczki</Filter>
+    </ClCompile>
+    <ClCompile Include="HackerRank\ChessProblem.cpp">
+      <Filter>Source Files\HackerRank</Filter>
+    </ClCompile>
+    <ClCompile Include="HackerRank\GoodPoint.cpp">
+      <Filter>Source Files\HackerRank</Filter>
+    </ClCompile>
+    <ClCompile Include="HackerRank\Stones.cpp">
+      <Filter>Source Files\HackerRank</Filter>
+    </ClCompile>
+    <ClCompile Include="HackerRank\Surveillance.cpp">
+      <Filter>Source Files\HackerRank</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -192,7 +192,7 @@ public:
 
 };
 
-int main()
+int mainJed2016()
 {
 	//Jed2016 *p = new Jed2016();
 	shared_ptr<Jed2016> p(new Jed2016);
