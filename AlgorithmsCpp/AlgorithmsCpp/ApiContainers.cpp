@@ -11,14 +11,6 @@
 
 using namespace std;
 
- struct UndirectedGraphNode {
-	 int label;
-	 vector<UndirectedGraphNode *> neighbors;
-	 UndirectedGraphNode(int x) : label(x) {};
- };
-
-
-#pragma once
 class ApiContainers
 {
 public:
@@ -30,6 +22,11 @@ public:
 		set<int> set1;
 		set1.insert(2);
 		set1.find(2);
+		bool isEmpty = set1.empty();
+		auto res = set1.emplace(2);
+		//res.first = iterator
+		//res.second = true/false (depends if 2 existed)
+		set1.erase(2);
 	}
 
 	void maps()
@@ -41,6 +38,7 @@ public:
 		{
 			
 		}
+		map.erase(1);
 	}
 
 	void strings()

@@ -23,3 +23,8 @@ public:
             return MyPow(x*x,n/2)*(n%2==0?1:n>0?x:1/x);
     }
 };
+
+int main()
+{
+	 return 0;
+}
