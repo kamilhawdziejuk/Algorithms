@@ -64,7 +64,7 @@ vector<Player> comparator(vector<Player> players) {
     return players;
 }
 
-int main() {
+int mainComparatorSorting() {
 
     int n;
     cin >> n;
