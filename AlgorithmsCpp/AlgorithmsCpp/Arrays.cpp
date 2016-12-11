@@ -333,21 +333,4 @@ public:
 		return a;
 	}
 
-	class point
-	{
-		int x, y;
-	public:
-		static bool comp(const point &p1, const point &p2)
-		{
-			return p1.y < p2.y;
-		}
-	};
-
-	void test()
-	{
-		vector<point> vec;
-		sort(vec.begin(), vec.end(), point::comp);
-	}
-
-
 };

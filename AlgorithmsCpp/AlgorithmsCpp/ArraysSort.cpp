@@ -15,6 +15,24 @@ public:
 	ArraysSort() {};
 	~ArraysSort() {};
 
+
+	class point
+	{
+		int x, y;
+	public:
+		static bool comp(const point &p1, const point &p2)
+		{
+			return p1.y < p2.y;
+		}
+	};
+
+	void testStlSort()
+	{
+		vector<point> vec;
+		sort(vec.begin(), vec.end(), point::comp);
+	}
+
+
 	void test()
 	{
 		vector<int> data = { 4,5,2,7,5,1,2,3,9,7,5,8,4 };
