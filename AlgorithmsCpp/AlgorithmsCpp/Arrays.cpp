@@ -14,6 +14,39 @@ public:
 	Arrays() {};
 	~Arrays() {};
 	
+	int maxSumOfAdjecent(vector<int> &nums)
+	{
+		int n = nums.size();
+		if (n == 0)  return 0;
+		if (n == 1)
+		{
+			if (nums[0] > 0) return nums[0];
+			else return 0;
+		}
+		else
+		{
+			int in_i = 0;
+			int out_i = 0;
+			int in_iNext = 0;
+			int out_iNext = 0;
+
+			if (nums[0] > 0) in_i = nums[0];
+			int i = 0;
+			for (i = 1; i < n; i++)
+			{
+				in_iNext = max(out_i + nums[i], out_i);
+				out_iNext = max(in_i, out_i);
+
+				in_i = in_iNext;
+				out_i = out_iNext;
+			}
+			int result = max(in_i, out_i);
+			return result;
+		}
+		//in(i) = max(out(i-1) + nums[i], out(i-1))
+		//out(i) = max(in(i-1), out(i-1))
+	}
+
 	//https://leetcode.com/problems/find-the-duplicate-number/
 	//O(n)
 	int findDuplicate(vector<int>& nums) 

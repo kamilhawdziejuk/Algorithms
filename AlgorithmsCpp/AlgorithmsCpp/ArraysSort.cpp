@@ -25,31 +25,27 @@ public:
 	{
 		if (left >= right) return;
 
-		int part = partition(data, left, right);
+		int pivotIndex = left + (right - left)/2;
+		int pivot = data[pivotIndex];
+		int part = partition(data, left, right, pivot);
 		quickSort(data, left, part - 1);
-		quickSort(data, part + 1, right);
+		quickSort(data, part, right);
 	}
 
-	int partition(vector<int>& data, int i, int j)
+	int partition(vector<int>& data, int left, int right, int pivot)
 	{
-		int pivotIndex = i + (j - i) / 2;
-		int pivot = data[pivotIndex];
-		while (i<=j)
+		while (left<=right)
 		{
-			while (data[i] < pivot) i++;
-			while (data[j] > pivot) j--;
-			if (i < j)
+			while (data[left] < pivot) left++;
+			while (data[right] > pivot) right--;
+			if (left <= right)
 			{
-				swap(data[i], data[j]);
-				i++;
-				j--;
-			}
-			else
-			{
-				break;
+				swap(data[left], data[right]);
+				left++;
+				right--;
 			}
 		}
-		return j;
+		return left;
 	}
 	
 	vector<int> merge_sort(const vector<int>& input)
