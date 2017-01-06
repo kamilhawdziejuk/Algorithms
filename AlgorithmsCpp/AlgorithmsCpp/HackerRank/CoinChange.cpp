@@ -62,7 +62,6 @@ public:
         }
 
         int result = countWays(coins, m, N);
-
         return 0;
 	}
 };
