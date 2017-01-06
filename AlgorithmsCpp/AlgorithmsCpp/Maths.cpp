@@ -24,7 +24,7 @@ public:
     }
 };
 
-int main()
+int mainT()
 {
 	 return 0;
 }

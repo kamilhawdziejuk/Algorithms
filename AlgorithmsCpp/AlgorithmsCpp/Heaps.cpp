@@ -135,7 +135,7 @@ public:
 		}
 	}
 
-	int main(){
+	int mainHeap(){
 		int n;
 		cin >> n;
 		vector<int> a;// (n);

@@ -293,6 +293,7 @@ public:
 	string Dec2ToBin2BitSet(int number)
 	{
 		string binary = std::bitset<32>(number).to_string();
+
 		int posNot0 = binary.find_first_not_of('0');
 		return binary.substr(posNot0, binary.size() - posNot0);
 	}
