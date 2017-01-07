@@ -26,63 +26,60 @@ using namespace std;
 class FrogJump {
 public:
 
-	int position(vector<int>& vec, int item)
+    vector< set<int> > state;
+    unordered_map<int, int> positions;
+
+	int getPosition(vector<int>& stones, int stone)
 	{
-		auto f = find(vec.begin(), vec.end(), item);
-		if (f != vec.end())
+		auto f = positions.find(stone);
+		if (f != positions.end())
 		{
-			return f-vec.begin();
+			return f->second;
 		}
 		return -1;
 	}
 
-    vector< vector<int> > state;
-
-    void init(int n)
+    void init(vector<int>& stones)
     {
+    	int n = stones.size();
     	for (int i = 0; i < n; i++)
     	{
-    		vector<int> empty;
+    		set<int> empty;
     		state.push_back(empty);
     	}
-    	state[0].push_back(1);
-    }
+    	state[0].insert(1);
 
-    void tryAdd(vector<int>& vec, int item)
-    {
-    	if (position(vec, item) == -1) {
-    		vec.push_back(item);
+    	for (int i = 0; i < n; i++)
+    	{
+    		positions.insert(pair<int, int>(stones[i], i));
     	}
     }
 
     //https://leetcode.com/problems/frog-jump/
     bool canCross(vector<int>& stones) {
     	int n = stones.size();
-    	init(n);
+    	init(stones);
 
     	int lastStone = stones[n-1];
     	for (int i = 0; i < n; i++)
     	{
-    		//for (auto step : state[i])
-    		for (int j = 0; j < state[i].size(); j++)
+    		for (auto step : state[i])
     		{
     			int current = stones[i];
-    			int step = state[i][j];
     			int next = current + step;
     			if (next == lastStone) return true;
-    			int posOfNext = position(stones, next);
+    			int posOfNext = getPosition(stones, next);
     			if (posOfNext > 0)
     			{
     				if (step-1 > 0)
     				{
-    					tryAdd(state[posOfNext], step-1);
+    					state[posOfNext].insert(step-1);
     				}
-    				tryAdd(state[posOfNext], step);
-    				tryAdd(state[posOfNext], step+1);
+    				state[posOfNext].insert(step);
+    				state[posOfNext].insert(step+1);
     			}
     		}
     	}
-
     	return false;
     }
 
