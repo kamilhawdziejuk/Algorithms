@@ -22,6 +22,7 @@ public:
 		set<int> set1;
 		set1.insert(2);
 		set1.find(2);
+
 		bool isEmpty = set1.empty();
 		auto res = set1.emplace(2);
 		//res.first = iterator
@@ -33,7 +34,11 @@ public:
 	{
 		unordered_map<int, int> map;
 		map.insert(pair<int, int> (1, 2));
-		map.find(2);
+		auto iteratorKey1 = map.find(1);
+		if (iteratorKey1 != map.end())
+		{
+			int value = iteratorKey1->second;
+		}
 		if (map.find(3) == map.end())
 		{
 			
@@ -72,6 +77,12 @@ public:
 
 		//count divisable by 3
 		int num_items3 = count_if(vec.begin(), vec.end(), [](int i) {return i % 3 == 0; });
+		auto iterator = find(vec.begin(), vec.end(), 5);
+	}
+
+	void heaps()
+	{
+		priority_queue<int, vector<int>, std::greater<int>> heap;
 	}
 
 };
