@@ -1,0 +1,28 @@
+﻿<Properties StartupItem="AlgorithmsCpp/AlgorithmsCpp.vcxproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|Win32" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="AlgorithmsCpp/HackerRank/GoodPoint.cpp">
+    <Files>
+      <File FileName="AlgorithmsCpp/HackerRank/ChessProblem.cpp" Line="31" Column="32" />
+      <File FileName="AlgorithmsCpp/HackerRank/GoodPoint.cpp" Line="17" Column="18" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="AlgorithmsCpp" expanded="True">
+            <Node name="AlgorithmsCpp" expanded="True">
+              <Node name="HackerRank" expanded="True">
+                <Node name="GoodPoint.cpp" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/home/kamil/Projects/Algorithms/AlgorithmsCpp/AlgorithmsCpp/HackerRank/CoinChange.cpp" line="72" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

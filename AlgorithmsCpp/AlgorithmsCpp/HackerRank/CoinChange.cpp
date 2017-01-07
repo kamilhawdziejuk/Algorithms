@@ -68,7 +68,7 @@ public:
 
 
 
-int main() {
+int mainCoinChange() {
 	CoinChange *p = new CoinChange();
 	p->Solve();
 	delete p;
