@@ -58,6 +58,11 @@ public class Numbers {
         }
         return true;
     }
+	private List<Integer> getNumbers(int n) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public static void main(String[] args)
 	{
 		Numbers sol = new Numbers();

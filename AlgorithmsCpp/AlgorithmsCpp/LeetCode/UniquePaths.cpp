@@ -52,7 +52,7 @@ public:
     }
 };
 
-int main()
+int mainUniquePaths()
 {
 	UniquePaths *p = new UniquePaths();
 	int m = 3;

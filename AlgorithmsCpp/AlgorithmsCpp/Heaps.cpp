@@ -70,7 +70,6 @@ private:
 	}
 
 public:
-	//MinHeap(int* array, int length);
 	MinHeap(const vector<int>& vector) : _vector(vector)
 	{
 		Heapify();
