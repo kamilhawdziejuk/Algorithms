@@ -25,7 +25,6 @@ using namespace std;
 
 class FrogJump {
 public:
-
     vector< set<int> > state;
     unordered_map<int, int> positions;
 
@@ -85,7 +84,7 @@ public:
 
 };
 
-int main()
+int mainFrogJump()
 {
 	FrogJump *p = new FrogJump();
 	vector<int> stones = {0,1,3,5,6,8,12,17};
