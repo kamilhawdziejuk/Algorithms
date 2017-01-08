@@ -119,5 +119,28 @@
     <ClCompile Include="HackerRank\Surveillance.cpp">
       <Filter>Source Files\HackerRank</Filter>
     </ClCompile>
+    <ClCompile Include="LeetCode\CountingBits.cpp">
+      <Filter>Source Files\LeetCode</Filter>
+    </ClCompile>
+    <ClCompile Include="LeetCode\FrogJump.cpp">
+      <Filter>Source Files\LeetCode</Filter>
+    </ClCompile>
+    <ClCompile Include="LeetCode\UniquePaths.cpp">
+      <Filter>Source Files\LeetCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Combinatorics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HackerRank\CoinChange.cpp">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="HackerRank\ComparatorSorting.cpp">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="HackerRank\HeapsMedian.cpp">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

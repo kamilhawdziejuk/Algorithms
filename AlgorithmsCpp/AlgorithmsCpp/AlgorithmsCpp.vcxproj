@@ -87,11 +87,15 @@
     <ClCompile Include="ApiContainers.cpp" />
     <ClCompile Include="Arrays.cpp" />
     <ClCompile Include="ArraysSort.cpp" />
+    <ClCompile Include="Combinatorics.cpp" />
     <ClCompile Include="HackerRank\ChessProblem.cpp" />
     <ClCompile Include="Files.cpp" />
     <ClCompile Include="HackerRank\GoodPoint.cpp" />
     <ClCompile Include="HackerRank\XorMatrix.cpp" />
     <ClCompile Include="Heaps.cpp" />
+    <ClCompile Include="LeetCode\CountingBits.cpp" />
+    <ClCompile Include="LeetCode\FrogJump.cpp" />
+    <ClCompile Include="LeetCode\UniquePaths.cpp" />
     <ClCompile Include="Potyczki\Jed2016.cpp" />
     <ClCompile Include="LeetCode\WordSearch2.cpp" />
     <ClCompile Include="Lists.cpp" />

@@ -326,7 +326,8 @@ public:
 	int editDistDP(string str1, string str2, int m, int n)
 	{
 	    // Create a table to store results of subproblems
-	    int dp[m+1][n+1];
+	    //int dp[m+1][n+1];
+		vector< vector<int> > dp;
 
 	    // Fill d[][] in bottom up manner
 	    for (int i=0; i<=m; i++)

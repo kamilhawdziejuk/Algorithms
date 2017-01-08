@@ -5,7 +5,7 @@
 using namespace std;
 
 //int _tmain(int argc, _TCHAR* argv[])
-int mainAlgs()
+int main()
 {
 
 	return 0;

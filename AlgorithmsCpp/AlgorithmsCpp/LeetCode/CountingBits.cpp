@@ -54,7 +54,7 @@ public:
 	}
 };
 
-int main()
+int mainCountintBits()
 {
 	CountintBits *p = new CountintBits();
 	p->countBits(4);
