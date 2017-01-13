@@ -15,7 +15,6 @@ public class ShortestPalindrome {
 	
 	Best best = new Best();
 	
-	//pos - max polowa!
 	public int test(String s, int pos, boolean take)
 	{
 		int n = s.length();
@@ -94,24 +93,18 @@ public class ShortestPalindrome {
     		}
     	}
     	
+    	int pos = 2*best.pos;
     	if (best.dl == 0)
     	{
-    		String str = s.substring(1, s.length());
-    		str = new StringBuilder(str).reverse().toString();
-    		String result = str + s;
-    		return result;
+    		pos = 1;
     	}
-    	else
+    	if (best.take)
     	{
-	    	int pos = 2*best.pos;
-	    	if (best.take)
-	    	{
-	    		pos = 2*best.pos+1;
-	    	}
-			String str = s.substring(pos, s.length());
-			str = new StringBuilder(str).reverse().toString();
-			String result = str + s;
-			return result;
+    		pos = 2*best.pos+1;
     	}
+		String str = s.substring(pos, s.length());
+		str = new StringBuilder(str).reverse().toString();
+		String result = str + s;
+		return result;
     }
 }
