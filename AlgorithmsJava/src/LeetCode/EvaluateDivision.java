@@ -20,6 +20,8 @@ public class EvaluateDivision {
 	
 	public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
 		
+		if (equations == null || values == null || queries == null) return null;
+						
 		Map<String, Double> edges = new HashMap<String, Double>();
 		int n = equations.length;
 		
