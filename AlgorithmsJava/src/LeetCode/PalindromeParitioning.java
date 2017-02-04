@@ -44,13 +44,13 @@ public class PalindromeParitioning {
     		}
     	}
     	
-    	List<String> empty = new ArrayList<String>();
+    	ArrayList<String> empty = new ArrayList<String>();
     	calc(empty, 0);
     	    	
         return result;
     }
     
-    private void calc(List<String> list, int pos)
+    private void calc(ArrayList<String> list, int pos)
     {
     	if (pos == n)
     	{
@@ -60,10 +60,7 @@ public class PalindromeParitioning {
     	List<Integer> nexts = graph.get(pos);
     	for (int i = 0; i < nexts.size(); i++)
     	{
-    		List<String> list2 = new ArrayList<String>(list.size());
-    		for (int k = 0; k < list.size(); k++) list2.add(list.get(k));    		
-        	//Collections.copy(list2, list);    		
-        	
+    		ArrayList<String> list2 = (ArrayList<String>) list.clone();        	
         	int pos2 = nexts.get(i);
         	String part = str.substring(pos,  pos2+1);
         	list2.add(part);
