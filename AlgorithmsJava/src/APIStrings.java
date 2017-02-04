@@ -19,6 +19,10 @@ public class APIStrings {
 		list.add("dwa");
 		Object o;
 		
+		String test = "abc";
+		String part = test.substring(0, 0); //returns empty
+		String part2 = test.substring(0, 1); //returns "a"
+		
 		String res = sol.encode(list);
 		List<String> list2 = sol.decode(res);
 	}
