@@ -1,18 +1,10 @@
+package Common;
+
 import java.util.*;
 
-public class Primes {
+public class SemiPrimes {
 
-	public static void main(String [ ] args)
-	{	
-		Primes primes = new Primes();
-		List<Integer> primeNumbers = primes.getPrimes(11);
-	}
-	int nums[];
-	
- 
-	
-	
-    public List<Integer> getPrimes(int n)
+	private static List<Integer> getPrimes(int n)
     {
     	 boolean[] sieve = new boolean[n+2];
          sieve[0] = true;
@@ -41,5 +33,24 @@ public class Primes {
          }
          return res;
     }
+	
+	
+	public static boolean run(int number) {
+		int m = (int) Math.sqrt(number)+1;
+		List<Integer> primes = getPrimes(number);
+		
+		for (Integer p : primes)
+		{
+			if (number % p == 0)
+			{
+				int res = number / p;
+				if (primes.contains(res))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	
 }
