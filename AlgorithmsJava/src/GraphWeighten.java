@@ -14,7 +14,7 @@ public class GraphWeighten {
     private static int cost = 0;
     private static Set<Edge> path = null;
     private static List<Vertex> unvisited = null;
-    private static Queue<Edge> edgesAvailable = new PriorityQueue<Edge>();;
+    private static Queue<Edge> edgesAvailable = new PriorityQueue<Edge>();
     
     public static Set<Edge> getMinimumSpanningTree(GraphWeighten graph, Vertex start) {
         if (graph == null)
