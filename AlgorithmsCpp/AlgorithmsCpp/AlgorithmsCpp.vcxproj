@@ -93,6 +93,7 @@
     <ClCompile Include="HackerRank\GoodPoint.cpp" />
     <ClCompile Include="HackerRank\XorMatrix.cpp" />
     <ClCompile Include="Heaps.cpp" />
+    <ClCompile Include="LargestRectangle.cpp" />
     <ClCompile Include="LeetCode\CountingBits.cpp" />
     <ClCompile Include="LeetCode\FrogJump.cpp" />
     <ClCompile Include="LeetCode\UniquePaths.cpp" />

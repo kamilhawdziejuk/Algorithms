@@ -131,6 +131,9 @@
     <ClCompile Include="Combinatorics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LargestRectangle.cpp">
+      <Filter>Source Files\LeetCode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="HackerRank\CoinChange.cpp">
