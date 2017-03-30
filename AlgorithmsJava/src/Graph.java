@@ -46,11 +46,11 @@ public class Graph {
         if(root == null) return;
         visitedDFS.add(root);
         root.isVisited = true;
-        for(Node n: root.adj)
+        for(Node next : root.adj)
         {
-            if(!n.isVisited)
+            if(!next.isVisited)
             {
-                dfs(n);
+                dfs(next);
             }
         }
     }
