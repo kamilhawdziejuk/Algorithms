@@ -71,12 +71,12 @@ public class Graph {
             visitedBFS.add(r);
 
             //Visit child first before grandchild
-            for(Node n: r.adj)
+            for(Node next: r.adj)
             {
-                if(!n.isVisited)
+                if(!next.isVisited)
                 {
-                    queue.add(n);
-                    n.isVisited = true;
+                    queue.add(next);
+                    next.isVisited = true;
                 }
             }
         }
