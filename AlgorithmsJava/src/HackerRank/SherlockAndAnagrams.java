@@ -1,0 +1,75 @@
+package HackerRank;
+
+import java.util.*;
+
+public class SherlockAndAnagrams {
+	
+	private Map<Character, Integer> getAnagram(String str)
+	{	
+		Map<Character, Integer> chars = new HashMap<Character, Integer>();
+		for (Character c : str.toCharArray())
+		{
+			if (chars.containsKey(c)) {
+				chars.put(c, chars.get(c)+1);
+			}
+			else {
+				chars.put(c, 1);
+			}
+		}
+		return chars;
+	}
+	
+	private boolean AreEqual(Map<Character, Integer> map1, Map<Character, Integer> map2)
+	{
+		if (map1.keySet().size() != map2.keySet().size()) return false;
+		for (Map.Entry<Character, Integer> entry : map1.entrySet())
+		{
+			Character key = entry.getKey();
+			Integer value = entry.getValue();
+			if (!map2.containsKey(key)) return false;
+			if (map2.get(key) != value) return false;
+		}
+		return true;
+	}
+	
+	private int calc(String str)
+	{
+		int cnt = 0;
+		for (int i1 = 0; i1 < str.length(); i1++)
+		{
+			for (int i2 = i1; i2 < str.length(); i2++)
+			{
+				for (int j1 = i1; j1 < str.length(); j1++)
+				{
+					for (int j2 = j1; j2 < str.length(); j2++)
+					{
+						if (i1 == j1 && i2 >= j2) continue;
+						String str1 = str.substring(i1, i2+1);
+						String str2 = str.substring(j1, j2+1);
+						
+						Map<Character, Integer>  anagram1 = getAnagram(str1);
+						Map<Character, Integer>  anagram2 = getAnagram(str2);
+						if (AreEqual(anagram1, anagram2))
+						{
+							cnt++;
+						}
+					}
+				}
+			}
+		}
+		return cnt;
+	}
+	
+    public static void main(String[] args) {
+    	SherlockAndAnagrams sol = new SherlockAndAnagrams();
+    	int n;
+        Scanner in = new Scanner(System.in);
+        n = in.nextInt();
+        for (int i = 0; i < n; i++)
+        {
+        	String str = in.next();
+        	System.out.println(sol.calc(str));
+        }
+    	
+    }
+}
