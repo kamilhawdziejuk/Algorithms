@@ -60,7 +60,7 @@ public class BinarySearchIceCreamParlor {
         for (int i = 0; i < n-1; i++)
         {
         	first = a[i];
-        	int secondIndex = indexOfExactKey(m-first.val, first.pos+1);
+        	int secondIndex = indexOfExactKey(m-first.val, i+1);
         	if (secondIndex != -1)
         	{
         		second = a[secondIndex];
