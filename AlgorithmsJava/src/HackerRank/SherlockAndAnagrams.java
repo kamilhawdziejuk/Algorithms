@@ -35,24 +35,20 @@ public class SherlockAndAnagrams {
 	private int calc(String str)
 	{
 		int cnt = 0;
-		for (int i1 = 0; i1 < str.length(); i1++)
+		int n = str.length();
+		for (int len = 1; len < n; len++)
 		{
-			for (int i2 = i1; i2 < str.length(); i2++)
+			for (int i = 0; i <= n-len; i++)
 			{
-				for (int j1 = i1; j1 < str.length(); j1++)
+				for (int j = i+1; j <= n-len; j++)
 				{
-					for (int j2 = j1; j2 < str.length(); j2++)
+					String str1 = str.substring(i, i + len);
+					String str2 = str.substring(j, j + len);
+					Map<Character, Integer>  anagram1 = getAnagram(str1);
+					Map<Character, Integer>  anagram2 = getAnagram(str2);
+					if (AreEqual(anagram1, anagram2))
 					{
-						if (i1 == j1 && i2 >= j2) continue;
-						String str1 = str.substring(i1, i2+1);
-						String str2 = str.substring(j1, j2+1);
-						
-						Map<Character, Integer>  anagram1 = getAnagram(str1);
-						Map<Character, Integer>  anagram2 = getAnagram(str2);
-						if (AreEqual(anagram1, anagram2))
-						{
-							cnt++;
-						}
+						cnt++;
 					}
 				}
 			}
@@ -69,7 +65,6 @@ public class SherlockAndAnagrams {
         {
         	String str = in.next();
         	System.out.println(sol.calc(str));
-        }
-    	
+        }    	
     }
 }
