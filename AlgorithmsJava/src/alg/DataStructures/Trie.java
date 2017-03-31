@@ -31,11 +31,11 @@ public class Trie {
         public int Cnt = 0;
 
         public TrieNode() {
-            this.arr = new TrieNode[24];
+            this.arr = new TrieNode[26];
         }	
         
         public TrieNode(Character rep) {
-            this.arr = new TrieNode[24];
+            this.arr = new TrieNode[26];
             Rep = rep;
             Cnt++;
         }	
