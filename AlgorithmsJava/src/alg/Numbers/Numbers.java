@@ -1,3 +1,4 @@
+package alg.Numbers;
 import java.util.*;
 
 public class Numbers {
@@ -37,35 +38,10 @@ public class Numbers {
             results.add(Integer.parseInt(s.charAt(i) + ""));
         }
         return results;
-    }
-	
-    
-    public boolean isHappy(int n) {
-        Set<Integer> map = new HashSet<>();
-        while (!map.contains(1))
-        {
-            int nr = 0;
-            for (int i : getNumbers(n))
-            {
-                nr += (i*i);
-            }
-            if (map.contains(nr))
-            {
-                return false;
-            }
-            map.add(nr);
-            n = nr;
-        }
-        return true;
-    }
-	private List<Integer> getNumbers(int n) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    }	  
 
 	public static void main(String[] args)
 	{
 		Numbers sol = new Numbers();
-		boolean res = sol.isHappy(7);
 	}
 }

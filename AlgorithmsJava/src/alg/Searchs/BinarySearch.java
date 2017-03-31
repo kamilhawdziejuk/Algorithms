@@ -1,3 +1,4 @@
+package alg.Searchs;
 public class BinarySearch {
 
     private BinarySearch() { }
