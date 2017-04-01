@@ -1,7 +1,5 @@
 package alg.DataStructures;
 
-import Solution.ListNode;
-
 public class LinkedList {
 	
 	 public class ListNode {
