@@ -143,7 +143,7 @@ public class Candies {
 			}
 		}
 		//calc result:
-		int sum = 0;
+		long sum = 0;
 		for (int i = 0; i < n; i++) {
 			sum += res[i];
 		}
