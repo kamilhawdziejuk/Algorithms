@@ -54,6 +54,10 @@ public class APIMap {
 			String key = entry.getKey();
 			Integer value = entry.getValue();
 		}		
+		
+		
+		//sort by value:
+		map = sortByValue( map );
 	}
 		
 }
