@@ -7,7 +7,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public class APIList {
+import HackerRank.BinarySearchIceCreamParlor.Data;
+
+public class ListCollection {
 	
 	public List<Integer> list = new ArrayList<>();
 	public int[] tab = new int[1000];
@@ -73,6 +75,31 @@ public class APIList {
     	return pred;
         //return p -> (p % 2 == 1);
     }
+    
+    //sorted increasingly
+	public class Data implements Comparable<Data> {	
+		
+		private int pos;
+		private int val;
+		
+		public Data(int _pos, int _val){
+			val = _val;
+			pos = _pos;
+		}
+		@Override
+		public int compareTo(Data arg0) {
+			
+			if (this.val < arg0.val)
+			{
+				return -1;
+			}
+			else if (this.val > arg0.val)
+			{
+				return 1;
+			}
+			return 0;
+		}			
+	}
      
 	
 }
