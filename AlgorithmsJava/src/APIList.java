@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 
 import HackerRank.BinarySearchIceCreamParlor.Data;
 
-public class ListCollection {
+public class APIList {
 	
 	public List<Integer> list = new ArrayList<>();
 	public int[] tab = new int[1000];
