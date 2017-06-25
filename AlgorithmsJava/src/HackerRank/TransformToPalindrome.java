@@ -1,3 +1,6 @@
+//https://www.hackerrank.com/contests/w33/challenges/transform-to-palindrome/problem
+// 100%
+
 package HackerRank;
 
 import java.io.*;
@@ -111,8 +114,59 @@ public class TransformToPalindrome {
     public void Improve() {
     	for (int i = 0; i < m ;i++ ) {
     		Node node = nodes.get(tab[i]);
-    		tab[i] = node.groupNr;
+    		if (node != null) {
+	    		int groupNr = node.groupNr;
+	    		tab[i] = groupNr;
+    		}
     	}
+    }
+
+    public class Data {
+    	public boolean IsCenter = false;
+    	public int Value = 0;
+    }
+       
+    public void Find() {
+    	Data data[] = new Data[m];
+    	for (int i = 0 ; i < m; i++) {
+    		data[i] = new Data();
+    		data[i].IsCenter = false;
+    		data[i].Value = 0;
+    	}
+
+    	for (int pos = 0; pos < m; pos++) {
+    		
+    		int val = tab[pos];
+        	int size = 0;
+
+    		for (int j = m-1; j >= pos; j--) {
+    			
+    			if (data[j].Value > size) {
+    				size = data[j].Value;
+    			}
+    			else {
+	    			int val2 = tab[j];    				    			
+	    			if (val == val2) {
+	    				data[j].Value = Math.max(data[j].Value, size+1);
+	    				if (j == pos) {
+	    					data[j].IsCenter = true;
+	    				}
+	    			}
+    			}
+    		}
+    	}
+
+    	int maxPalindromLength = 0;
+    	for (int i = 0; i < m ;i++) {
+    		if (data[i].IsCenter) {
+    			maxPalindromLength = Math.max(data[i].Value*2-1,  maxPalindromLength);
+    		}
+    		else {
+    			maxPalindromLength = Math.max(data[i].Value*2,  maxPalindromLength);
+    		}
+    		
+    	}
+    	System.out.println(maxPalindromLength);
     }
     
     public static void main(String[] args) {
@@ -120,6 +174,7 @@ public class TransformToPalindrome {
     	sol.Read();
     	sol.Calc();
     	sol.Improve();
+    	sol.Find();
     }
 	
 }
