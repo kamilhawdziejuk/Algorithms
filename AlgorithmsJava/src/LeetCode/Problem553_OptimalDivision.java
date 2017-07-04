@@ -17,19 +17,14 @@ public class Problem553_OptimalDivision {
     	int n = nums.length;
     	Init(nums);
     	Max(0,n-1);
-    	String result = parse(0,n-1, true);
-    	return result;
+    	return parse(0,n-1, true);
     }
     
     public String parse(int p1, int p2, boolean isMax) {
     	if (p1 == p2) {
-    		int val = _nums[p1];    		
-    		return String.valueOf(val);
+    		return String.valueOf(_nums[p1]);
     	} else if (p1 == p2 -1){
-    		int val = _nums[p1];
-    		int val2 = _nums[p2];
-    		String res = String.valueOf(val) + "/" + String.valueOf(val2);
-    		return res;
+    		return String.valueOf(_nums[p1]) + "/" + String.valueOf(_nums[p2]);
     	}
     	else {
     		if (isMax) {
@@ -37,22 +32,18 @@ public class Problem553_OptimalDivision {
     			String res1 = parse(p1, maxPos, isMax);
 				String res2 = parse(maxPos+1, p2, !isMax);
     			if (maxPos == p2-1) {    				
-    				String res = res1 + "/" + res2;
-    				return res;
+    				return res1 + "/" + res2;
     			} else {
-    				String res = res1 + "/(" + res2 + ")";
-    				return res;
+    				return res1 + "/(" + res2 + ")";
     			}
     		} else {
     			int minPos = tab[p1][p2].minPos;
     			String res1 = parse(p1, minPos, isMax);
 				String res2 = parse(minPos+1, p2, !isMax);
     			if (minPos == p2-1) {    				
-    				String res = res1 + "/" + res2;
-    				return res;
+    				return res1 + "/" + res2;
     			} else {
-    				String res = res1 + "/(" + res2 + ")";
-    				return res;
+    				return res1 + "/(" + res2 + ")";
     			}
     		}
     	}

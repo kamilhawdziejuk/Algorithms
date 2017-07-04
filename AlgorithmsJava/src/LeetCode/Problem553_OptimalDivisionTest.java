@@ -18,6 +18,6 @@ public class Problem553_OptimalDivisionTest {
 	public void test() {
 		int[] nums = {1000,100,10,2};
 		String result = test.optimalDivision(nums);
-		assertTrue(result == null);
+		assertTrue(result.equals("1000/(100/10/2)"));
 	}
 }
