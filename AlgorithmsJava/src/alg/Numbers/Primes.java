@@ -39,6 +39,11 @@ public class Primes {
          return res;
     }
     
+    public static long GCD(long a, long b) {
+	   if (b==0) return a;
+	   return GCD(b,a%b);
+	}
+    
     public static final Map<Long, Long> getPrimeFactorization(long number) {
         Map<Long, Long> map = new HashMap<Long, Long>();
         long n = number;
