@@ -1,4 +1,5 @@
-
+//https://leetcode.com/problems/mini-parser/description/
+//not working
 package LeetCode;
 
 import java.util.*;
@@ -51,13 +52,12 @@ public class MiniParser {
 	  }
 	 
 	 String _str;
-	 
 	 public NestedInteger deserialize(String s) {
 		 _str = s;
 	 	//"[123,[456,[789]]]",
 	 	if (s.charAt(0) == '[') {
 		 	NestedInteger root = new NestedInteger();
-	        deserialize(1, root, 1);
+	        deserialize(1, root);
 	        return root;
 	 	}
 	 	else {
@@ -73,25 +73,20 @@ public class MiniParser {
 	 	}
 	 }
 	 
-	 public NestedInteger deserialize(int index, NestedInteger parent, int depth) {
+	 public void deserialize(int index, NestedInteger parent) {
 		 if (_str.length() <= index) {
-			 return parent;
+			 return;
 		 }
-		 
 		 if (_str.charAt(index) == '[') {
 			 NestedInteger listElem = new NestedInteger();
-			 //listElem.Depth = depth;
-			 deserialize(index+1, listElem, depth+1);
+			 deserialize(index+1, listElem);
 			 parent.add(listElem);
-			 return parent;
 		 }
 		 else if (_str.charAt(index) == ']') {
-			 deserialize(index+1, parent, depth-1);
-			 return parent;
+			 deserialize(index+1, parent);
 		 }
 		 else if (_str.charAt(index) == ',') {
-			 deserialize(index+1, parent, depth);
-			 return parent;
+			 deserialize(index+1, parent);
 		 }
 		 else { //its a digit
 		 
@@ -105,11 +100,9 @@ public class MiniParser {
 			 String numStr = _str.substring(index, i+1);
 			 int num = Integer.parseInt(numStr);
 			 NestedInteger current = new NestedInteger(num);
-			 //current.Depth = depth;
 			 parent.add(current);
 			 
-			 deserialize(i+1, parent, depth);
-			 return parent;
+			 deserialize(i+1, parent);
 		 }
 	 }
 }
