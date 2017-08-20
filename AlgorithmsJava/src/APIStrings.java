@@ -45,6 +45,10 @@ public class APIStrings {
 		String sorted10 = String.valueOf(chars);
 	}
 	
+	public String[] SplitBySpaces(String str) {
+		String[] splitStr = str.trim().split("\\s+");
+		return splitStr;
+	}
     
     String calcUnique(String w)
     {
