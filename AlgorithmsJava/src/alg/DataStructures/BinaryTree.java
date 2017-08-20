@@ -1,27 +1,13 @@
 //http://practice.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1
+//100%
 
 package alg.DataStructures;
-
 import java.util.*;
 
 public class BinaryTree {
 	
-	public class LevelNode {		
-		public int Level = 0;
-		public Node Item = null;
-		public boolean Taken = false;
-		public LevelNode(Node item, int level) {
-			Item = item;
-			Level = level;
-		}
-	}
-	
-	Node root;
-	List<LevelNode> list = new ArrayList<>();
-	 
-    /* Given a binary tree. Print its nodes in level order
-     using array for implementing queue  */
-    void printLevelOrder() 
+    /* Given a binary tree. Print its nodes in level order  using array for implementing queue  */
+    void printLevelOrder(Node root) 
     {
     	Queue<Node> queue = new java.util.LinkedList<Node>();
         queue.add(root);
@@ -44,59 +30,72 @@ public class BinaryTree {
             }
         }
     }
-    
-    void FillLevelOrder() 
-    {
-    	Queue<LevelNode> queue = new java.util.LinkedList<>();
-        queue.add(new LevelNode(root, 1));
-        
-        while (!queue.isEmpty()) 
-        {
-            //poll() removes the present head.
-            LevelNode tempNode = queue.poll();
-            //System.out.print(tempNode.data + " ");
-            list.add(tempNode);
- 
-            /*Enqueue left child */
-            if (tempNode.Item.left != null) {
-                queue.add(new LevelNode(tempNode.Item.left, tempNode.Level+1));
-            }
- 
-            /*Enqueue right child */
-            if (tempNode.Item.right != null) {
-                queue.add(new LevelNode(tempNode.Item.right, tempNode.Level+1));
-            }
-        }
+  
+ // A simple function to print leaf nodes of a binary tree
+    void printLeaves(Node n) {
+    	if (n == null)
+    		return;
+    	// Print it if it is a leaf node
+    	if (n.left == null && n.right == null) {
+    		System.out.println(n.data + " ");
+    	}
+    	printLeaves(n.left);
+    	printLeaves(n.right);
     }
-    
-	void printBoundary(Node node)
-	{
-		root = node;
-		FillLevelOrder();
-		int lastLevel = 0;
-		for (int i = 0; i < list.size(); i++) {
-			LevelNode levelNode = list.get(i);
-			if (!levelNode.Taken) {
-				if (levelNode.Level > lastLevel) {
-					levelNode.Taken = true;
-					lastLevel = levelNode.Level;
-					System.out.print(levelNode.Item.data + " ");
-				}
-			}
-		}
-		lastLevel++;
-		for (int i = list.size()-1; i > 0; i--) {
-			LevelNode levelNode = list.get(i);
-			if (!levelNode.Taken) {
-				if (levelNode.Level < lastLevel) {
-					levelNode.Taken = true;
-					lastLevel = levelNode.Level;
-					System.out.print(levelNode.Item.data + " ");
-				}
-			}
-		}
-			
-		// Your code here
-	}
-	
+
+    private boolean isLeaf(Node n) {
+     return n != null && n.left == null && n.right == null;
+    }
+
+    // A function to print all left boundry nodes, except a leaf node.
+    // Print the nodes in TOP DOWN manner
+    void printBoundaryLeft(Node n) {
+    	if (n == null || isLeaf(n))
+    		return;
+    	// to ensure top down order, print the node
+    	// before calling itself for left subtree
+    	if (n.left != null) {
+    		System.out.println(n.data + " ");
+    		printBoundaryLeft(n.left);
+    	} 
+    	else if (n.right != null) {
+    		System.out.println(n.data + " ");
+    		printBoundaryLeft(n.right);
+    	}
+    	// do nothing if it is a leaf node, this way we avoid
+    	// duplicates in output
+    }
+
+    // A function to print all right boundry nodes, except a leaf node
+    // Print the nodes in BOTTOM UP manner
+    void printBoundaryRight(Node n) {
+    	if (n == null || isLeaf(n))
+    		return;
+    	// to ensure bottom up order, first call for right
+    	// subtree, then print this node
+    	if (n.right != null) {
+    		printBoundaryRight(n.right);
+    	} 
+    	else if (n.left != null) {
+    		printBoundaryRight(n.left);
+    	}
+    	System.out.println(n.data + " ");
+    	// do nothing if it is a leaf node, this way we avoid
+    	// duplicates in output
+    }
+
+    // A function to do boundary traversal of a given binary tree
+    void printBoundary(Node root) {
+    	if (root == null)
+    		return;
+    	System.out.println(root.data + " ");
+    	// Print the left boundary in top-down manner.
+    	printBoundaryLeft(root.left);
+    	
+    	// Print all leaf nodes
+    	printLeaves(root);
+
+    	// Print the right boundary in bottom-up manner
+    	printBoundaryRight(root.right);
+    }
 }
