@@ -2,7 +2,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class APIQueue {
-	Queue<Integer> q = new PriorityQueue();
+	Queue<Integer> q = new PriorityQueue<>();
 	
 	public void Test()
 	{
