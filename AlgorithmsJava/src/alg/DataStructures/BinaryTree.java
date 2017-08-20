@@ -5,17 +5,6 @@ package alg.DataStructures;
 import java.util.*;
 
 public class BinaryTree {
-
-	public class Node {
-	    int data;
-	    Node left, right;
-	 
-	    public Node(int item) {
-	        data = item;
-	        left = null;
-	        right = null;
-	    }
-	}
 	
 	public class LevelNode {		
 		public int Level = 0;
@@ -59,8 +48,7 @@ public class BinaryTree {
     void FillLevelOrder() 
     {
     	Queue<LevelNode> queue = new java.util.LinkedList<>();
-    	list.add(new LevelNode(root, 1));    	
-        //queue.add(root);
+        queue.add(new LevelNode(root, 1));
         
         while (!queue.isEmpty()) 
         {
