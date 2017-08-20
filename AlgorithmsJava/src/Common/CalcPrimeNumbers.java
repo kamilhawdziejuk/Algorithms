@@ -5,7 +5,6 @@ import java.util.*;
 public class CalcPrimeNumbers {
 	 private static ArrayList<Integer> primeNumbers = new ArrayList<>();
 	 
-	 
 	    private static void calcPrimeNumbers(int n) {
 	        primeNumbers.add(2);
 	        for (int i = 3; i < n; i+=2) { // skip over even numbers since they are not prime

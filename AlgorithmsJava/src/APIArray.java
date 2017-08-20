@@ -17,6 +17,7 @@ public class APIArray {
 		 System.out.println();
 	 }
 	 
+	 //tab is sent via reference so change occurs
 	 private static void change(int[] tab)
 	 {
 		 tab[1] = -1;

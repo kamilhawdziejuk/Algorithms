@@ -71,7 +71,7 @@ public class APIList {
 	};	
 
     private static Predicate<Integer> isEven() {
-    	Predicate<Integer> pred = null;//i -> (i % 2 == 1);
+    	Predicate<Integer> pred = i -> (i % 2 == 1);
     	return pred;
         //return p -> (p % 2 == 1);
     }
