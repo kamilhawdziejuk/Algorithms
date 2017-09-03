@@ -7,18 +7,34 @@ public class Solution2 {
 	int rows;
 	int cols;
 	
-	public class Node
+	public static void main(String [ ] args)
 	{
-		Position pos;
-		int val;
-		int dist = 0;
-		boolean isVisited = false;
+		Solution2 sol = new Solution2();
+		List<List<Integer>> fields = new ArrayList<List<Integer>>();
+		
+		//1 1 1
+		//3 0 2
+		
+		List<Integer> list1 = new ArrayList<>();		
+		list1.add(1);
+		list1.add(1);
+		list1.add(1);
+		
+		List<Integer> list2 = new ArrayList<>();		
+		list2.add(3);
+		list2.add(0);
+		list2.add(2);
+
+		fields.add(list1);
+		fields.add(list2);
+		
+		int result = sol.levelField(2, 3, fields);
 	}
-	
-	private static Comparator<Node> HeightComparator = new Comparator<Node>() 
+
+	private static Comparator<Position> HeightComparator = new Comparator<Position>() 
 	{
 		@Override
-		public int compare(Node arg0, Node arg1) {
+		public int compare(Position arg0, Position arg1) {
 			if (arg1.val < arg0.val)
 			{
 				return -1;
@@ -35,6 +51,7 @@ public class Solution2 {
 		public int x,y;		
 		boolean isVisited = false;
 		int dist = 0;
+		int val = 0;
 		public Position(int a, int b) {
 			x = a;
 			y = b;
@@ -44,24 +61,23 @@ public class Solution2 {
 			if (pos.x == x && pos.y == y) return 0;
 			return -1;
 		}
-		
 	}
 	
 	//main method
-	 int levelField(int numRows, int numColumns, List<List<Integer>> field)
+	public int levelField(int numRows, int numColumns, List<List<Integer>> field)
     {
     	rows = numRows;
     	cols = numColumns;
     	
-    	List<Node> trees = FindTrees(field);
+    	List<Position> trees = FindTrees(field);
     	trees.sort(HeightComparator);
     	Position last = new Position(0,0);
     	
     	int total = 0;
     	
     	for (int i = 0; i < trees.size(); i++) {
-    		Node tree = trees.get(i);
-    		int length = bfs(field, last, tree.pos);
+    		Position currentTree = trees.get(i);
+    		int length = bfs(field, last, currentTree);
     		
     		if (length > 0) {
     			total += length;
@@ -69,17 +85,15 @@ public class Solution2 {
     		else {
     			return -1;
     		}
-    		last = tree.pos;
+    		last = currentTree;
     	}
     	return total;
-        // WRITE YOUR CODE HERE
     }
 	
 	Map<Position, Boolean> visitedBFS = new HashMap<Position, Boolean>();
 	
-	public int bfs(List<List<Integer>> field, Position root, Position target)
+	private int bfs(List<List<Integer>> field, Position root, Position target)
     {
-		int cnt = 0;
 		visitedBFS.clear();
         //Since queue is a interface
         Queue<Position> queue = new LinkedList<Position>();
@@ -100,11 +114,10 @@ public class Solution2 {
             
         	List<Position> adj = getNext(rows, cols, r.x, r.y);
         	
-            //Visit child first before grandchild
             for(Position next: adj)
             {
             	int val = getVal(field, next);
-            	if (val !=1 ) continue;
+            	if (val == 0 ) continue;
             	
                 if(!visitedBFS.containsKey(next))// !next.isVisited
                 {
@@ -117,14 +130,13 @@ public class Solution2 {
         return -1;
     }
     
-    public List<Node> FindTrees(List<List<Integer>> field) {
-    	List<Node> trees = new ArrayList<Node>();
+    private List<Position> FindTrees(List<List<Integer>> field) {
+    	List<Position> trees = new ArrayList<Position>();
     	
     	for (int i = 0; i < field.size(); i++) {
     		List<Integer> row = field.get(i);
     		for (int j = 0; j < row.size(); j++) {
-    			Node node = new Node();
-    			node.pos = new Position(i, j);
+    			Position node = new Position(i,j);
     			node.val = row.get(j);
     			if (node.val > 1) { //tree
     				trees.add(node);
