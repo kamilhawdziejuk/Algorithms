@@ -28,7 +28,7 @@ public class Solution2 {
 		fields.add(list1);
 		fields.add(list2);
 		
-		int result = sol.levelField(2, 3, fields);
+		int result = sol.cutOffTree(fields);
 	}
 
 	private static Comparator<Position> HeightComparator = new Comparator<Position>() 
@@ -37,11 +37,11 @@ public class Solution2 {
 		public int compare(Position arg0, Position arg1) {
 			if (arg1.val < arg0.val)
 			{
-				return -1;
+				return 1;
 			}
 			else if (arg1.val > arg0.val)
 			{
-				return 1;
+				return -1;
 			}
 			return 0;
 		}
@@ -56,20 +56,34 @@ public class Solution2 {
 			x = a;
 			y = b;
 		}
+		
+		@Override
+	    public int hashCode(){
+			return (x * 31) ^ y;
+	    }
+		
 		@Override
 		public int compareTo(Position pos) {
 			if (pos.x == x && pos.y == y) return 0;
 			return -1;
 		}
+		
+		@Override
+		public boolean equals(Object object) {
+			if (this == object) return true;
+			if (!(object instanceof Position)) return false;
+			Position pos = (Position)object;
+			return (pos.x == this.x && pos.y == this.y);
+		}
 	}
 	
-	//main method
-	public int levelField(int numRows, int numColumns, List<List<Integer>> field)
-    {
-    	rows = numRows;
-    	cols = numColumns;
-    	
-    	List<Position> trees = FindTrees(field);
+    public int cutOffTree(List<List<Integer>> forest) {
+     
+    	rows = forest.size();
+    	if (rows == 0) return -1;
+    	cols = forest.get(0).size();
+
+    	List<Position> trees = FindTrees(forest);
     	trees.sort(HeightComparator);
     	Position last = new Position(0,0);
     	
@@ -77,9 +91,10 @@ public class Solution2 {
     	
     	for (int i = 0; i < trees.size(); i++) {
     		Position currentTree = trees.get(i);
-    		int length = bfs(field, last, currentTree);
+    		int length = bfs(forest, last, currentTree);
     		
     		if (length > 0) {
+    			cut(forest, currentTree);
     			total += length;
     		}
     		else {
@@ -92,8 +107,14 @@ public class Solution2 {
 	
 	Map<Position, Boolean> visitedBFS = new HashMap<Position, Boolean>();
 	
+	private void cut(List<List<Integer>> field, Position position) {
+		List<Integer> row = field.get(position.x);
+		row.set(position.y, 1);
+		field.set(position.x, row);
+	}
+	
 	private int bfs(List<List<Integer>> field, Position root, Position target)
-    {
+    {		
 		visitedBFS.clear();
         //Since queue is a interface
         Queue<Position> queue = new LinkedList<Position>();
@@ -107,7 +128,7 @@ public class Solution2 {
         {
             //removes from front of queue
         	Position r = queue.remove();
-        	if (r == target) {
+        	if (r.equals((Position)target)) {
         		return r.dist;
         	}
             visitedBFS.put(r, true);
@@ -117,9 +138,9 @@ public class Solution2 {
             for(Position next: adj)
             {
             	int val = getVal(field, next);
-            	if (val == 0 ) continue;
+            	if (val == 0 || val > target.val) continue;
             	
-                if(!visitedBFS.containsKey(next))// !next.isVisited
+                if(!visitedBFS.containsKey((Position)next))// !next.isVisited
                 {
                 	next.dist = r.dist+1;
                     queue.add(next);
@@ -147,7 +168,7 @@ public class Solution2 {
     }
         
     boolean check(int rows, int cols, Position pos) {
-    	return pos.x >= 0 && pos.y >= 0 && pos.x < cols && pos.y < cols;
+    	return pos.x >= 0 && pos.y >= 0 && pos.x < rows && pos.y < cols;
     }
     
     int getVal(List<List<Integer>> field, Position p) {
