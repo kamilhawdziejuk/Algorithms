@@ -1,3 +1,6 @@
+//https://leetcode.com/problems/cut-off-trees-for-golf-event/
+//TLE
+
 package Common;
 
 import java.util.*;
@@ -7,26 +10,57 @@ public class Solution2 {
 	int rows;
 	int cols;
 	
+//	public static void main(String [ ] args)
+//	{
+//		Solution2 sol = new Solution2();
+//		List<List<Integer>> fields = new ArrayList<List<Integer>>();
+//		
+//		//1 1 1
+//		//3 0 2
+//		
+//		List<Integer> list1 = new ArrayList<>();		
+//		list1.add(1);
+//		list1.add(1);
+//		list1.add(1);
+//		
+//		List<Integer> list2 = new ArrayList<>();		
+//		list2.add(3);
+//		list2.add(0);
+//		list2.add(2);
+//
+//		fields.add(list1);
+//		fields.add(list2);
+//		
+//		int result = sol.cutOffTree(fields);
+//	}
+	
 	public static void main(String [ ] args)
 	{
 		Solution2 sol = new Solution2();
 		List<List<Integer>> fields = new ArrayList<List<Integer>>();
 		
-		//1 1 1
-		//3 0 2
+		//2 3 4
+		//0 0 5
+		//8 7 6
 		
 		List<Integer> list1 = new ArrayList<>();		
-		list1.add(1);
-		list1.add(1);
-		list1.add(1);
+		list1.add(2);
+		list1.add(3);
+		list1.add(4);
 		
 		List<Integer> list2 = new ArrayList<>();		
-		list2.add(3);
 		list2.add(0);
-		list2.add(2);
+		list2.add(0);
+		list2.add(5);
+		
+		List<Integer> list3 = new ArrayList<>();		
+		list3.add(8);
+		list3.add(7);
+		list3.add(6);
 
 		fields.add(list1);
 		fields.add(list2);
+		fields.add(list3);
 		
 		int result = sol.cutOffTree(fields);
 	}
@@ -93,7 +127,7 @@ public class Solution2 {
     		Position currentTree = trees.get(i);
     		int length = bfs(forest, last, currentTree);
     		
-    		if (length > 0) {
+    		if (length >= 0) {
     			cut(forest, currentTree);
     			total += length;
     		}
@@ -138,7 +172,7 @@ public class Solution2 {
             for(Position next: adj)
             {
             	int val = getVal(field, next);
-            	if (val == 0 || val > target.val) continue;
+            	if (val == 0) continue;
             	
                 if(!visitedBFS.containsKey((Position)next))// !next.isVisited
                 {
