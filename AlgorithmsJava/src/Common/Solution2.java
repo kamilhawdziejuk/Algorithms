@@ -1,4 +1,5 @@
 //https://leetcode.com/problems/cut-off-trees-for-golf-event/
+//33/53
 //TLE
 
 package Common;
@@ -9,30 +10,6 @@ public class Solution2 {
 	
 	int rows;
 	int cols;
-	
-//	public static void main(String [ ] args)
-//	{
-//		Solution2 sol = new Solution2();
-//		List<List<Integer>> fields = new ArrayList<List<Integer>>();
-//		
-//		//1 1 1
-//		//3 0 2
-//		
-//		List<Integer> list1 = new ArrayList<>();		
-//		list1.add(1);
-//		list1.add(1);
-//		list1.add(1);
-//		
-//		List<Integer> list2 = new ArrayList<>();		
-//		list2.add(3);
-//		list2.add(0);
-//		list2.add(2);
-//
-//		fields.add(list1);
-//		fields.add(list2);
-//		
-//		int result = sol.cutOffTree(fields);
-//	}
 	
 	public static void main(String [ ] args)
 	{
@@ -83,7 +60,6 @@ public class Solution2 {
 	
 	public class Position implements Comparable<Position>{
 		public int x,y;		
-		boolean isVisited = false;
 		int dist = 0;
 		int val = 0;
 		public Position(int a, int b) {
@@ -145,40 +121,40 @@ public class Solution2 {
 		List<Integer> row = field.get(position.x);
 		row.set(position.y, 1);
 		field.set(position.x, row);
-	}
+	}	
+	
 	
 	private int bfs(List<List<Integer>> field, Position root, Position target)
     {		
-		visitedBFS.clear();
-        //Since queue is a interface
+		boolean[][] visited = new boolean[rows][cols];
         Queue<Position> queue = new LinkedList<Position>();
         if(root == null) return -1;
 
-        root.isVisited = true;        
         root.dist = 0;        
         queue.add(root);
+        
+        visited[root.x][root.y] = true;
 
         while(!queue.isEmpty())
         {
-            //removes from front of queue
         	Position r = queue.remove();
         	if (r.equals((Position)target)) {
         		return r.dist;
         	}
-            visitedBFS.put(r, true);
+        	visited[r.x][r.y] = true;
             
         	List<Position> adj = getNext(rows, cols, r.x, r.y);
         	
             for(Position next: adj)
             {
-            	int val = getVal(field, next);
+            	int val = field.get(next.x).get(next.y);
+            	
             	if (val == 0) continue;
             	
-                if(!visitedBFS.containsKey((Position)next))// !next.isVisited
+            	if (!visited[next.x][next.y])
                 {
                 	next.dist = r.dist+1;
                     queue.add(next);
-                    next.isVisited = true;
                 }
             }
         }
@@ -204,17 +180,7 @@ public class Solution2 {
     boolean check(int rows, int cols, Position pos) {
     	return pos.x >= 0 && pos.y >= 0 && pos.x < rows && pos.y < cols;
     }
-    
-    int getVal(List<List<Integer>> field, Position p) {
-    	return getVal(field, p.x, p.y);
-    }
-    
-    
-    int getVal(List<List<Integer>> field, int r, int c) {
-    	List<Integer> row = field.get(r);
-    	return row.get(c);
-    }
-    
+            
 	List<Position> getNext(int rows, int cols, int r, int c)
 	{
 		List<Position> positions = new ArrayList<Position>();
