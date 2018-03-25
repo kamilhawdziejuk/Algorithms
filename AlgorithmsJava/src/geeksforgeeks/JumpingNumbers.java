@@ -53,26 +53,20 @@ public class JumpingNumbers {
 		return val - 10* (val/10);
 	}
 	
-	private void GenerateNext() {
-						
-		while (queue.size() > 0) {
-			
-			Integer val = queue.poll();
-			
-			if (val <= max) {
-				
+	private void GenerateNext() {						
+		while (queue.size() > 0) {			
+			Integer val = queue.poll();			
+			if (val <= max) {				
 				int lastDigit = GetLastDigit(val);
 				if (lastDigit > 0) {
-					int nextDigit = lastDigit-1;
-					int nextNumber = val * 10 + nextDigit;
+					int nextNumber = val * 10 + (lastDigit-1);
 					if (nextNumber <= max) {
 						output.add(nextNumber);
 						queue.add(nextNumber);
 					}
 				}
 				if (lastDigit < 9) {
-					int nextDigit = lastDigit+1;
-					int nextNumber = val * 10 + nextDigit;
+					int nextNumber = val * 10 + (lastDigit+1);
 					if (nextNumber <= max) {
 						output.add(nextNumber);
 						queue.add(nextNumber);
