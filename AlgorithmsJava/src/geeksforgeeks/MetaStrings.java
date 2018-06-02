@@ -45,8 +45,6 @@ public class MetaStrings {
 	        }			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-        
-        
+		}              
 	}	
 }
