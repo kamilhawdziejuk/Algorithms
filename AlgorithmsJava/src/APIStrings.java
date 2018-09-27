@@ -123,6 +123,17 @@ public class APIStrings {
         return results;
     }
     
+       // Method to sort a string alphabetically 
+    public static String sortString(String inputString) 
+    { 
+        // convert input string to char array 
+        char tempArray[] = inputString.toCharArray(); 
+        // sort tempArray 
+        Arrays.sort(tempArray);      
+        // return new sorted string 
+        return new String(tempArray); 
+    }
+    
     public static Character firstNonRepeatedCharacter(String str)
     {
         HashMap<Character,Integer>  characterhashtable= new HashMap<Character ,Integer>();
