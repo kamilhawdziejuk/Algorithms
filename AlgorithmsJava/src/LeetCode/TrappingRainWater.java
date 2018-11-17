@@ -72,7 +72,6 @@ public class TrappingRainWater {
 		 Node curr = root;
 		 while (curr != null) {
 
-			 int val = curr.height;
 			 if (curr.left == null) {
 				 curr = curr.right;
 			 }
@@ -80,8 +79,7 @@ public class TrappingRainWater {
 				 
 				 if (curr.left.height == curr.height) {
 					 mergeLeftToRight(curr.left, curr);
-				 }
-				 
+				 }				 
 				 else if (curr.left.height > curr.height) {
 					 if (curr.right != null && curr.right.height > curr.height) {
 
