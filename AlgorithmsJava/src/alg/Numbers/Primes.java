@@ -9,7 +9,7 @@ public class Primes {
 		List<Integer> primeNumbers = primes.getPrimes(11);
 	}
 	
-    public List<Integer> getPrimes(int n)
+    public static List<Integer> getPrimes(int n)
     {
     	 boolean[] sieve = new boolean[n+2];
          sieve[0] = true;

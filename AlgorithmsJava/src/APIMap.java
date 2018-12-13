@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,16 @@ public class APIMap {
 	              ));
 	}
 	
+	public void SortByKey(Map<Integer,Integer> map, boolean desc) {
+		
+		TreeSet<Integer> keys = new TreeSet<>(map.keySet());		
+		if (desc) {
+			keys = (TreeSet)keys.descendingSet();
+		}
+       
+        for (Integer nr : keys) {        	
+        }
+	}
 	
 	public Map<String, Integer> map = new HashMap<>();
 	
