@@ -15,6 +15,7 @@ public class AGraphProblem {
 	public void Read()
 	{
         Scanner in = new Scanner(System.in);
+        String str;
         n = in.nextInt();
         g = new int[n][n];
         for(int g_i=0; g_i < n; g_i++){
