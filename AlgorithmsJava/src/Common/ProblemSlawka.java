@@ -77,10 +77,23 @@ public class ProblemSlawka {
 		//problem.PrepareData();
 		//List<Order> orders = problem.PrepareData();
 		
-		orders = problem.ReadAndBuildOrdersStructure("D:/ProblemSlawka/ProblemSlawka.csv");		
-		List<Order> ordersToAnalyze = problem.Prepare(orders, 4, 156);		
+		orders = problem.ReadAndBuildOrdersStructure("D:/ProblemSlawka/ProblemSlawka.csv");	
+		
+		System.out.println("Orders:" + orders.size());	
+		
+		/*for (Order order : orders) {
+			if (!problem.CheckIfUnique(order)) {
+			}
+			if (order.GetEntries().size() > 4) {
+				System.out.println(order.GetEntries().size());				
+			}
+		}*/
+		
+		List<Order> ordersToAnalyze = problem.Prepare(orders, 4, 50);
+		System.out.println("Orders2:" + ordersToAnalyze.size());
+		
 		Map<String, Integer> result = problem.Calc(ordersToAnalyze, 4);
-		problem.SaveToFile(result, "D:/ProblemSlawka/Output4.txt");
+		problem.SaveToFile(result, "D:/ProblemSlawka/Output4_TestsLimited.txt");
 		
 		int test = 5;
 	}
@@ -95,7 +108,7 @@ public class ProblemSlawka {
 				String key = entry.getKey();
 				Integer value = entry.getValue();
 				
-				if (value > 1) {
+				if (value > 50) {
 					writer.println(key + "  " + value + " times");
 				}			
 			}				
@@ -104,37 +117,7 @@ public class ProblemSlawka {
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
-			
-	}
-	
-	private List<Order> PrepareData() {
-		List<Order> orders = new ArrayList<>();
-		Order order1 = new Order(1);
-		order1.Add("1");
-		order1.Add("2");
-		order1.Add("3");
-		order1.Add("4");
-		order1.Add("5");
-
-		this.GetSubsets(order1.GetEntries(),3);
-
-		
-		Order order2 = new Order(2);
-		order2.Add("3");
-		order2.Add("10");
-	
-		Order order3 = new Order(3);
-		order3.Add("10");
-		order3.Add("10");
-		order3.Add("15");
-		
-		orders.add(order1);
-		orders.add(order2);
-		orders.add(order3);
-		return orders;
+		}	
 	}
 	
 	private List<Order> Prepare(List<Order> orders, int levelExpected, int maxLevel) {
@@ -154,7 +137,7 @@ public class ProblemSlawka {
 				}
 			}
 			else if (level > maxLevel) {
-				System.out.println(level);
+				//System.out.println(level);
 			}
 		}
 		return results;
@@ -216,8 +199,22 @@ public class ProblemSlawka {
 		}
 	}
 	
+	private boolean CheckIfUnique(Order order) {
+		for (int i = 0; i < order.GetEntries().size(); i++) {
+			String entry = order.GetEntries().get(i);
+			if (i > 0) {
+				String entryPrev = order.GetEntries().get(i-1);
+				if (entry.equals(entryPrev)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
 	private List<Order> ReadAndBuildOrdersStructure(String filePath) {
     			
+		List<String> articles = new ArrayList<>();
 		List<Order> orders = new ArrayList<>();
 		
 		try {
@@ -232,6 +229,10 @@ public class ProblemSlawka {
 				int position = Integer.parseInt(data[1]);
 				String val = data[0];//Integer.parseInt(data[0]);
 				
+				if (!articles.contains(val)) {
+					articles.add(val);
+				}			
+				
 				int orderPosition = this.Find(orders, position);
 				Order order;
 				if (orderPosition == -1) {
@@ -240,7 +241,9 @@ public class ProblemSlawka {
 					orders.add(order);
 				}
 				else {
-					orders.get(orderPosition).Add(val);
+					if (!orders.get(orderPosition).GetEntries().contains(val)) {
+						orders.get(orderPosition).Add(val);						
+					}
 				}
 			}
 			
