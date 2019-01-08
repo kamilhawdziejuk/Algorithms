@@ -74,31 +74,19 @@ public class ProblemSlawka {
 		
 		List<Order> orders;
 		ProblemSlawka problem = new ProblemSlawka();
-		//problem.PrepareData();
-		//List<Order> orders = problem.PrepareData();
 		
-		orders = problem.ReadAndBuildOrdersStructure("D:/ProblemSlawka/ProblemSlawka.csv");	
+		orders = problem.ReadAndBuildOrdersStructure("D:/ProblemSlawka/ProblemSlawka.csv");			
+		System.out.println("Orders size:" + orders.size());	
 		
-		System.out.println("Orders:" + orders.size());	
-		
-		/*for (Order order : orders) {
-			if (!problem.CheckIfUnique(order)) {
-			}
-			if (order.GetEntries().size() > 4) {
-				System.out.println(order.GetEntries().size());				
-			}
-		}*/
-		
-		List<Order> ordersToAnalyze = problem.Prepare(orders, 4, 50);
-		System.out.println("Orders2:" + ordersToAnalyze.size());
-		
-		Map<String, Integer> result = problem.Calc(ordersToAnalyze, 4);
-		problem.SaveToFile(result, "D:/ProblemSlawka/Output4_TestsLimited.txt");
-		
-		int test = 5;
+		int tupleN = 4;
+		int maxOrderSize = 50;
+		List<Order> ordersToAnalyze = problem.Prepare(orders, tupleN, maxOrderSize);
+		System.out.println("Orders [" + tupleN + "] size:" + ordersToAnalyze.size());		
+		Map<String, Integer> result = problem.Calc(ordersToAnalyze, tupleN);		
+		problem.SaveToFile(result, "D:/ProblemSlawka/Output4_LimitedOrderSize50.txt", 20);
 	}
 	
-	private void SaveToFile(Map<String, Integer> result, String fileName) {
+	private void SaveToFile(Map<String, Integer> result, String fileName, int LimitTimes) {
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(fileName, "UTF-8");			
@@ -108,14 +96,13 @@ public class ProblemSlawka {
 				String key = entry.getKey();
 				Integer value = entry.getValue();
 				
-				if (value > 50) {
+				if (value > LimitTimes) {
 					writer.println(key + "  " + value + " times");
 				}			
 			}				
 						
 			writer.close();	
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
@@ -136,16 +123,12 @@ public class ProblemSlawka {
 					results.add(nextOrder);
 				}
 			}
-			else if (level > maxLevel) {
-				//System.out.println(level);
-			}
 		}
 		return results;
 	}
 	
 	private Map<String, Integer> Calc(List<Order> orders, int levelExpected) {
 		Map<String, Integer> map = new HashMap<>();
-		System.out.println("Orders:" + orders.size());
 		for (Order order : orders) {
 			int level = order.GetLevel();
 			if (level == levelExpected) {
@@ -227,7 +210,7 @@ public class ProblemSlawka {
 				line = in.nextLine();
 				String[] data = line.split(",");
 				int position = Integer.parseInt(data[1]);
-				String val = data[0];//Integer.parseInt(data[0]);
+				String val = data[0];
 				
 				if (!articles.contains(val)) {
 					articles.add(val);
@@ -250,7 +233,6 @@ public class ProblemSlawka {
 			in.close();
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return orders;
