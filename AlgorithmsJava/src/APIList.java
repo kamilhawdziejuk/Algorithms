@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -46,7 +47,7 @@ public class APIList {
 		String stringList = list.toString();
 		
 		//list = list.subList(0, 10*index);
-		
+		Collections.sort(list, IntComparator);
 		//Comparator<Integer> comp = IntComparator;
 		list.sort(IntComparator);
 		

@@ -25,15 +25,54 @@ public class APIMap {
 	              ));
 	}
 	
+	public static void main(String[] args) {
+		
+	}
+		
 	public void SortByKey(Map<Integer,Integer> map, boolean desc) {
 		
 		TreeSet<Integer> keys = new TreeSet<>(map.keySet());		
 		if (desc) {
 			keys = (TreeSet)keys.descendingSet();
-		}
-       
-        for (Integer nr : keys) {        	
+		}       
+        //for (Integer nr : keys) {}
+	}
+	
+	
+	private static Comparator<Map.Entry<Integer, String>> ValueComparator  = new Comparator<Map.Entry<Integer, String>>() {
+        @Override
+        public int compare(
+          Map.Entry<Integer, String> o1, Map.Entry<Integer, String> o2) {
+            return o1.getValue().compareTo(o2.getValue());
         }
+	};
+	
+	private static Comparator<Map.Entry<Integer, String>> KeyComparator  = new Comparator<Map.Entry<Integer, String>>() {
+        @Override
+        public int compare(
+          Map.Entry<Integer, String> o1, Map.Entry<Integer, String> o2) {
+            return o1.getValue().compareTo(o2.getValue());
+        }
+	};
+	
+	public void SortByKey(Map<Integer, String> map) {
+		 
+	    List<Map.Entry<Integer, String>> entries = new ArrayList<>(map.entrySet());    
+	    Collections.sort(entries, KeyComparator);	    
+	    Map<Integer, String> sortedMap = new LinkedHashMap<>();
+	    for (Map.Entry<Integer, String> entry : entries) {
+	        sortedMap.put(entry.getKey(), entry.getValue());
+	    }
+	}
+	
+	public void SortByValue(Map<Integer, String> map) {
+	 
+	    List<Map.Entry<Integer, String>> entries = new ArrayList<>(map.entrySet());    
+	    Collections.sort(entries, ValueComparator);	    
+	    Map<Integer, String> sortedMap = new LinkedHashMap<>();
+	    for (Map.Entry<Integer, String> entry : entries) {
+	        sortedMap.put(entry.getKey(), entry.getValue());
+	    }
 	}
 	
 	public Map<String, Integer> map = new HashMap<>();
