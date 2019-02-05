@@ -1,4 +1,6 @@
 
+import java.util.*;
+
 public class APIArray {
     	
 	 public static void main(String[] args) {
@@ -9,6 +11,10 @@ public class APIArray {
 		 print(t);
 		 change(t);
 		 print(t);
+		 
+		 //converting List to Array
+		 List<Integer> list = new ArrayList<>();
+		 int[] tableFromList = list.stream().mapToInt(Integer::intValue).toArray();
 	 }
 	 
 	 
