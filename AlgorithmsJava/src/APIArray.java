@@ -1,5 +1,6 @@
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class APIArray {
     	
@@ -13,8 +14,22 @@ public class APIArray {
 		 print(t);
 		 
 		 //converting List to Array
-		 List<Integer> list = new ArrayList<>();
-		 int[] tableFromList = list.stream().mapToInt(Integer::intValue).toArray();
+		 List<Integer> list = Arrays.stream(t)		// IntStream
+					.boxed()  		// Stream<Integer>
+					.collect(Collectors.toList());
+		 
+		 int[] table = list.stream().
+				 mapToInt(Integer::intValue).toArray();
+		 
+		 list.sort((a,b) -> { return a.compareTo(b); });
+		 
+		 Arrays.sort(t);
+		 
+	     List<List<Integer>> res = new ArrayList<List<Integer>>();
+	     List<Integer> list2 = new ArrayList<>();
+		 
+		 StringBuilder sb = new StringBuilder();
+		 
 	 }
 	 
 	 
