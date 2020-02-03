@@ -51,7 +51,7 @@ public class APIMap {
         @Override
         public int compare(
           Map.Entry<Integer, String> o1, Map.Entry<Integer, String> o2) {
-            return o1.getKey()compareTo(o2.getKey());
+            return o1.getKey().compareTo(o2.getKey());
         }
 	};
 	
