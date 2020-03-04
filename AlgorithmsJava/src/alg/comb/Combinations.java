@@ -7,10 +7,59 @@ public class Combinations {
 	
 	public static void main(String[] args) throws ScriptException
 	{
-		String toCalculate = "TAK*TAK=2*TTAAK";
-		//String toCalculate = "DIX+NEUF=19*UN";
+		String toCalculate = "";
+		toCalculate = "TAK*TAK=2*TTAAK";
+		toCalculate = "DIX+NEUF=19*UN";
+		//toCalculate = "6*aaa+7*a=2019";
 		int numbers[] = new int[] {0,1,2,3,4,5,7,8};
-		new Combinations().CalculateExpression(toCalculate, numbers);
+		//new Combinations().CalculateExpression(toCalculate, numbers);
+		new Combinations().Calculate3DigitsNumberCondition();
+		//new Combinations().CalculateFunctionNumbers();
+
+	}
+	
+	//eg. find abc such as..
+	public void Calculate3DigitsNumberCondition() {
+		for (int number = 100; number <= 999; number++) {
+			
+			int a = number/100;
+			int b = (number - a*100) / 10;
+			int c = number - 100*a - 10*b;
+			
+			if (a != c) {
+				int kwadrat = number * number;
+				String kwadratStr = Integer.toString(kwadrat);
+				String kwadratStrRev = new StringBuilder(kwadratStr).reverse().toString();
+				
+				String numberRev = new StringBuilder(Integer.toString(number)).reverse().toString();
+				int numberRevInt = Integer.parseInt(numberRev);
+				int kwadrat2 = numberRevInt * numberRevInt;
+				String kwadrat2Rev = Integer.toString(kwadrat2);
+				
+				if (kwadrat2Rev.contains(kwadratStrRev)) {
+					System.out.println(number);
+				}
+			}
+			
+		}
+	}
+	
+	//eg. find a,b,c such as ...(20/19 = (a^3+b^3/a^c + c^3)
+	public void CalculateFunctionNumbers() {
+		for (int a = 1; a < 50; a++) {
+			for (int b = 1; b < 50; b++) {
+				for (int c = 1; c < 50; c++) {
+					
+					//replace it!
+					int left = 20 * (a*a*a + c*c*c);
+					int right = 19 * (a*a*a + b*b*b);
+					
+					if (left == right) {
+						System.out.println("(a, b, c)= (" + a + ", " + b + ", " + c +")");
+					}
+				}
+			}
+		}
 	}
 	
 	public void CalculateExpression(String toCalculate, int numbers[]) {
