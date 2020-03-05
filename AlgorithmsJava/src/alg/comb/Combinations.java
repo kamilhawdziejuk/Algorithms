@@ -11,11 +11,54 @@ public class Combinations {
 		toCalculate = "TAK*TAK=2*TTAAK";
 		toCalculate = "DIX+NEUF=19*UN";
 		//toCalculate = "6*aaa+7*a=2019";
+		Combinations comb = new Combinations();
 		int numbers[] = new int[] {0,1,2,3,4,5,7,8};
-		//new Combinations().CalculateExpression(toCalculate, numbers);
-		new Combinations().Calculate3DigitsNumberCondition();
-		//new Combinations().CalculateFunctionNumbers();
+		//comb.CalculateExpression(toCalculate, numbers);
+		//comb.Calculate3DigitsNumberCondition();
+		//comb.CalculateFunctionNumbers();
 
+		int numbs[] = new int[] {13,14,15,16,17,18};
+		comb.FindNumbersSequenceThat(numbs);
+	}
+
+	//find numbers sequence that fulfills condition
+	public void FindNumbersSequenceThat(int[] numbs) {
+		List<List<Integer>> list = new Combinations().genAllCombinations(numbs, 6);
+		for (int i = 0; i < list.size(); i++) {
+			
+			if (this.CheckCondition(list.get(i))) {
+				this.PrintList(list.get(i));
+			}
+		}
+	}
+	
+	private boolean CheckCondition(List<Integer> list) {
+		int a = list.get(0);
+		int b = list.get(1);
+		int c = list.get(2);
+		int d = list.get(3);
+		int e = list.get(4);
+		int f = list.get(5);
+		
+		int A = 20+a+b+12;
+		int B = 12+c+19+d;
+		int C = 20+f+e+d;
+		
+		if (A != B || B != C || A != C) {
+			return false;
+		}
+		if (a < b) return false;
+		if (f > e) return false;
+		
+		return true;
+		
+	}
+	
+	private void PrintList(List<Integer> list) {
+		for (int j = 0; j < list.size(); j++) {
+			System.out.print(" " + list.get(j));
+		}
+		System.out.println();
 	}
 	
 	//eg. find abc such as..
@@ -62,6 +105,9 @@ public class Combinations {
 		}
 	}
 	
+	//eg. find numbers that if we replace letters by them calculation makes happen
+	//toCalculate = "TAK*TAK=2*TTAAK";
+	//toCalculate = "DIX+NEUF=19*UN";
 	public void CalculateExpression(String toCalculate, int numbers[]) {
 		Combinations prog = new Combinations();
 
