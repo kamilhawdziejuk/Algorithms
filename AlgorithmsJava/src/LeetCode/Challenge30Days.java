@@ -7,11 +7,56 @@ public class Challenge30Days {
 	
 	public static void main(String[] args) {
 		Challenge30Days prog = new Challenge30Days();
-
-		LRUCache cache = prog.new LRUCache( 2 /* capacity */ );
+		int[] nums = {3,2,1,0,4};
+		prog.canJump(nums);
 	}
 	
-	//challange 23 - optimal implementation using LinkedHashMap
+	//challange 24
+	public int longestCommonSubsequence(String text1, String text2) {
+        char[] x = text1.toCharArray();
+        char[] y = text2.toCharArray();
+        return lcs(x,y,x.length, y.length);
+    }
+    
+    private int lcs(char[] x, char[] y, int m, int n) {
+        int l[][] = new int[m+1][n+1];
+        for (int i = 0; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                if (i == 0 || j == 0) {
+                    l[i][j] = 0;
+                } else if (x[i-1] == y[j-1]) {
+                    l[i][j] = 1 + l[i-1][j-1];
+                } else {
+                    l[i][j] = Math.max(l[i-1][j], l[i][j-1]);                    
+                }
+            }
+        }
+        return l[m][n];
+    }
+	
+	//challange 23
+	public boolean canJump(int[] nums) {
+        if (nums == null || nums.length == 0) return false;
+        if (nums.length == 1) return true;
+        Set<Integer> set = new HashSet<>();
+        set.add(0);
+        for (int i = 0; i < nums.length; i++) {
+        	        	
+            if (set.contains(i)) {
+                for (int j = 1; j <= nums[i]; j++) {
+                    int next = i + j;
+                    if (next == nums.length-1) {
+                        return true;
+                    } else {
+                        set.add(next);                        
+                    }
+                }
+            }
+        }
+        return false;
+    }
+	
+	//challange 22 - optimal implementation using LinkedHashMap
 	class LRUCache {
 	    private LinkedHashMap<Integer, Integer> cache;
 	    private int N;
@@ -47,7 +92,7 @@ public class Challenge30Days {
 	    }
 	}
 	
-	//challange 23
+	//challange 22
 	class LRUCache_notOptimal {
 		
 		class Node {
@@ -131,7 +176,7 @@ public class Challenge30Days {
 	    }
 	}
 	
-	//challenge 22
+	//challenge 21
     public int rangeBitwiseAnd(int m, int n) {
         int res = m;
         while (m < n) {
@@ -143,7 +188,7 @@ public class Challenge30Days {
         return res;
     }
 	
-	//day 21 challange
+	//day 20 challange
     public int subarraySum(int[] nums, int k) {
         Map<Integer, List<Integer>> map = new HashMap<>();
         int cnt = 0;
