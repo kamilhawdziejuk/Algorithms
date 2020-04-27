@@ -8,10 +8,79 @@ public class Challenge30Days {
 	public static void main(String[] args) {
 		Challenge30Days prog = new Challenge30Days();
 		int[] nums = {3,2,1,0,4};
-		prog.canJump(nums);
+		
+		char[][] matrix = {{'1','0','1','0','0'},{'1','0','1','1','1'},{'1','1','1','1','1'},{'1','0','0','1','0'}};
+		prog.maximalSquare(matrix);
 	}
 	
-	//challange 24
+	//challenge 27
+    public int maximalSquare(char[][] matrix) {
+        if (matrix == null || matrix.length == 0) return 0;
+        
+        int n = matrix.length;
+        int m = matrix[0].length;
+    
+        int[][] left = left_matrix(matrix, n, m);
+        int[][] top = top_matrix(matrix, n, m);
+        
+        int[][] L = new int[n][m];
+        
+        for (int i = 0; i < n; i++) {
+        	for (int j = 0; j < m; j++) {
+        		if (matrix[i][j] == '1') {
+        			L[i][j] = Math.min(left[i][j], top[i][j]);
+        			if (i > 0 && j > 0) {
+        				L[i][j] = Math.min(L[i][j], L[i-1][j-1]+1);
+        			}
+        	
+        		} else {
+        			L[i][j] = 0;
+        		}
+        		
+        	}
+        }
+        
+        int max = 0;
+        for (int i = 0; i < n; i++) {
+        	for (int j = 0; j < m; j++) {
+        		max = Math.max(max,  L[i][j]);
+        	}
+        }
+        
+        return max*max;
+    }
+    
+    public int[][] left_matrix(char[][] matrix, int n, int m) {
+        int[][] mat = new int[n][m];
+        for (int i = 0; i < n; i++) {
+        	mat[i][0] = matrix[i][0] == '1' ? 1 : 0;
+        	for (int j = 1; j < m; j++) {
+        		if (matrix[i][j] == '0') {
+        			mat[i][j] = 0;
+        		} else {
+        			mat[i][j] = 1 + mat[i][j-1];
+        		}
+        	}
+        }
+        return mat;
+    }
+    
+    public int[][] top_matrix(char[][] matrix, int n, int m) {
+        int[][] mat = new int[n][m];
+        for (int j = 0; j < m; j++) {
+        	mat[0][j] = matrix[0][j] == '1' ? 1 : 0;
+        	for (int i = 1; i < n; i++) {
+        		if (matrix[i][j] == '0') {
+        			mat[i][j] = 0;
+        		} else {
+        			mat[i][j] = 1 + mat[i-1][j];
+        		}
+        	}
+        }
+        return mat;
+    }
+	
+	//challange 26
 	public int longestCommonSubsequence(String text1, String text2) {
         char[] x = text1.toCharArray();
         char[] y = text2.toCharArray();
