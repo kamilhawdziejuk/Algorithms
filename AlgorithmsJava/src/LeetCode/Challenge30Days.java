@@ -9,11 +9,52 @@ public class Challenge30Days {
 	
 	public static void main(String[] args) {
 		Challenge30Days prog = new Challenge30Days();
-		int[] nums = {3,2,1,0,4};
 		
-		char[][] matrix = {{'1','0','1','0','0'},{'1','0','1','1','1'},{'1','1','1','1','1'},{'1','0','0','1','0'}};
-		prog.maximalSquare(matrix);
+    	for (int i = 0; i < 32; i++) {
+    		int val2 = 1 << i;
+    		System.out.println(val2);
+    	}		
+		prog.findComplement(1);
 	}
+
+    public int findComplement(int num) {
+    	int res = 0;
+    	for (int i = 0; i < 32; i++) {
+    		int val2 = 1 << i;
+    		if (val2 > num) break;
+    		int num2 = (num & val2);
+    		if (num2 != val2) {
+    			res += val2;
+    		}
+    		
+    	}
+    	return res;
+    }
+	
+	//challenge 29
+	 int max = Integer.MIN_VALUE;
+	   
+    public int maxPathSum(TreeNode root) {
+        calc(root);
+        return max;
+    }
+    
+    private int calc(TreeNode root) {
+        int valLeft = root.left != null ? calc(root.left): 0; 
+        int valRight = root.right != null ? calc(root.right) : 0; 
+        int maxInner = maxTab(new int[] {root.val, root.val + valLeft, root.val + valRight});
+        max = maxTab(new int[] {max, maxInner, root.val + valRight + valLeft});
+        return maxInner;
+    }
+    
+    private int maxTab(int[] tab) {
+    	int m = tab[0];
+    	for (int i = 1; i < tab.length; i++) {
+    		m = Math.max(m,  tab[i]);
+    	}
+    	return m;
+    }
+	
 	
 	//challenge 28
 	class FirstUnique {
