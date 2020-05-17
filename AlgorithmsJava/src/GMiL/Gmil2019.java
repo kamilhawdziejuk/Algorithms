@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import alg.Numbers.Numbers;
 
@@ -34,8 +35,73 @@ import alg.Numbers.Numbers;
 
 public class Gmil2019 {
 
+	int cnt = 0;
 	public static void main(String[] args) {
 		Gmil2019 pro = new Gmil2019();
+		pro.getNumbers(0, 0, 0);
+		if (pro.cnt > 0) {
+			System.out.println(pro.cnt);
+		}
+	}
+	
+	class Maze2 {
+		int t[][] = new int[4][7];
+		
+		public Maze2(String s) {
+			for (int i = 0; i < s.length(); i++) {
+				char c = s.charAt(i);
+				if (c == '1') {
+					t[i/7][i % 7] = 1;
+				}
+			}
+		}
+		
+		public boolean check() {
+			for (int r = 0; r < 4; r++) {
+				if (t[r][0]+t[r][1]+t[r][2] == 3) return false;
+				if (t[r][1]+t[r][2]+t[r][3] == 3) return false;
+				if (t[r][2]+t[r][3]+t[r][4] == 3) return false;
+				if (t[r][3]+t[r][4]+t[r][5] == 3) return false;
+				if (t[r][4]+t[r][5]+t[r][6] == 3) return false;
+			}
+			for (int c = 0; c < 7; c++) {
+				if (t[0][c]+t[1][c]+t[2][c] == 3) return false;
+				if (t[1][c]+t[2][c]+t[3][c] == 3) return false;
+			}
+			for (int c = 0; c < 5; c++) {
+				if (t[0][c]+t[1][c+1]+t[2][c+2]==3) return false;
+				if (t[1][c]+t[2][c+1]+t[3][c+2]==3) return false;				
+			}			
+			for (int c = 0; c < 5; c++) {
+				if (t[2][c]+t[1][c+1]+t[0][c+2]==3) return false;
+				if (t[3][c]+t[2][c+1]+t[1][c+2]==3) return false;				
+			}			
+
+			
+			return true;
+		}
+	}
+	
+	private void getNumbers(int num, int start, int already) {
+		int needed = 16;
+		int size = 28;		
+		if (already == needed) {
+			String str = Integer.toBinaryString(num);
+			Maze2 maze = new Maze2(str);
+			if (maze.check()) {
+				cnt++;	
+				System.out.println(cnt + " : " + str);
+			}
+			
+		} else {
+			if (start >= size) return;
+			int left = size - start;
+			if (left + already < needed) return;
+			int pow = 1 << start;
+			int numNext = num + pow;
+			getNumbers(numNext, start+1, already+1);
+			getNumbers(num, start+1, already);
+		}
 	}
 	
 	 //taka sama ilosc drzew w kazdym wierszu (po n)
