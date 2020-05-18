@@ -8,6 +8,13 @@ import java.util.Map;
 
 public class Problem438_FinalAllAnagrams {
 	
+	
+	public static void main(String[] args) {
+		Problem438_FinalAllAnagrams sol = new Problem438_FinalAllAnagrams();
+		sol.checkInclusion("ab", "eidbaooo");
+	}
+		
+	
 	class Anagram implements Comparable<Anagram> {
 		public Map<Character, Integer> map = new HashMap<>();
 		
@@ -35,7 +42,7 @@ public class Problem438_FinalAllAnagrams {
 		public int compareTo(Anagram o) {
 			// TODO Auto-generated method stub
 			for (Character c : o.map.keySet()) {
-				if (o.map.containsKey(c) || this.map.containsKey(c)) return -1;
+				if (!o.map.containsKey(c) || !this.map.containsKey(c)) return -1;
 				Integer val = o.map.get(c);
 				Integer val2 = this.map.get(c);
 				if ((int)val != (int)val2) return -1;									
@@ -66,6 +73,13 @@ public class Problem438_FinalAllAnagrams {
         }
         
         return res;
+    }
+    
+    //567. Permutation in String
+    public boolean checkInclusion(String s1, String s2) {
+        List<Integer> list = findAnagrams(s2, s1);
+        if (list.size() > 0) return true;
+        return false;
     }
 	
 }
