@@ -10,13 +10,65 @@ public class Challenge30Days {
 	public static void main(String[] args) {
 		Challenge30Days prog = new Challenge30Days();
 		
+		prog.frequencySort("Aabb");
+		
     	for (int i = 0; i < 32; i++) {
     		int val2 = 1 << i;
     		System.out.println(val2);
     	}		
 		prog.findComplement(1);
 	}
+	
+	class DataC implements Comparable<DataC> {
+		public char c;
+		public int cnt;
+		@Override
+		public int compareTo(DataC arg0) {
+			
+			if (this.cnt < arg0.cnt)
+			{
+				return 1;
+			}
+			else if (this.cnt > arg0.cnt)
+			{
+				return -1;
+			}
+			return 0;
+		}			
+	}
 
+    public String frequencySort(String s) {
+    	Map<Character, Integer> map = new HashMap<>();
+    	for (Character c : s.toCharArray()) {
+    		if (!map.containsKey(c)) {
+    			map.put(c, 0);
+    		}
+    		map.put(c, map.get(c)+1);
+    	}
+    	
+    	List<DataC> list = new ArrayList<>();
+    	for (Character c : map.keySet()) {
+    		DataC data = new DataC();
+    		data.c = c;
+    		data.cnt = map.get(c);
+    		list.add(data);
+    	}
+    	
+    	Collections.sort(list);
+    	String res = "";
+    	StringBuilder str = new StringBuilder();
+    	for (DataC data : list) {
+    		char c = data.c;
+    		int cnt = data.cnt;
+    		
+    		for (int i = 0; i < cnt; i++) {
+    			str.append(c);
+    		}
+    	}
+    	res = str.toString();
+    	return res;   
+    }
+	
     public int findComplement(int num) {
     	int res = 0;
     	for (int i = 0; i < 32; i++) {
