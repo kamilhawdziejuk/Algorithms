@@ -7,8 +7,27 @@ import alg.Sorts.DataSort.Data;
 
 public class Challenge30Days {
 	
+	  public class ListNode {
+		      int val;
+		      ListNode next;
+		      ListNode() {}
+		      ListNode(int val) { this.val = val; }
+		      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+		 }
+	
 	public static void main(String[] args) {
 		Challenge30Days prog = new Challenge30Days();
+		ListNode l1 = prog.new ListNode(1);
+		ListNode l2 = prog.new ListNode(2);
+		ListNode l3 = prog.new ListNode(3);
+		ListNode l4 = prog.new ListNode(4);
+		ListNode l5 = prog.new ListNode(5);
+		l1.next = l2;
+		l2.next = l3;
+		l3.next = l4;
+		l4.next = l5;
+		
+		prog.oddEvenList(l1);
 		
 		prog.frequencySort("Aabb");
 		
@@ -19,6 +38,38 @@ public class Challenge30Days {
 		prog.findComplement(1);
 	}
 	
+	//Input: 1->2->3->4->5->NULL
+	//Output: 1->3->5->2->4->NULL
+	//https://leetcode.com/problems/odd-even-linked-list/
+	public ListNode oddEvenList(ListNode head) {
+    	ListNode oddStart = head;
+    	ListNode evenStart = null;
+    
+    	ListNode oddCurr = head;
+    	ListNode evenCurr = null;
+    
+        if (oddCurr == null) return null;
+           
+    	while (oddCurr.next != null) {
+    		if (evenCurr == null) {
+        		evenCurr = oddCurr.next;
+        		evenStart = evenCurr;
+    		} else {
+    			evenCurr.next = oddCurr.next;
+    			evenCurr = evenCurr.next;
+    		}
+    		oddCurr.next = oddCurr.next.next;
+    		if (oddCurr.next != null) {
+        		oddCurr = oddCurr.next;    			
+    		}
+    	}
+        if (evenCurr != null) {
+    	    evenCurr.next = null;            
+        }
+    	oddCurr.next = evenStart;
+        return oddStart;
+    }
+    
 	class DataC implements Comparable<DataC> {
 		public char c;
 		public int cnt;
