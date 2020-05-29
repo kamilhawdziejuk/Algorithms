@@ -5,6 +5,7 @@ public class Node {
     public int dist;
     public int inDegree;
     public boolean isVisited = false;
+    public boolean isBeingVisited = false;
     LinkedList<Node> adj = new LinkedList<Node>( );
 
     public void addAdjNode(final Node Child){

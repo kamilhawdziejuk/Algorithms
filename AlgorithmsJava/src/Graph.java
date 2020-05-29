@@ -3,7 +3,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-
 public class Graph {
 	
 	List<Node> visitedDFS = new LinkedList<Node>();
@@ -39,6 +38,32 @@ public class Graph {
             	
         }
         return result;
+    }
+    
+    private boolean hasCycle(Node sourceVertex) {
+        sourceVertex.isBeingVisited = true;
+     
+        for (Node neighbor : sourceVertex.adj) {
+            if (neighbor.isBeingVisited) {
+                // backward edge exists
+                return true;
+            } else if (!neighbor.isVisited && hasCycle(neighbor)) {
+                return true;
+            }
+        }
+     
+        sourceVertex.isBeingVisited = false;;
+        sourceVertex.isVisited = true;
+        return false;
+    }
+    
+    public boolean hasCycle() {
+        for (Node vertex : this.nodes) {
+            if (!vertex.isVisited && hasCycle(vertex)) {
+                return true;
+            }
+        }
+        return false;
     }
     
     public void dfs(Node root)
