@@ -10,6 +10,7 @@ public class CourseSchedule {
 		CourseSchedule pro = new CourseSchedule();
 	}
 	
+	
 	class Node {
 	    public int data;
 	    public int inDegree;
