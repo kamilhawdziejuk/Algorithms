@@ -23,6 +23,8 @@ public class APIList {
 		{
 			list.add(5*i-i*i);
 		}
+
+		Collections.binarySearch(list, 5);
 		
 		list.add(3);
 		list.add(7);

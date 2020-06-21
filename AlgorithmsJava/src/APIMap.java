@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.TreeMap;
 
 public class APIMap {
 	
@@ -27,6 +28,7 @@ public class APIMap {
 	
 	public static void main(String[] args) {
 		
+		TreeMap<String, Integer> map = new TreeMap<>();
 	}
 		
 	public void SortByKey(Map<Integer,Integer> map, boolean desc) {
@@ -98,6 +100,8 @@ public class APIMap {
 		{
 			Integer value = map.get(entry);
 		}
+
+		map.values();
 		
 		for (Map.Entry<String, Integer> entry : map.entrySet())
 		{

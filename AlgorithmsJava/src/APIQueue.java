@@ -1,5 +1,3 @@
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.*;
 
 public class APIQueue {
@@ -24,6 +22,8 @@ public class APIQueue {
 	
 	public void Test()
 	{
+		Queue<String> queue = new LinkedList<>();
+
 		Queue<Integer> q = new PriorityQueue<>(new IncComparator());
 		
 		q.offer(4);
@@ -36,5 +36,24 @@ public class APIQueue {
 		
 		String s;
 		q.offer(4); //insert
+	}
+
+	public void TestDequeue() {
+		Deque<Integer> dec = new LinkedList<Integer>(); // or 
+		List<String> l = new LinkedList<>();
+		dec.offerFirst(5);
+		dec.offerLast(4);
+		dec.peekFirst();
+		dec.peekLast();
+	}
+
+	static <E> List<E> heapSort(Collection<E> c) {
+		Queue<E> queue = new PriorityQueue<E>(c);
+		List<E> result = new ArrayList<E>();
+	
+		while (!queue.isEmpty())
+			result.add(queue.remove());
+	
+		return result;
 	}
 }

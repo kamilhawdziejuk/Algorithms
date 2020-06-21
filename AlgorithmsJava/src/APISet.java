@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.TreeSet;
 
 public class APISet {
 	
@@ -23,5 +24,22 @@ public class APISet {
 		for (String elem : set)
 		{
 		}
+
+		TreeSet<Integer> tree  = new TreeSet<>();
+		tree.lower(3); //returns the closest lower thatn 3
+		tree.higher(5);//returns the closest higher than 5
+
+		Set<Integer> s1 = new HashSet<>();
+		Set<Integer> s2 = new HashSet<>();
+		Set<Integer> s3 = new HashSet<>();
+
+		Set<Integer> union = new HashSet<Integer>(s1);
+		union.addAll(s2);
+
+		Set<Integer> intersection = new HashSet<Integer>(s1);
+		intersection.retainAll(s2);
+
+		Set<Integer> difference = new HashSet<Integer>(s1);
+		difference.removeAll(s2);
 	}    
 }
