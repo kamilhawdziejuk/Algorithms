@@ -1,8 +1,6 @@
 package alg.DataStructures;
 
 import org.junit.*;
-import java.util.*;
-
 
 public class BinaryTreeTest {
 	BinaryTree test;
